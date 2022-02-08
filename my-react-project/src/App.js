@@ -1,14 +1,20 @@
 import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App({ checkSolution, colourChange, cells }) {
+function App() {
 
-  // checkSolution function => assign a colour for each cell
+  const [score, setScore] = useState(0)
 
-  return (
-    cells.map(cell =>
-      return <Cell key={cell.coordinate} cell={cell} colour={colour} />
-    )
+  function updateScore() {
+    const newScore = score
+    newScore += 1
+    setScore(newScore)
+  }
+
+  return(
+    <button onClick={updateScore}>Check Solution</button>
+    <Score score={score} />
   )
 }
 

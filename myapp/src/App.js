@@ -8,14 +8,14 @@ function App() {
   const [score, setScore] = useState(0)
 
   function updateScore() {
-    const newScore = score
+    let newScore = score
     newScore += 1
     setScore(newScore)
   }
 
   return (
     <>
-      <button onClick={updateScore}>check solution</button>
+      <button id='check-solution' onClick={updateScore}>check solution</button>
       <Score score={score} />
     </>
   );

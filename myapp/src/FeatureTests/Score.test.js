@@ -4,9 +4,7 @@ import { cleanup, fireEvent, render } from "@testing-library/react";
 import Score from "../Score"
 import App from "../App"
 
-afterEach(cleanup);
-
-afterEach(cleanup);
+afterEach(cleanup); 
 
 it('is initialized with a score of 0', () => {
   const {container, getByScore} = render(<Score score={0} />)

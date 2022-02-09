@@ -22,48 +22,20 @@ it('is initialized with a score of 0', () => {
 it("increases the score by 1 when clicked", () => {
   const {queryCheckSolution, getCheckSolution } = render(
     <App/>,
-    );
+  );
 
-    const button = document.querySelector("[id=check-solution]")
-    expect(button.innerHTML).toBe("check solution")
+  const button = document.querySelector("[id=check-solution]")
+  expect(button.innerHTML).toBe("check solution")
 
-    const score = document.querySelector("[id=score]")
-    expect(score.innerHTML).toBe("0")
-
-  // const updateScore = NewScore
+  const score = document.querySelector("[id=score]")
+  expect(score.innerHTML).toBe("0")
 
   fireEvent.click(button);
   expect(score.innerHTML).toBe("1")
 
-  // expect(updateScore()).toBe(1)
+  fireEvent.click(button);
+  expect(score.innerHTML).toBe("2")
 })
 
 
-//   ) = jest.fn();
-//   act(() => {
-//     render(<Score onChange={onChange} />, container);
-//   });
-
-//   const button = document.querySelector("[id=check-solution]")
-//   expect(button.innerHTML).toBe("check solution")
-
-//   act(() => {
-//     button.dispatchEvent(new MouseElement("click", { bubbles: true }));
-//   });
-
-//   expect(onChange).toHaveBeenCalledTimes(1);
-  
-//   act(() => {
-//     for (let i = 0; i < 5; i++) {
-//       button.dispatchEvent(new MouseEvent("click", { bubbles: true
-//     }));
-//       }
-//   });
-
-//   expect(onChange).toHaveBeenCalledTimes(6);
-// };
-
-// // test('score increases by 1 when button pressed', () => {
-// //   render(<Score />;)
-// //   expect(score).toBe eq(2);
-// // })
+// test once button clicked 5 times, button is disabled from further use

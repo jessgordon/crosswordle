@@ -27,6 +27,7 @@ function generateCrosswordle() {
     }
     result.rows.push(row)
   }
+  console.log(result)
   
   return result 
 }
@@ -34,75 +35,52 @@ function generateCrosswordle() {
 function App() {
   const [grid, setGrid] = useState(generateCrosswordle())
   
-  useEffect(()=>{
-    for (let i=0; i<5; i++) {
-      for (let j=0; j<5; j++) {
-        if (grid.rows[i].cols[j].value === grid.rows[i].cols[j].answer) {
-          grid.rows[i].cols[j].readonly = true
-        }
-      }
-       
-    }
-  },[grid])
+  // useEffect(()=>{
+  //   for (let i=0; i<5; i++) {
+  //     for (let j=0; j<5; j++) {
+  //       if (grid.rows[i].cols[j].value === grid.rows[i].cols[j].answer) {
+  //         grid.rows[i].cols[j].readonly = true
+  //       }
+  //     }
+  //   }
+  // },[grid])
 
-  const handleChange = e => {
+  const checkCell = (e) => {
     e.preventDefault()
-    console.log(e.target)
-    const input = e.target.value
+    const input = e.target.value.toUpperCase()
     const r = e.target.attributes.row.value
     const c = e.target.attributes.col.value
     const newGrid = {...grid}
     newGrid.rows[r].cols[c].value = input
-    console.log(newGrid)
+    if (grid.rows[r].cols[c].value === grid.rows[r].cols[c].answer) {
+      grid.rows[r].cols[c].readonly = true}
+    console.log(newGrid.rows[r].cols[c])
     setGrid(newGrid)
 
   }
   
-  generateCrosswordle()
+  
   return (
     <>
     <div className="App">
       <header className ="App-header">
-        <h1>Crosswordle</h1>
+        <center><h1>Crosswordle</h1></center>
       </header>
-      <Grid grid={grid} handleChange={handleChange}/>
-
+      <Grid grid={grid} checkCell={checkCell}/>
     </div>
     </>
   )
 
 
 
-
-
-
-
-
-
-
-  // let cell_answers = CELL_ANSWERS
-  // const cellRef = useRef()
-  
-  // function readCellInput() {
-  //   const input = cellRef.current.value
-  //   cell_answers[0].input = input 
-  //   if (input === '') return
-  //   console.log(cell_answers[0])
-  // }
-
-  // function checkCellInput(coordinates) {
-    
-  // }
   
   //  return (
   //     CELL_ANSWERS.map((cellObject) => { return (<div>
   //       key={`${cellObject.coordinates[0]},${cellObject.coordinates[1]}`} ref={(element) => {refs.current[cellObject.input] = element}}</div>);
   //     })
   //   )
-  
-  // CELL_ANSWERS.map(cell => {
-  //   console.log(cell.coordinates, cell.colour, cell.answer)
-  // })
+ 
+
   // return(
   //   <>
   //     <input ref={cellRef} type='text'/>

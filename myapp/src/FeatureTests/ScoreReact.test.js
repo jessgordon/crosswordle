@@ -2,14 +2,16 @@ import React from "react";
 import updateScore from "../App"
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import Score from "../Score"
+import App from "../App"
 
 afterEach(cleanup);
  
 it("increases the score by 1 when clicked", () => {
   const {queryCheckSolution, getCheckSolution } = render(
-    <CheckSolution/>,
-  );
-  const score = NewScore
+    <App/>,
+    );
+
+  const updateScore = NewScore
 
   fireEvent.click(getCheckSolution);
 

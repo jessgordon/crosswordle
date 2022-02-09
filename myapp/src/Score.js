@@ -1,10 +1,8 @@
-
-
 import React from 'react'
 
-export default function Score() {
+export default function Score({score}) {
   return (
-    <div>Score</div>
+    <div className='score'>{score}</div>
   )
 }
 

@@ -5,6 +5,7 @@ import './App.css';
 function App() {
 
   const [score, setScore] = useState(0)
+  const answer = 'FIRMSIDIOMLASSOCHEEKHORSY'
 
   function updateScore() {
     const newScore = score
@@ -13,6 +14,7 @@ function App() {
   }
 
   return(
+    <LetterBucket answer={answer}/>
     <button onClick={updateScore}>Check Solution</button>
     <Score score={score} />
   )

@@ -28,13 +28,35 @@ function generateCrosswordle() {
     result.rows.push(row)
   }
   
-  console.log(result)
   return result 
 }
 
 function App() {
   const [grid, setGrid] = useState(generateCrosswordle())
-  const [cells, setCells] = useState([])
+  
+  useEffect(()=>{
+    for (let i=0; i<5; i++) {
+      for (let j=0; j<5; j++) {
+        if (grid.rows[i].cols[j].value === grid.rows[i].cols[j].answer) {
+          grid.rows[i].cols[j].readonly = true
+        }
+      }
+       
+    }
+  },[grid])
+
+  const handleChange = e => {
+    e.preventDefault()
+    console.log(e.target)
+    const input = e.target.value
+    const r = e.target.attributes.row.value
+    const c = e.target.attributes.col.value
+    const newGrid = {...grid}
+    newGrid.rows[r].cols[c].value = input
+    console.log(newGrid)
+    setGrid(newGrid)
+
+  }
   
   generateCrosswordle()
   return (
@@ -43,7 +65,8 @@ function App() {
       <header className ="App-header">
         <h1>Crosswordle</h1>
       </header>
-      <Grid grid={grid}/>
+      <Grid grid={grid} handleChange={handleChange}/>
+
     </div>
     </>
   )

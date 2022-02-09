@@ -16,23 +16,22 @@ export default function LetterBucket(answer) {
       let current_element = arr[i];
       arr[i] = arr[j];
       arr[j] = current_element;
-      <div className='randomLetter'>arr[j]</div>
+      // <div className='randomLetter'>arr[j]</div>
     }
 
     return arr
   }
 
+  const arr = randomiseAnswer(answer)
   return (
     
-    // <>
-    //   <div className='letterBucket'>
-    //     {
-    //       let arr = randomiseAnswer(answer)
-    //       for(let i = 0; i < 24; i++) {
-    //         <div className='randomLetter'>arr[i]</div>
-    //       }
-    //     }
-    //   </div>
-    // </>
+    <>
+      <div className='letterBucket'>
+        {
+          arr.forEach(letter => <div className='randomLetter'>arr[i]</div> )
+          
+        }
+      </div>
+    </>
   );
 }

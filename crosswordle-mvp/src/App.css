@@ -1,12 +1,11 @@
 .appHeader {
- text-align: center;
+  text-align: center;
 }
 
 .container {
   padding: 25px;
   text-align: center;
   position: relative;
-
 }
 
 .checkButton {

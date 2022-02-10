@@ -32,7 +32,7 @@ function generateCrosswordle() {
 function App() {
   const [grid, setGrid] = useState(generateCrosswordle());
   const [count, setCount] = useState();
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(0);
 
   const changeCell = (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ function App() {
     setCount(0);
     const newGrid = { ...grid };
     for (let i = 0; i < 5; i++) {
-      let row = newGrid.rows[i];
+      const row = newGrid.rows[i];
       for (let j = 0; j < 5; j++) {
         const col = row.cols[j];
         if (col.value === col.answer) {
@@ -59,7 +59,7 @@ function App() {
         }
       }
     }
-    setScore((prevScore) => prevScore + 1)
+    setScore((prevScore) => prevScore + 1);
     setGrid(newGrid);
   };
 
@@ -67,26 +67,24 @@ function App() {
     <>
       <div className="App">
         <header className="appHeader">
-            <h1>Crosswordle</h1>
+          <h1>Crosswordle</h1>
         </header>
         <Grid grid={grid} changeCell={changeCell} />
       </div>
 
       <div className="container">
-        <button className="checkButton" onClick={checkGrid}>Check Cells</button>
+        <button className="checkButton" onClick={checkGrid}>
+          Check Cells
+        </button>
       </div>
 
-      <div className="container">
-        Correct cells: {count}
-      </div>
+      <div className="container">Score: {score}</div>
 
       <div className="container">
-        Score: {score}
+        {count === 25 && <div>You win! Your final score is: {score}</div>}
       </div>
 
-      <div className="container">
-         {count === 25 && <div>You win! Your final score is: {score}</div>}
-      </div>
+      <div className="container">Correct cells: {count}</div>
     </>
   );
 }

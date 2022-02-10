@@ -33,7 +33,7 @@ function App() {
           </div>
 
           <div className="column"> 
-            <Score score={score} />
+            <Score score={score} key={"refreshedScore"} />
             <button id='check-solution' onClick={updateScore}>check<br/>solution</button>
           </div> 
         </div>     

@@ -34,10 +34,15 @@ function generateCrosswordle() {
     const row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
       const answer = raw[i * 5 + j];
-      let value = null;
-      if (i === 0) {
-        value = raw[j];
-      }
+let value = null;
+      for(let k = 0; k < 5; k++) {
+      if(i === ((Math.floor(Math.random()*5)))){
+
+      value = raw[(Math.floor(Math.random()*5))];
+      console.log((Math.floor(Math.random()*5)+1))
+
+    }
+  }
       const col = {
         row: i,
         col: j,
@@ -50,7 +55,7 @@ function generateCrosswordle() {
     }
     result.rows.push(row);
   }
-  return result;
+   return result;
 }
 
 function App() {

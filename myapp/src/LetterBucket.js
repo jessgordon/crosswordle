@@ -1,5 +1,6 @@
 import React from 'react'
 import Letter from './Letter.js'
+import './LetterBucket.css'
 
 export default function LetterBucket(answer) {
   function getRandomInt(n) {
@@ -26,9 +27,13 @@ export default function LetterBucket(answer) {
   return (
     <>
       <div className='letterBucket' key={'letter-bucket'}>
+        <div />
         {
           arr.map((letter, index) => (
+            <>
               <Letter key={`letter-${index}`} letter={letter} index={index} />
+              {index === 16 && <div />}
+            </>
             )
           )
         }

@@ -1,4 +1,5 @@
 import React from 'react'
+import Letter from './Letter.js'
 
 export default function LetterBucket(answer) {
   function getRandomInt(n) {
@@ -6,10 +7,6 @@ export default function LetterBucket(answer) {
   }
 
   function randomiseAnswer(answer) {
-    // const cloneAnswer = [...answer]
-    // console.log("******")
-    // console.log(answer)
-    // console.log("******")
     let arr = (answer.answer).split("");
     const n = arr.length;
 
@@ -19,7 +16,6 @@ export default function LetterBucket(answer) {
       let current_element = arr[i];
       arr[i] = arr[j];
       arr[j] = current_element;
-      // <div className='randomLetter'>arr[j]</div>
     }
 
     return arr
@@ -28,13 +24,11 @@ export default function LetterBucket(answer) {
   const arr = randomiseAnswer(answer)
   
   return (
-     
     <>
-      <div className='letterBucket'>
+      <div className='letterBucket' key={'letter-bucket'}>
         {
-          
           arr.map((letter, index) => (
-            <div className='randomLetter' id={index}>{letter}</div> 
+              <Letter key={`letter-${index}`} letter={letter} index={index} />
             )
           )
         }

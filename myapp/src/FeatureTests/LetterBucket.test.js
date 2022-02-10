@@ -1,33 +1,17 @@
+import setupTests from "./setupTests";
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
-import LetterBucket from "../LetterBucket"
+import { shallow } from "enzyme";
+import LetterBucket from "../LetterBucket";
 
-afterEach(cleanup); 
+describe("LetterBucket", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<LetterBucket answer={'FIRMSIDIOMLASSOCHEEKHORSY'}/>);
+  });
 
-it('returns letters in a div', () => {
-  const {container, getByLetter} = render(<LetterBucket answer={'F'} />)
-  expect(container.firstChild).toMatchInlineSnapshot(`
-    <div
-      class="letterBucket"
-    >
-    <div
-      class="randomLetter"
-      id="0"
-      >
-      F
-      </div>
-    </div>
-  `)
-})
+  test("returns letter components in a randomised order", () => {
+    expect(wrapper.find('.letterBucket').html()).not.toBe("<div class=\"letterBucket\"><div class=\"randomLetter\" id=\"letter-0\">F</div><div class=\"randomLetter\" id=\"letter-1\">I</div><div class=\"randomLetter\" id=\"letter-2\">R</div><div class=\"randomLetter\" id=\"letter-3\">M</div><div class=\"randomLetter\" id=\"letter-4\">S</div><div class=\"randomLetter\" id=\"letter-5\">I</div><div class=\"randomLetter\" id=\"letter-6\">D</div><div class=\"randomLetter\" id=\"letter-7\">I</div><div class=\"randomLetter\" id=\"letter-8\">O</div><div class=\"randomLetter\" id=\"letter-9\">M</div><div class=\"randomLetter\" id=\"letter-10\">L</div><div class=\"randomLetter\" id=\"letter-11\">A</div><div class=\"randomLetter\" id=\"letter-12\">S</div><div class=\"randomLetter\" id=\"letter-13\">S</div><div class=\"randomLetter\" id=\"letter-14\">O</div><div class=\"randomLetter\" id=\"letter-15\">C</div><div class=\"randomLetter\" id=\"letter-16\">H</div><div class=\"randomLetter\" id=\"letter-17\">E</div><div class=\"randomLetter\" id=\"letter-18\">E</div><div class=\"randomLetter\" id=\"letter-19\">K</div><div class=\"randomLetter\" id=\"letter-20\">H</div><div class=\"randomLetter\" id=\"letter-21\">O</div><div class=\"randomLetter\" id=\"letter-22\">R</div><div class=\"randomLetter\" id=\"letter-23\">S</div><div class=\"randomLetter\" id=\"letter-24\">Y</div></div>")
+  });
+});
 
-// it('returns letters in a random order', () => {
-//   const {container, getByScore} = render(<Score score={0} />)
-//   expect(container.firstChild).toMatchInlineSnapshot(`
-//     <div
-//       id="score"
-//     >
-//       0
-//     </div>
-//   `)
-// })
  

@@ -16,9 +16,28 @@ function App() {
 
   return (
     <>
-      <button id='check-solution' onClick={updateScore}>check solution</button>
-      <Score score={score} />
-      <LetterBucket answer={answer} />
+      <div className="container">
+        <div className="row">
+          <div className="column">
+            <ul>
+              <li>Co-ordinate match</li>
+              <li>Close</li>
+              <li>No match</li>
+              <li>Fixed characters</li>
+            </ul>
+          </div>
+
+          <div className="column">
+            <h1> Crosswordle </h1>
+            <LetterBucket answer={answer} />
+          </div>
+
+          <div className="column"> 
+            <Score score={score} />
+            <button id='check-solution' onClick={updateScore}>check<br/>solution</button>
+          </div> 
+        </div>     
+      </div>
     </>
   );
 }

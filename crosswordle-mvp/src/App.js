@@ -2,27 +2,26 @@ import React, { useState } from "react";
 import { RAW_LETTERS } from "./data/data";
 import Grid from "./components/Grid";
 import "./App.css";
-import {SliceArray} from "slice"
+import { SliceArray } from "slice";
 
 function generateNeighbours() {
-  const dummy = SliceArray(...RAW_LETTERS)
+  const dummy = SliceArray(...RAW_LETTERS);
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
     const row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
-      
-      let row_n = dummy[[i*5,(i*5)+5]]
-      let col_n = dummy[[j,,5]]
-      let neighbourSet = new Set([...row_n, ...col_n])
-    
+      let row_n = dummy[[i * 5, i * 5 + 5]];
+      let col_n = dummy[[j, , 5]];
+      let neighbourSet = new Set([...row_n, ...col_n]);
+
       const attributes = {
         row: i,
         col: j,
-        neighbours: neighbourSet
+        neighbours: neighbourSet,
       };
-    row.cols.push(attributes);
+      row.cols.push(attributes);
     }
-  result.rows.push(row);
+    result.rows.push(row);
   }
   return result;
 }
@@ -59,7 +58,7 @@ function App() {
   const [count, setCount] = useState();
   const [score, setScore] = useState(0);
 
-  const neighbourObject = generateNeighbours()
+  const neighbourObject = generateNeighbours();
 
   const changeCell = (e) => {
     e.preventDefault();
@@ -71,8 +70,7 @@ function App() {
     newGrid.rows[r].cols[c].value = input;
     setGrid(newGrid);
   };
-//if answer not eq value but letter is in grid then yellow
-//if row or column it is in has that value == answer set to yellow
+
   const checkGrid = () => {
     setCount(0);
     const newGrid = { ...grid };
@@ -83,8 +81,9 @@ function App() {
 
         if (neighbourObject.rows[i].cols[j].neighbours.has(col.value)) {
           newGrid.rows[i].cols[j].state = "wrong-location";
+        } else {
+          newGrid.rows[i].cols[j].state = "wrong";
         }
-        else {newGrid.rows[i].cols[j].state = "wrong";}
 
         if (col.value === col.answer) {
           newGrid.rows[i].cols[j].state = "correct";
@@ -93,11 +92,9 @@ function App() {
         if (col.readonly) {
           setCount((prevCount) => prevCount + 1);
         }
-      
       }
-      
     }
-    console.log(newGrid.rows[1].cols[0])
+    console.log(newGrid.rows[1].cols[0]);
 
     setScore((prevScore) => prevScore + 1);
     setGrid(newGrid);

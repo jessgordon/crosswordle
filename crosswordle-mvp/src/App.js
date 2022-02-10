@@ -62,7 +62,10 @@ function App() {
 
   const changeCell = (e) => {
     e.preventDefault();
-    const input = e.target.value.toUpperCase();
+    let input = e.target.value.toUpperCase()
+    if (!/^[a-zA-Z]*$/.test(input)) {
+        input = "" 
+      }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
     const newGrid = { ...grid };

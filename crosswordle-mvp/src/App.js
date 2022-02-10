@@ -13,14 +13,14 @@ function generateNeighbours() {
       
       let row_n = dummy[[i*5,(i*5)+5]]
       let col_n = dummy[[j,,5]]
-      let neighbours = new Set([...row_n, ...col_n])
+      let neighbourSet = new Set([...row_n, ...col_n])
     
-      const n = {
+      const attributes = {
         row: i,
         col: j,
-        neighbour: neighbours
+        neighbours: neighbourSet
       };
-    row.cols.push(n);
+    row.cols.push(attributes);
     }
   result.rows.push(row);
   }
@@ -44,6 +44,7 @@ function generateCrosswordle() {
         col: j,
         value: value,
         answer: answer,
+        state: "",
         readonly: value !== null,
       };
       row.cols.push(col);
@@ -58,7 +59,7 @@ function App() {
   const [count, setCount] = useState();
   const [score, setScore] = useState(0);
 
-  generateNeighbours()
+  const neighbourObject = generateNeighbours()
 
   const changeCell = (e) => {
     e.preventDefault();
@@ -79,31 +80,25 @@ function App() {
       const row = newGrid.rows[i];
       for (let j = 0; j < 5; j++) {
         const col = row.cols[j];
+
+        if (neighbourObject.rows[i].cols[j].neighbours.has(col.value)) {
+          newGrid.rows[i].cols[j].state = "wrong-location";
+        }
+        else {newGrid.rows[i].cols[j].state = "wrong";}
+
         if (col.value === col.answer) {
+          newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
         }
-        //  else if(col.value !== col.answer ) {
-        //   checkNeighbour()
-        //  }
-        //  else {}
         if (col.readonly) {
           setCount((prevCount) => prevCount + 1);
         }
+      
       }
+      
     }
-    // function neighbourWord() {
-    //   const ghostraw = RAW_LETTERS;
+    console.log(newGrid.rows[1].cols[0])
 
-    //   for (let i = 0; i < 5; i++) {
-    //     const row = newGrid.rows[i];
-    //     for (let j = 0; j < 5; j++) {
-    //       const col = row.cols[j];
-    //       if (col.value == ghostraw[i*5+j]) {
-    //         newGrid.rows[i].cols[j].readonly = true;
-    //       }
-    //  }
-    // }
-    // }
     setScore((prevScore) => prevScore + 1);
     setGrid(newGrid);
   };

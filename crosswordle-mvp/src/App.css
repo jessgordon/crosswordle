@@ -13,7 +13,7 @@
   display: block;
 }
 
-.field {
+.default {
   width: 3rem;
   height: 4rem;
   font-size: 2rem;
@@ -29,11 +29,20 @@
   background-color: green;
 }
 
-.maybe {
+.wrong-location {
+  width: 3rem;
+  height: 4rem;
+  font-size: 2rem;
+  text-align: center;
+  color: black;
+  background-color: yellow;
+}
+
+.wrong {
   width: 3rem;
   height: 4rem;
   font-size: 2rem;
   text-align: center;
   color: white;
-  background-color: yellow;
+  background-color: grey;
 }

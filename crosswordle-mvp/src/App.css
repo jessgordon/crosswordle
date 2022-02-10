@@ -1,0 +1,31 @@
+.appHeader {
+ text-align: center;
+}
+
+.container {
+  padding: 25px;
+  text-align: center;
+  position: relative;
+
+}
+
+.checkButton {
+  margin: auto;
+  display: block;
+}
+
+.field {
+  width: 3rem;
+  height: 4rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.correct {
+  width: 3rem;
+  height: 4rem;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  background-color: green;
+}

@@ -2,6 +2,30 @@ import React, { useState } from "react";
 import { RAW_LETTERS } from "./data/data";
 import Grid from "./components/Grid";
 import "./App.css";
+import {SliceArray} from "slice"
+
+function generateNeighbours() {
+  const dummy = SliceArray(...RAW_LETTERS)
+  const result = { rows: [] };
+  for (let i = 0; i < 5; i++) {
+    const row = { cols: [], index: i };
+    for (let j = 0; j < 5; j++) {
+      
+      let row_n = dummy[[i*5,(i*5)+5]]
+      let col_n = dummy[[j,,5]]
+      let neighbours = new Set([...row_n, ...col_n])
+    
+      const n = {
+        row: i,
+        col: j,
+        neighbour: neighbours
+      };
+    row.cols.push(n);
+    }
+  result.rows.push(row);
+  }
+  return result;
+}
 
 function generateCrosswordle() {
   const raw = RAW_LETTERS;
@@ -34,16 +58,20 @@ function App() {
   const [count, setCount] = useState();
   const [score, setScore] = useState(0);
 
+  generateNeighbours()
+
   const changeCell = (e) => {
     e.preventDefault();
     const input = e.target.value.toUpperCase();
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
     const newGrid = { ...grid };
+
     newGrid.rows[r].cols[c].value = input;
     setGrid(newGrid);
   };
-
+//if answer not eq value but letter is in grid then yellow
+//if row or column it is in has that value == answer set to yellow
   const checkGrid = () => {
     setCount(0);
     const newGrid = { ...grid };
@@ -54,11 +82,28 @@ function App() {
         if (col.value === col.answer) {
           newGrid.rows[i].cols[j].readonly = true;
         }
+        //  else if(col.value !== col.answer ) {
+        //   checkNeighbour()
+        //  }
+        //  else {}
         if (col.readonly) {
           setCount((prevCount) => prevCount + 1);
         }
       }
     }
+    // function neighbourWord() {
+    //   const ghostraw = RAW_LETTERS;
+
+    //   for (let i = 0; i < 5; i++) {
+    //     const row = newGrid.rows[i];
+    //     for (let j = 0; j < 5; j++) {
+    //       const col = row.cols[j];
+    //       if (col.value == ghostraw[i*5+j]) {
+    //         newGrid.rows[i].cols[j].readonly = true;
+    //       }
+    //  }
+    // }
+    // }
     setScore((prevScore) => prevScore + 1);
     setGrid(newGrid);
   };

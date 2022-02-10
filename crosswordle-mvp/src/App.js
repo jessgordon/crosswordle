@@ -66,25 +66,30 @@ function App() {
   return (
     <>
       <div className="App">
-        <header className="appHeader">
+        <header className="app-header">
           <h1>Crosswordle</h1>
         </header>
         <Grid grid={grid} changeCell={changeCell} />
       </div>
 
       <div className="container">
-        <button className="checkButton" onClick={checkGrid}>
+        <button className="check-button" onClick={checkGrid}>
           Check Cells
         </button>
       </div>
 
       <div className="container">Score: {score}</div>
 
-      <div className="container">
-        {count === 25 && <div>You win! Your final score is: {score}</div>}
+      <div className="container">        
+        <div className={count === 25 ? "modal" : "hidden"}> 
+          <div className='modal-content'>
+            <p>You win! Your final score is: {score}</p>
+          </div>
+        </div>
       </div>
 
       <div className="container">Correct cells: {count}</div>
+
     </>
   );
 }

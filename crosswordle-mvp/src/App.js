@@ -34,15 +34,13 @@ function generateCrosswordle() {
     const row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
       const answer = raw[i * 5 + j];
-let value = null;
-      for(let k = 0; k < 5; k++) {
-      if(i === ((Math.floor(Math.random()*5)))){
-
-      value = raw[(Math.floor(Math.random()*5))];
-      console.log((Math.floor(Math.random()*5)+1))
-
-    }
-  }
+      let value = null;
+      for (let k = 0; k < 3; k++) {
+        if (k === Math.floor(Math.random() * 5)) {
+          value = raw[Math.floor(Math.random() * 25)];
+          console.log(Math.floor(Math.random() * 5) + 1);
+        }
+      }
       const col = {
         row: i,
         col: j,
@@ -55,7 +53,7 @@ let value = null;
     }
     result.rows.push(row);
   }
-   return result;
+  return result;
 }
 
 function App() {
@@ -67,10 +65,10 @@ function App() {
 
   const changeCell = (e) => {
     e.preventDefault();
-    let input = e.target.value.toUpperCase()
+    let input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-        input = "" 
-      }
+      input = "";
+    }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
     const newGrid = { ...grid };

@@ -9,7 +9,8 @@ export default function LetterBucket(answer) {
   }
   
   function randomiseAnswer(answer) {
-    let arr = (answer.answer).split("");
+    let arr = (answer.answer).slice();
+    console.log(answer.answer)
     const n = arr.length;
     
     for(let i=0 ; i < n-1 ; ++i) {

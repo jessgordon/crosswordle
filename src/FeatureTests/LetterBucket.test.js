@@ -1,7 +1,7 @@
 import setupTests from "./setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import LetterBucket from "../LetterBucket";
+import LetterBucket from "../components/LetterBucket";
 
 describe("LetterBucket", () => {
   let wrapper;

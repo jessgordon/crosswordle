@@ -6,4 +6,3 @@ export default function Score({score}) {
     <div id='score'>{score}</div>
   )
 }
-

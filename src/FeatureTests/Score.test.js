@@ -1,7 +1,7 @@
 import React from "react";
 import updateScore from "../App"
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import Score from "../Score"
+import Score from "../components/Score"
 import App from "../App"
 
 afterEach(cleanup); 
@@ -23,7 +23,7 @@ it("increases the score by 1 when clicked", () => {
   );
 
   const button = document.querySelector("[id=check-solution]")
-  expect(button.innerHTML).toBe("check<br>solution")
+  expect(button.innerHTML).toBe("Check<br>Cells")
 
   const score = document.querySelector("[id=score]")
   expect(score.innerHTML).toBe("0")

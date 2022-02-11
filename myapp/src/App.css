@@ -1,0 +1,49 @@
+body {
+  background-color: #F3F3EC;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1em;
+  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+}
+
+@font-face {
+  font-family: 'Post No Bills Jaffna Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Post No Bills Jaffna Regular'), url('./post-no-bills-jaffna-cufonfonts-webfont/PostNoBillsJaffna-Regular.woff') format('woff');
+  }
+
+h1 {
+  color:#8B8B8B;
+  font-family: 'Post No Bills Jaffna Regular';
+  font-size: 6rem;
+  margin: 0px;
+  text-align: center;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#check-solution {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8B8B8B;
+  margin-top: 1rem;
+  margin-left: 5rem;
+  background-color: #E9E9E9;
+  border-radius: 25px;
+  width: clamp(2.5rem, 20.5vmin, 40.5rem);
+  height: clamp(2.5rem, 10.5vmin, 20.5rem);
+}

@@ -1,0 +1,7 @@
+.letterBucket {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(auto, 1.25em));
+  grid-auto-rows: 3em;
+  gap: .25em;
+  justify-content: center;
+}

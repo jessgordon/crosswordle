@@ -32,7 +32,6 @@ function generateCrosswordle() {
 }
 
 function App() {
-  //  TODO: convert answer to RAW data
   const answer = RAW_LETTERS
 
 
@@ -72,37 +71,35 @@ function App() {
   return (
     <>
       <div className="App">
-        <div className="container">
-          <div className="row">
-            <div className="column">
-              <ul>
-                <div className="coordMatch"><li>Co-ordinate match</li></div>
-                <div className="close"><li>Close</li></div>
-                <div className="noMatch"><li>No match</li></div>
-                <div className="fixedChar"><li>Fixed characters</li></div>
-              </ul>
-            </div>
+        <div className="columns">
+          <div className="column">
+            <ul>
+              <div className="coordMatch"><li>Co-ordinate match</li></div>
+              <div className="close"><li>Close</li></div>
+              <div className="noMatch"><li>No match</li></div>
+              <div className="fixedChar"><li>Fixed characters</li></div>
+            </ul>
+          </div>
 
-            <div className="column">
-              <header className="appHeader">
-                <h1>Crosswordle</h1>
-              </header>
-              <Grid grid={grid} changeCell={changeCell} />
-              <LetterBucket answer={answer} key={"letterbucket"}/>
-            </div>
+          <div className="column is-three-fifths">
+            <header className="appHeader">
+              <h1>Crosswordle</h1>
+            </header>
+            <Grid grid={grid} changeCell={changeCell} />
+            <LetterBucket answer={answer} key={"letterbucket"}/>
+          </div>
 
-            <div className="column"> 
-              <div className="container">
-                <Score score={score} key={"refreshedScore"} />
-                <button id="check-solution" onClick={checkGrid}>
-                  Check<br/>Cells
-                </button>
-              </div>
-              <div className="container">
-                {count === 25 && <div>You win! Your final score is: {score}</div>}
-              </div>
-              <div className="correctCells">Correct cells: {count}</div>
+          <div className="column"> 
+            <div className="container">
+              <Score score={score} key={"refreshedScore"} />
+              <button id="check-solution" onClick={checkGrid}>
+                Check<br/>Cells
+              </button>
             </div>
+            <div className="container">
+              {count === 25 && <div>You win! Your final score is: {score}</div>}
+            </div>
+            <div className="correctCells">Correct cells: {count}</div>
           </div> 
         </div>     
       </div>

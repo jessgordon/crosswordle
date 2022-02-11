@@ -32,11 +32,20 @@ function generateCrosswordle() {
 function App() {
   const [grid, setGrid] = useState(generateCrosswordle());
   const [showModal, setShowModal] = useState(false);
-  const [count, setCount] = useState(0);
+  const [correctCount, setcorrectCount] = useState(0);
   const [score, setScore] = useState(0);
 
-  console.log(count);
-  console.log(showModal);
+  
+  useEffect(()=>{
+    checkWin()
+  },[correctCount])
+
+  const checkWin = () => {
+    if (correctCount === 6) {
+      console.log("You win");
+      setShowModal(true);
+    }
+  };
 
   const changeCell = (e) => {
     e.preventDefault();
@@ -65,22 +74,13 @@ function App() {
 
   const updateCorrectCellCount = (cell) => {
     if (cell.readonly) {
-      setCount((prevCount) => prevCount + 1);
-      console.log(setCount)
-    }
-  };
-
-  const checkWin = () => {
-    if (count === 5) {
-      console.log("hello");
-      setShowModal(true);
+      setcorrectCount((prevCount) => prevCount + 1);
     }
   };
 
   const onClickCheckWrapper = () => {
-    setCount(0);
+    setcorrectCount(0);
     checkGrid()
-    checkWin()
   };
 
   return (
@@ -110,7 +110,7 @@ function App() {
         )}
       </div>
 
-      <div className="container">Correct cells: {count}</div>
+      <div className="container">(Correct cells: {correctCount})</div>
     </>
   );
 }

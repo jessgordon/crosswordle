@@ -93,8 +93,14 @@ function App() {
       for (let j = 0; j < 5; j++) {
         const cell = newGrid.rows[i].cols[j];
         if (cell.value === cell.answer) {
+          newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
         }
+        if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
+          newGrid.rows[i].cols[j].state = "wrong-location";
+        } else {
+          newGrid.rows[i].cols[j].state = "wrong";
+        }   
         updateCorrectCellCount(cell);
       }
     }

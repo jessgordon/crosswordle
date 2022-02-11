@@ -1,7 +1,7 @@
 import React from "react";
 import updateScore from "../App"
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import Score from "../Score"
+import Score from "../components/Score"
 import App from "../App"
 
 afterEach(cleanup); 

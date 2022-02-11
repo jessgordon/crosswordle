@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { RAW_LETTERS } from "./data/data";
 import Grid from "./components/Grid";
+import Score from './components/Score.js';
+import LetterBucket from './components/LetterBucket.js'
 import "./App.css";
 
 function generateCrosswordle() {
@@ -30,6 +32,10 @@ function generateCrosswordle() {
 }
 
 function App() {
+  //  TODO: convert answer to RAW data
+  const answer = 'FIRMSIDIOMLASSOCHEEKHORSY'
+
+
   const [grid, setGrid] = useState(generateCrosswordle());
   const [count, setCount] = useState();
   const [score, setScore] = useState(0);
@@ -66,25 +72,40 @@ function App() {
   return (
     <>
       <div className="App">
-        <header className="appHeader">
-          <h1>Crosswordle</h1>
-        </header>
-        <Grid grid={grid} changeCell={changeCell} />
+        <div className="container">
+          <div className="row">
+            <div className="column">
+              <ul>
+                <li>Co-ordinate match</li>
+                <li>Close</li>
+                <li>No match</li>
+                <li>Fixed characters</li>
+              </ul>
+            </div>
+
+            <div className="column">
+              <header className="appHeader">
+                <h1>Crosswordle</h1>
+              </header>
+              <Grid grid={grid} changeCell={changeCell} />
+              <LetterBucket answer={answer} />
+            </div>
+
+            <div className="column"> 
+              <div className="container">
+                <Score score={score} key={"refreshedScore"} />
+                <button className="checkButton" onClick={checkGrid}>
+                  Check Cells
+                </button>
+              </div>
+              <div className="container">
+                {count === 25 && <div>You win! Your final score is: {score}</div>}
+              </div>
+              <div className="container">Correct cells: {count}</div>
+            </div>
+          </div> 
+        </div>     
       </div>
-
-      <div className="container">
-        <button className="checkButton" onClick={checkGrid}>
-          Check Cells
-        </button>
-      </div>
-
-      <div className="container">Score: {score}</div>
-
-      <div className="container">
-        {count === 25 && <div>You win! Your final score is: {score}</div>}
-      </div>
-
-      <div className="container">Correct cells: {count}</div>
     </>
   );
 }

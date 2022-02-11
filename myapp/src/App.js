@@ -29,7 +29,6 @@ function App() {
 
           <div className="column">
             <h1> Crosswordle </h1>
-            <LetterBucket answer={answer} />
           </div>
 
           <div className="column"> 

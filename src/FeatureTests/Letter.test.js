@@ -1,7 +1,7 @@
 import setupTests from "./setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import Letter from "../Letter";
+import Letter from "../components/Letter";
 
 describe("Letter", () => {
   test("returns a letter in a div", () => {

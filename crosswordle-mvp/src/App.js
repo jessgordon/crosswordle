@@ -37,7 +37,7 @@ function generateCrosswordle() {
       let value = null;
       for (let k = 0; k < 3; k++) {
         if (k === Math.floor(Math.random() * 5)) {
-          value = raw[Math.floor(Math.random() * 25)];
+          value = answer
           console.log(Math.floor(Math.random() * 5) + 1);
         }
       }

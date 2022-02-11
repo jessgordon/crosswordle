@@ -90,16 +90,16 @@ function App() {
           </div>
 
           <div className="column"> 
-            <div className="container">
+            <div className="container scoreboard">
               <Score score={score} key={"refreshedScore"} />
               <button id="check-solution" onClick={checkGrid}>
                 Check<br/>Cells
               </button>
             </div>
-            <div className="container">
+            <div className="container scoreboard">
               {count === 25 && <div>You win! Your final score is: {score}</div>}
             </div>
-            <div className="correctCells">Correct cells: {count}</div>
+            <div className="correctCells scoreboard">Correct cells: {count}</div>
           </div> 
         </div>     
       </div>

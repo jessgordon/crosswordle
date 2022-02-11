@@ -18,15 +18,21 @@ body {
 h1 {
   color:#8B8B8B;
   font-family: 'Post No Bills Jaffna Regular';
-  font-size: 5rem;
+  font-size: 6rem;
   margin: 0px;
-  margin-top: -3rem;
+  margin-top: -1.5rem;
   text-align: center;
 }
 
-.column {
-  float: left;
-  width: 33.33%;
+#column {
+  justify-content: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.scoreboard {
+  display: flex;
+  flex-direction: column;
 }
 
 .coordMatch {
@@ -47,13 +53,6 @@ h1 {
   font-size: 2rem;
 }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .appHeader {
   text-align: center;
 }
@@ -70,8 +69,8 @@ h1 {
   font-size: 1.5rem;
   font-weight: bold;
   color: #8B8B8B;
-  margin-top: 1rem;
-  margin-left: 5rem;
+  /* margin-top: 1rem;
+  margin-left: -13rem; */
   background-color: #E9E9E9;
   border-radius: 25px;
   width: clamp(2.5rem, 20.5vmin, 40.5rem);
@@ -84,7 +83,7 @@ h1 {
   font-weight: bold;
   color: #8B8B8B;
   margin-top: -3.5rem;
-  margin-left: 10rem;
+  margin-left: -3.5rem;
   background-color: #E9E9E9;
   border-radius: 25px;
   width: clamp(2.5rem, 20.5vmin, 40.5rem);

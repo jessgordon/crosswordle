@@ -14,9 +14,11 @@ function generateCrosswordle() {
     for (let j = 0; j < 5; j++) {
       const answer = raw[i * 5 + j];
       let value = null;
-      if (i === 0) {
-        value = raw[j];
+      for (let k = 0; k < 5; k++) {
+      if (k === Math.floor(Math.random()*7)) {
+        value = answer;
       }
+    }
       const col = {
         row: i,
         col: j,

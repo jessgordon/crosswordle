@@ -33,7 +33,7 @@ function generateCrosswordle() {
 
 function App() {
   //  TODO: convert answer to RAW data
-  const answer = 'FIRMSIDIOMLASSOCHEEKHORSY'
+  const answer = RAW_LETTERS
 
 
   const [grid, setGrid] = useState(generateCrosswordle());
@@ -76,10 +76,10 @@ function App() {
           <div className="row">
             <div className="column">
               <ul>
-                <li>Co-ordinate match</li>
-                <li>Close</li>
-                <li>No match</li>
-                <li>Fixed characters</li>
+                <div className="coordMatch"><li>Co-ordinate match</li></div>
+                <div className="close"><li>Close</li></div>
+                <div className="noMatch"><li>No match</li></div>
+                <div className="fixedChar"><li>Fixed characters</li></div>
               </ul>
             </div>
 
@@ -88,20 +88,20 @@ function App() {
                 <h1>Crosswordle</h1>
               </header>
               <Grid grid={grid} changeCell={changeCell} />
-              <LetterBucket answer={answer} />
+              <LetterBucket answer={answer} key={"letterbucket"}/>
             </div>
 
             <div className="column"> 
               <div className="container">
                 <Score score={score} key={"refreshedScore"} />
-                <button className="checkButton" onClick={checkGrid}>
-                  Check Cells
+                <button id="check-solution" onClick={checkGrid}>
+                  Check<br/>Cells
                 </button>
               </div>
               <div className="container">
                 {count === 25 && <div>You win! Your final score is: {score}</div>}
               </div>
-              <div className="container">Correct cells: {count}</div>
+              <div className="correctCells">Correct cells: {count}</div>
             </div>
           </div> 
         </div>     

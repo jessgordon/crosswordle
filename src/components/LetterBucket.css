@@ -4,4 +4,5 @@
   grid-auto-rows: 3em;
   gap: .25em;
   justify-content: center;
+  padding: 10px;
 }

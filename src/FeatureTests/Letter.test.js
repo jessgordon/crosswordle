@@ -6,6 +6,6 @@ import Letter from "../components/Letter";
 describe("Letter", () => {
   test("returns a letter in a div", () => {
     let wrapper = shallow(<Letter key={"letter-0"} letter={"F"} index={0} />);
-    expect(wrapper.find("#letter-0").text()).toBe("F")
+    expect(wrapper.find("#letter-0").text()).toBe("F");
   });
 });

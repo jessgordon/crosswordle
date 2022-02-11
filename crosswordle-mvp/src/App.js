@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RAW_LETTERS } from "./data/data";
 import Grid from "./components/Grid";
 import "./App.css";
@@ -31,8 +31,12 @@ function generateCrosswordle() {
 
 function App() {
   const [grid, setGrid] = useState(generateCrosswordle());
-  const [count, setCount] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [count, setCount] = useState(0);
   const [score, setScore] = useState(0);
+
+  console.log(count);
+  console.log(showModal);
 
   const changeCell = (e) => {
     e.preventDefault();
@@ -45,22 +49,38 @@ function App() {
   };
 
   const checkGrid = () => {
-    setCount(0);
     const newGrid = { ...grid };
     for (let i = 0; i < 5; i++) {
-      const row = newGrid.rows[i];
       for (let j = 0; j < 5; j++) {
-        const col = row.cols[j];
-        if (col.value === col.answer) {
+        const cell = newGrid.rows[i].cols[j];
+        if (cell.value === cell.answer) {
           newGrid.rows[i].cols[j].readonly = true;
         }
-        if (col.readonly) {
-          setCount((prevCount) => prevCount + 1);
-        }
+        updateCorrectCellCount(cell);
       }
     }
-    setScore((prevScore) => prevScore + 1);
     setGrid(newGrid);
+    setScore((prevScore) => prevScore + 1);
+  };
+
+  const updateCorrectCellCount = (cell) => {
+    if (cell.readonly) {
+      setCount((prevCount) => prevCount + 1);
+      console.log(setCount)
+    }
+  };
+
+  const checkWin = () => {
+    if (count === 5) {
+      console.log("hello");
+      setShowModal(true);
+    }
+  };
+
+  const onClickCheckWrapper = () => {
+    setCount(0);
+    checkGrid()
+    checkWin()
   };
 
   return (
@@ -73,23 +93,24 @@ function App() {
       </div>
 
       <div className="container">
-        <button className="check-button" onClick={checkGrid}>
+        <button className="check-button" onClick={onClickCheckWrapper}>
           Check Cells
         </button>
       </div>
 
       <div className="container">Score: {score}</div>
 
-      <div className="container">        
-        <div className={count === 25 ? "modal" : "hidden"}> 
-          <div className='modal-content'>
-            <p>You win! Your final score is: {score}</p>
+      <div className="container">
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <p>You win! Your final score is: {score}</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="container">Correct cells: {count}</div>
-
     </>
   );
 }

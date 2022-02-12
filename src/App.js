@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RAW_LETTERS } from "./data/data";
 import Grid from "./components/Grid";
-import Score from './components/Score.js';
-import LetterBucket from './components/LetterBucket.js'
+import Score from "./components/Score.js";
+import LetterBucket from "./components/LetterBucket.js";
 import "./App.css";
+import { SliceArray } from "slice";
+
+function generateNeighbours() {
+  const dummy = SliceArray(...RAW_LETTERS);
+  const result = { rows: [] };
+  for (let i = 0; i < 5; i++) {
+    const row = { cols: [], index: i };
+    for (let j = 0; j < 5; j++) {
+      let row_n = dummy[[i * 5, i * 5 + 5]];
+      let col_n = dummy[[j, , 5]];
+      let neighbourSet = new Set([...row_n, ...col_n]);
+
+      const attributes = {
+        row: i,
+        col: j,
+        neighbours: neighbourSet,
+      };
+      row.cols.push(attributes);
+    }
+    result.rows.push(row);
+  }
+  return result;
+}
 
 function generateCrosswordle() {
   const raw = RAW_LETTERS;
@@ -24,6 +47,7 @@ function generateCrosswordle() {
         col: j,
         value: value,
         answer: answer,
+        state: "",
         readonly: value !== null,
       };
       row.cols.push(col);
@@ -35,16 +59,29 @@ function generateCrosswordle() {
 
 function App() {
   //  TODO: convert answer to RAW data
-  const answer = RAW_LETTERS
-
-
+  const answer = RAW_LETTERS;
+  const neighbourObject = generateNeighbours();
   const [grid, setGrid] = useState(generateCrosswordle());
-  const [count, setCount] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [correctCount, setCorrectCount] = useState();
   const [score, setScore] = useState(0);
 
+  useEffect(() => {
+    checkWin();
+  }, [correctCount]);
+
+  const checkWin = () => {
+    if (correctCount === 25) {
+      console.log("You win");
+      setShowModal(true);
+    }
+  };
+
   const changeCell = (e) => {
-    e.preventDefault();
-    const input = e.target.value.toUpperCase();
+    let input = e.target.value.toUpperCase();
+    if (!/^[a-zA-Z]*$/.test(input)) {
+      e.target.preventDefault();
+    }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
     const newGrid = { ...grid };
@@ -53,22 +90,35 @@ function App() {
   };
 
   const checkGrid = () => {
-    setCount(0);
     const newGrid = { ...grid };
     for (let i = 0; i < 5; i++) {
-      const row = newGrid.rows[i];
       for (let j = 0; j < 5; j++) {
-        const col = row.cols[j];
-        if (col.value === col.answer) {
+        const cell = newGrid.rows[i].cols[j];
+        if (cell.value === cell.answer) {
+          newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
         }
-        if (col.readonly) {
-          setCount((prevCount) => prevCount + 1);
-        }
+        if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
+          newGrid.rows[i].cols[j].state = "wrong-location";
+        } else {
+          newGrid.rows[i].cols[j].state = "wrong";
+        }   
+        updateCorrectCellCount(cell);
       }
     }
-    setScore((prevScore) => prevScore + 1);
     setGrid(newGrid);
+    setScore((prevScore) => prevScore + 1);
+  };
+
+  const updateCorrectCellCount = (cell) => {
+    if (cell.readonly) {
+      setCorrectCount((prevCount) => prevCount + 1);
+    }
+  };
+
+  const checkCellsWrapper = () => {
+    setCorrectCount(0);
+    checkGrid();
   };
 
   return (
@@ -78,10 +128,15 @@ function App() {
           <div className="row">
             <div className="column">
               <ul>
-                <div className="coordMatch"><li>Co-ordinate match</li></div>
-                <div className="close"><li>Close</li></div>
-                <div className="noMatch"><li>No match</li></div>
-                <div className="fixedChar"><li>Fixed characters</li></div>
+                <div className="coordMatch">
+                  <li>Letter in wrong location</li>
+                </div>
+                <div className="noMatch">
+                  <li>No match</li>
+                </div>
+                <div className="fixedChar">
+                  <li>Correct letters!</li>
+                </div>
               </ul>
             </div>
 
@@ -90,23 +145,34 @@ function App() {
                 <h1>Crosswordle</h1>
               </header>
               <Grid grid={grid} changeCell={changeCell} />
-              <LetterBucket answer={answer} key={"letterbucket"}/>
+              <LetterBucket answer={answer} key={"letterbucket"} />
             </div>
 
-            <div className="column"> 
+            <div className="column">
               <div className="container">
                 <Score score={score} key={"refreshedScore"} />
-                <button id="check-solution" onClick={checkGrid}>
-                  Check<br/>Cells
+                <button id="check-solution" onClick={checkCellsWrapper}>
+                  Check
+                  <br />
+                  Cells
                 </button>
               </div>
+
               <div className="container">
-                {count === 25 && <div>You win! Your final score is: {score}</div>}
+                {showModal && (
+                  <div className="modal">
+                    <div className="modal-content">
+                      <p>You win! Your final score is: {score}</p>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="correctCells">Correct cells: {count}</div>
+
+              <div className="correctCells">Correct cells: {correctCount}</div>
+
             </div>
-          </div> 
-        </div>     
+          </div>
+        </div>
       </div>
     </>
   );

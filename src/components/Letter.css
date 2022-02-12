@@ -7,10 +7,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #D4D4D4;
-  color: #8B8B8B;
+  background-color: #d4d4d4;
+  color: #8b8b8b;
   text-transform: uppercase;
-  border-radius: .25em;
+  border-radius: 0.25em;
   /* cursor: pointer; */
   /* user-select: none; */
 }

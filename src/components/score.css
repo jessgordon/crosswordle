@@ -2,7 +2,8 @@
   text-align: center;
   color: #8B8B8B;
   background-color: #F3F3EC;
-  border-radius: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2) inset;
   /* width: clamp(2.5rem, 20.5vmin, 40.5rem);
   height: clamp(2.5rem, 10.5vmin, 20.5rem); */
 }

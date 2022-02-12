@@ -147,7 +147,7 @@ function App() {
           </div>
 
           <div className="column"> 
-            <div className="container scoreboard m-2 box">
+            <div className="container scoreboard m-2">
               <p id="score-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Score:</p>
               <Score score={score} key={"refreshedScore"} />
               <p id="correct-cells-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Correct cells:</p>

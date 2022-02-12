@@ -36,7 +36,8 @@ h1 {
   display: flex;
   flex-direction: column;
   background-color: #E9E9E9;
-  border-radius: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2), 0 6px 20px 0 rgba(50, 75, 59, 0.19);
 }
 
 .coordMatch {
@@ -68,11 +69,29 @@ h1 {
 }
 
 #check-solution {
+  display: inline-block;
+  cursor: pointer;
   text-align: center;
   font-weight: bold;
   color: #8B8B8B;
   background-color: #F3F3EC;
-  border-radius: 25px;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+#check-solution:hover {
+  background-color: rgb(99, 199, 99);
+  color: #E9E9E9;
+}
+
+#check-solution:active {
+  background-color: rgb(99, 199, 99);
+  color: #E9E9E9;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 #score-label, #correct-cells-label {
@@ -84,7 +103,8 @@ h1 {
   text-align: center;
   color: #8b8b8b;
   background-color: #F3F3EC;
-  border-radius: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2) inset;
 }
 
 .default {

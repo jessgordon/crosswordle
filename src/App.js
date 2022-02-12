@@ -62,7 +62,7 @@ function App() {
   const neighbourObject = generateNeighbours();
   const [grid, setGrid] = useState(generateCrosswordle());
   const [showModal, setShowModal] = useState(false);
-  const [correctCount, setCorrectCount] = useState();
+  const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
 
   useEffect(() => {

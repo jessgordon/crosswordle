@@ -124,7 +124,8 @@ function App() {
     <>
       <div className="App">
         <div className="columns is-vcentered">
-          <div className="column">
+          <div className="column"></div>
+          {/* <div className="column">
             <ul>
               <div className="coordMatch">
                 <li>Letter in wrong location</li>
@@ -136,9 +137,9 @@ function App() {
                 <li>Correct letters!</li>
               </div>
             </ul>
-          </div>
+          </div> */}
 
-          <div className="column is-three-fifths">
+          <div className="column is-two-thirds">
             <header className="appHeader">
               <h1>Crosswordle</h1>
             </header>
@@ -170,58 +171,6 @@ function App() {
           </div> 
         </div>
       </div>
-
-
-        {/* <div className="container">
-          <div className="row">
-            <div className="column">
-              <ul>
-                <div className="coordMatch">
-                  <li>Letter in wrong location</li>
-                </div>
-                <div className="noMatch">
-                  <li>No match</li>
-                </div>
-                <div className="fixedChar">
-                  <li>Correct letters!</li>
-                </div>
-              </ul>
-            </div> */}
-
-            {/* <div className="column">
-              <header className="appHeader">
-                <h1>Crosswordle</h1>
-              </header>
-              <Grid grid={grid} changeCell={changeCell} />
-              <LetterBucket answer={answer} key={"letterbucket"} />
-            </div> */}
-
-            {/* <div className="column">
-              <div className="container">
-                <Score score={score} key={"refreshedScore"} />
-                <button id="check-solution" onClick={checkCellsWrapper}>
-                  Check
-                  <br />
-                  Cells
-                </button>
-              </div> */}
-
-              {/* <div className="container">
-                {showModal && (
-                  <div className="modal">
-                    <div className="modal-content">
-                      <p>You win! Your final score is: {score}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="correctCells">Correct cells: {correctCount}</div> */}
-
-            {/* </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

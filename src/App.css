@@ -26,12 +26,6 @@ h1 {
   text-align: center;
 }
 
-#column {
-  justify-content: center;
-  vertical-align: middle;
-  text-align: center;
-}
-
 .scoreboard {
   display: flex;
   flex-direction: column;
@@ -41,9 +35,9 @@ h1 {
 }
 
 .coordMatch {
-  color: #f5ea70;
+  color: black;
   font-size: 2rem;
-  background-color: black;
+  background-color: #f5ea70;
 }
 .close {
   color: #8b8b8b;
@@ -105,40 +99,6 @@ h1 {
   background-color: #F3F3EC;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2) inset;
-}
-
-.default {
-  width: 3rem;
-  height: 4rem;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.correct {
-  width: 3rem;
-  height: 4rem;
-  font-size: 2rem;
-  text-align: center;
-  color: white;
-  background-color: rgb(99, 199, 99);
-}
-
-.wrong-location {
-  width: 3rem;
-  height: 4rem;
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  background-color: yellow;
-}
-
-.wrong {
-  width: 3rem;
-  height: 4rem;
-  font-size: 2rem;
-  text-align: center;
-  color: white;
-  background-color: lightgray;
 }
 
 .modal {

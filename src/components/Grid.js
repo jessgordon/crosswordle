@@ -3,7 +3,7 @@ import Cell from "./Cell";
 
 export default function Grid({ grid, changeCell }) {
   return (
-    <div clasName="grid">
+    <div className="grid">
       <center>
         {grid.rows.map((row) => (
           <div className="row" key={row.index}>

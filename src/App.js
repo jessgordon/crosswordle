@@ -147,7 +147,7 @@ function App() {
           </div>
 
           <div className="column"> 
-            <div className="container">
+            <div className="container scoreboard">
               <Score score={score} key={"refreshedScore"} />
               <button id="check-solution" onClick={checkCellsWrapper}>
                 Check
@@ -155,7 +155,7 @@ function App() {
                 Cells
               </button>
             </div>
-            <div className="container">
+            <div className="container scoreboard">
               {showModal && (
                 <div className="modal">
                   <div className="modal-content">
@@ -164,7 +164,7 @@ function App() {
                 </div>
               )}
             </div>
-            <div className="correctCells">Correct cells: {correctCount}</div>
+            <div className="correctCells scoreboard">Correct cells: {correctCount}</div>
           </div> 
         </div>
       </div>

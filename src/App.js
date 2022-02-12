@@ -123,7 +123,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <div className="columns">
+        <div className="columns is-vcentered">
           <div className="column">
             <ul>
               <div className="coordMatch">
@@ -147,15 +147,18 @@ function App() {
           </div>
 
           <div className="column"> 
-            <div className="container scoreboard">
+            <div className="container scoreboard m-2 box">
+              <p id="score-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Score:</p>
               <Score score={score} key={"refreshedScore"} />
-              <button id="check-solution" onClick={checkCellsWrapper}>
+              <p id="correct-cells-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Correct cells:</p>
+              <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">{correctCount}</div>
+              <button id="check-solution" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2" onClick={checkCellsWrapper}>
                 Check
                 <br />
                 Cells
               </button>
             </div>
-            <div className="container scoreboard">
+            <div className="container">
               {showModal && (
                 <div className="modal">
                   <div className="modal-content">
@@ -164,7 +167,6 @@ function App() {
                 </div>
               )}
             </div>
-            <div className="correctCells scoreboard">Correct cells: {correctCount}</div>
           </div> 
         </div>
       </div>

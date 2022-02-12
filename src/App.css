@@ -35,6 +35,8 @@ h1 {
 .scoreboard {
   display: flex;
   flex-direction: column;
+  background-color: #E9E9E9;
+  border-radius: 25px;
 }
 
 .coordMatch {
@@ -67,28 +69,22 @@ h1 {
 
 #check-solution {
   text-align: center;
-  font-size: 1.5rem;
   font-weight: bold;
   color: #8B8B8B;
-  /* margin-top: 1rem;
-  margin-left: -13rem; */
-  background-color: #E9E9E9;
+  background-color: #F3F3EC;
   border-radius: 25px;
-  width: clamp(2.5rem, 20.5vmin, 40.5rem);
-  height: clamp(2.5rem, 10.5vmin, 20.5rem);
+}
+
+#score-label, #correct-cells-label {
+  color: #8B8B8B;
+  font-weight: bold;
 }
 
 .correctCells {
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
   color: #8b8b8b;
-  margin-top: -3.5rem;
-  margin-left: -3.5rem;
-  background-color: #E9E9E9;
+  background-color: #F3F3EC;
   border-radius: 25px;
-  width: clamp(2.5rem, 20.5vmin, 40.5rem);
-  height: clamp(2.5rem, 10.5vmin, 20.5rem);
 }
 
 .default {

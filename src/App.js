@@ -159,16 +159,19 @@ function App() {
                 Cells
               </button>
             </div>
-            <div className="container">
-              {showModal && (
-                <div className="modal">
-                  <div className="modal-content">
-                    <p>You win! Your final score is: {score}</p>
-                  </div>
-                </div>
-              )}
-            </div>
           </div> 
+        </div>
+        <div className="container">
+          {showModal && (
+            <div className="modal is-active">
+            <div className="modal-background"></div>
+            <div className="modal-content">
+              <div className="box">
+                <p>You win! Your final score is: {score}</p>
+              </div>
+            </div>
+          </div>
+          )}
         </div>
       </div>
     </>

@@ -20,10 +20,12 @@ body {
 h1 {
   color:#8B8B8B;
   font-family: 'Post No Bills Jaffna Regular';
-  font-size: 6rem;
-  margin: 0px;
-  margin-top: -1.5rem;
   text-align: center;
+  font-size: 110%;
+}
+
+hr.solid {
+  border-top: 0.2rem solid #E9E9E9;
 }
 
 .scoreboard {
@@ -50,10 +52,6 @@ h1 {
 .fixedChar {
   color: rgb(99, 199, 99);
   font-size: 2rem;
-}
-
-.appHeader {
-  text-align: center;
 }
 
 .container {

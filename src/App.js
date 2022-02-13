@@ -123,6 +123,10 @@ function App() {
   return (
     <>
       <div className="App">
+        <header className="title is-1 mt-1">
+          <h1>Crosswordle</h1>
+        </header>
+        <hr class="solid mb-6"></hr>
         <div className="columns is-vcentered">
           <div className="column"></div>
           {/* <div className="column">
@@ -140,9 +144,6 @@ function App() {
           </div> */}
 
           <div className="column is-two-thirds">
-            <header className="appHeader">
-              <h1>Crosswordle</h1>
-            </header>
             <Grid grid={grid} changeCell={changeCell} />
             <LetterBucket answer={answer} key={"letterbucket"}/>
           </div>

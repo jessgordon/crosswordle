@@ -36,24 +36,6 @@ hr.solid {
   box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2), 0 6px 20px 0 rgba(50, 75, 59, 0.19);
 }
 
-.coordMatch {
-  color: black;
-  font-size: 2rem;
-  background-color: #f5ea70;
-}
-.close {
-  color: #8b8b8b;
-  font-size: 2rem;
-}
-.noMatch {
-  color: #8b8b8b;
-  font-size: 2rem;
-}
-.fixedChar {
-  color: rgb(99, 199, 99);
-  font-size: 2rem;
-}
-
 .container {
   padding: 25px;
   text-align: center;

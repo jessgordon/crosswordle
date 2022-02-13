@@ -5,6 +5,7 @@ import Score from "./components/Score.js";
 import LetterBucket from "./components/LetterBucket.js";
 import "./App.css";
 import { SliceArray } from "slice";
+import HowToPlay from "./components/HowToPlay";
 
 function generateNeighbours() {
   const dummy = SliceArray(...RAW_LETTERS);
@@ -126,39 +127,27 @@ function App() {
         <header className="title is-1 mt-1">
           <h1>Crosswordle</h1>
         </header>
-        <hr class="solid mb-6"></hr>
+        <hr className="solid mb-6"></hr>
         <div className="columns is-vcentered">
           <div className="column"></div>
-          {/* <div className="column">
-            <ul>
-              <div className="coordMatch">
-                <li>Letter in wrong location</li>
-              </div>
-              <div className="noMatch">
-                <li>No match</li>
-              </div>
-              <div className="fixedChar">
-                <li>Correct letters!</li>
-              </div>
-            </ul>
-          </div> */}
 
           <div className="column is-two-thirds">
             <Grid grid={grid} changeCell={changeCell} />
-            <LetterBucket answer={answer} key={"letterbucket"}/>
+            <LetterBucket answer={answer} key={"letterbucket"} />
           </div>
 
           <div className="column"> 
             <div className="container scoreboard m-2">
               <p id="score-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Score:</p>
               <Score score={score} key={"refreshedScore"} />
-              <p id="correct-cells-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Correct cells:</p>
+              <p id="correct-cells-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Correct Cells:</p>
               <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">{correctCount}</div>
               <button id="check-solution" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2" onClick={checkCellsWrapper}>
                 Check
                 <br />
                 Cells
               </button>
+              <HowToPlay key={"howToPlay"} />
             </div>
           </div> 
         </div>

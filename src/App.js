@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { RAW_LETTERS } from "./data/data";
+import { RAW_LETTERS } from "./data/rawLetters"
+import { WORDS } from "./data/data";
+import EasyMode from "./EasyMode"
 import Grid from "./components/Grid";
 import Score from "./components/Score.js";
 import LetterBucket from "./components/LetterBucket.js";
@@ -58,7 +60,7 @@ function generateCrosswordle() {
 }
 
 function App() {
-  //  TODO: convert answer to RAW data
+  const easy = EasyMode(WORDS)
   const answer = RAW_LETTERS;
   const neighbourObject = generateNeighbours();
   const [grid, setGrid] = useState(generateCrosswordle());

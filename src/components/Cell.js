@@ -1,4 +1,5 @@
 import React from "react";
+import "./Cell.css";
 
 export default function Cell({ field, changeCell }) {
   function setColour(field) {
@@ -14,16 +15,16 @@ export default function Cell({ field, changeCell }) {
   }
 
   return (
-    <input
-      className={field.readonly ? "correct" : setColour(field)}
-      row={field.row}
-      col={field.col}
-      state={field.state}
-      value={field.value || ""}
-      readOnly={field.readonly}
-      answer={field.answer}
-      onChange={changeCell}
-      maxLength="1"
-    ></input>
+      <input
+        className={field.readonly ? "correct" : setColour(field)}
+        row={field.row}
+        col={field.col}
+        state={field.state}
+        value={field.value || ""}
+        readOnly={field.readonly}
+        answer={field.answer}
+        onChange={changeCell}
+        maxLength="1"
+      />
   );
 }

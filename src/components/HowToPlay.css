@@ -1,0 +1,40 @@
+.coordMatch {
+  color: #8B8B8B;
+  background-color: yellow;
+}
+
+.noMatch {
+  color: white;
+  background-color: lightgray;
+}
+
+.fixedChar {
+  color: white;
+  background-color: rgb(99, 199, 99);
+}
+
+#how-to-play-btn {
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  color: #8B8B8B;
+  background-color: #F3F3EC;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+#how-to-play-btn:hover {
+  background-color: rgb(99, 199, 99);
+  color: #E9E9E9;
+}
+
+#how-to-play-btn:active {
+  background-color: rgb(99, 199, 99);
+  color: #E9E9E9;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

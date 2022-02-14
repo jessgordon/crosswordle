@@ -53,6 +53,7 @@ class Trie {
   }
 }
 
+// Returns a list of individual chars
 function EasyMode(wordList) {
   let trie = new Trie();
   for (let word of wordList) {
@@ -71,10 +72,6 @@ function EasyMode(wordList) {
     questionMarks[i] = "?";
   }
 
-  console.log(diagonal);
-  console.log(output);
-  let finalOutput = output.join("");
-
-  finalOutput.toUpperCase().split("");
-  console.log(finalOutput);
+  let finalOutput = output.join("").toUpperCase().split("")
+  return finalOutput 
 }

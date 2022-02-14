@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RAW_LETTERS } from "./data/rawLetters"
+// import { RAW_LETTERS } from "./data/rawLetters"
 import { WORDS } from "./data/data";
 import EasyMode from "./EasyMode"
 import Grid from "./components/Grid";
@@ -8,8 +8,10 @@ import LetterBucket from "./components/LetterBucket.js";
 import "./App.css";
 import { SliceArray } from "slice";
 
-function generateNeighbours() {
-  const dummy = SliceArray(...RAW_LETTERS);
+const easy = EasyMode(WORDS)
+
+function generateNeighbours(rawLetters) {
+  const dummy = SliceArray(...rawLetters);
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
     const row = { cols: [], index: i };
@@ -30,17 +32,28 @@ function generateNeighbours() {
   return result;
 }
 
-function generateCrosswordle() {
-  const raw = RAW_LETTERS;
+function generateCrosswordle(rawLetters) {
+  const raw = rawLetters;
   const result = { rows: [] };
+
+  // const range = Array.from({length: 25}, (x, i) => i);
+  // const randomSet = new Set()
+
+  // while (randomSet.size < 5) {
+  //   let x = Math.floor(Math.random()*range.length)
+  //   randomSet.add(x)
+  // }
+
+  // console.log(randomSet)
 
   for (let i = 0; i < 5; i++) {
     const row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
       const answer = raw[i * 5 + j];
       let value = null;
+
       for (let k = 0; k < 5; k++) {
-      if (k === Math.floor(Math.random()*7)) {
+      if (k === Math.floor(Math.random()*15)) {
         value = answer;
       }
     }
@@ -60,10 +73,10 @@ function generateCrosswordle() {
 }
 
 function App() {
-  const easy = EasyMode(WORDS)
-  const answer = RAW_LETTERS;
-  const neighbourObject = generateNeighbours();
-  const [grid, setGrid] = useState(generateCrosswordle());
+  console.log(easy)
+  const possibleLetters = easy;
+  const neighbourObject = generateNeighbours(easy);
+  const [grid, setGrid] = useState(generateCrosswordle(easy));
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState();
   const [score, setScore] = useState(0);
@@ -147,7 +160,7 @@ function App() {
                 <h1>Crosswordle</h1>
               </header>
               <Grid grid={grid} changeCell={changeCell} />
-              <LetterBucket answer={answer} key={"letterbucket"} />
+              <LetterBucket answer={possibleLetters} key={"letterbucket"} />
             </div>
 
             <div className="column">

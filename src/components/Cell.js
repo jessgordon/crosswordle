@@ -1,4 +1,5 @@
 import React from "react";
+import "./Cell.css";
 
 export default function Cell({ field, changeCell }) {
   function setColour(field) {

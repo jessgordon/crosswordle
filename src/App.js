@@ -10,25 +10,38 @@ import LetterBucket from "./components/LetterBucket";
 
 const easy = EasyMode(WORDS);
 
-function generateNeighbours(rawLetters) {
-  const dummy = SliceArray(...rawLetters);
+function generateNeighbours(gridObject) {
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
     let row = { cols: [], index: i };
+    let rowCopy = { ...gridObject }.rows[i].cols;
+
     for (let j = 0; j < 5; j++) {
-      let row_n = dummy[[i * 5, i * 5 + 5]];
-      let col_n = dummy[[j, , 5]];
-      let neighbourSet = new Set([...row_n, ...col_n]);
+      let charsExcludingSelf = [];
+      for (let cell of rowCopy) {
+        if (cell.col !== j) {
+          charsExcludingSelf.push(cell.answer);
+        }
+        if (cell.answer === cell.value) {
+          charsExcludingSelf.splice(charsExcludingSelf.indexOf(cell.answer), 1);
+        }
+      }
 
       let attributes = {
         row: i,
         col: j,
-        neighbours: neighbourSet,
+        neighbours: charsExcludingSelf,
       };
+
       row.cols.push(attributes);
     }
     result.rows.push(row);
   }
+
+  // for (let x of result.rows[0].cols) {
+  //   console.log(`Column ${x.col}`, x.neighbours)
+  // }
+
   return result;
 }
 
@@ -64,11 +77,14 @@ function generateCrosswordle(rawLetters) {
   return result;
 }
 
+console.log(easy);
+
 function App() {
-  console.log(easy);
+  const initialGrid = generateCrosswordle(easy);
   const possibleLetters = easy;
-  const neighbourObject = generateNeighbours(easy);
-  const [grid, setGrid] = useState(generateCrosswordle(easy));
+  const [grid, setGrid] = useState(initialGrid);
+  let eachCellsNeighbours = generateNeighbours(initialGrid);
+
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
@@ -104,12 +120,15 @@ function App() {
         if (cell.value === cell.answer) {
           newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
-        } else if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
+        } else if (
+          eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
+        ) {
           newGrid.rows[i].cols[j].state = "wrong-location";
         } else {
           newGrid.rows[i].cols[j].state = "wrong";
         }
         updateCorrectCellCount(cell);
+        eachCellsNeighbours = generateNeighbours(newGrid);
       }
     }
     setGrid(newGrid);

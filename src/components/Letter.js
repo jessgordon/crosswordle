@@ -4,18 +4,18 @@ import "./Letter.css";
 export default function Letter({ letter, index }) {
   function setColour(letter) {
     if (letter.state === "") {
-      return "default";
+      return "letter-default";
     } else if (letter.state === "wrong-location") {
-      return "wrong-location";
+      return "letter-wrong-location";
     } else if (letter.state === "wrong") {
-      return "wrong";
+      return "letter-wrong";
     } else if (letter.state === "correct") {
-      return "correct";
+      return "letter-correct";
     }
   }
 
   return (
-    <div className={letter.readonly ? "correct" : setColour(letter)} id={`letter-${index}`}>
+    <div className={letter.readonly ? "letter-correct" : setColour(letter)} id={`letter-${index}`}>
       { letter.answer }
     </div>
   );

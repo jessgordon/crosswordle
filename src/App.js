@@ -59,7 +59,6 @@ function generateCrosswordle() {
 }
 
 function App() {
-  const answer = RAW_LETTERS;
   const neighbourObject = generateNeighbours();
   const [grid, setGrid] = useState(generateCrosswordle());
   const [showModal, setShowModal] = useState(false);

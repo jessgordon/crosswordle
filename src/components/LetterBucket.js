@@ -12,7 +12,6 @@ export default function LetterBucket(grid) {
     });
     return lettersArr;
   }
-
   
   function getRandomInt(n) {
     return Math.floor(Math.random() * n);

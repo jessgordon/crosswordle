@@ -73,6 +73,36 @@ hr.solid {
   font-weight: bold;
 }
 
+/* .cell.shake {
+  animation: shake 250ms ease-in-out;
+}
+
+@keyframes shake {
+  10% {
+    transform: translateX(-5%);
+  }
+
+  30% {
+    transform: translate(5%);
+  }
+
+  50% {
+    transform: translate(-7.5%);
+  }
+
+  70% {
+    transform: translate(7.5%);
+  }
+
+  90% {
+    transform: translate(5%);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+} */
+
 .correctCells {
   text-align: center;
   color: #8b8b8b;

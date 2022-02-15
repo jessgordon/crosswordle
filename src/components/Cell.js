@@ -14,6 +14,8 @@ export default function Cell({ field, changeCell }) {
     }
   }
 
+
+
   return (
       <input
         className={field.readonly ? "correct" : setColour(field)}

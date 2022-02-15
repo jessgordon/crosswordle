@@ -65,6 +65,7 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
+  // const FLIP_ANIMATION_DURATION = 500
 
   useEffect(() => {
     checkWin();
@@ -99,7 +100,7 @@ function App() {
           newGrid.rows[i].cols[j].readonly = true;
         }
         if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
-          newGrid.rows[i].cols[j].state = "wrong-location";
+          newGrid.rows[i].cols[j].state = "wrong-lo cation";
         } else {
           newGrid.rows[i].cols[j].state = "wrong";
         }   
@@ -109,6 +110,51 @@ function App() {
     setGrid(newGrid);
     setScore((prevScore) => prevScore + 1);
   };
+
+  // function shakeTile(cell) {
+  //   cell.forEach(cell => {
+  //     cell.classList.add("shake")
+  //     cell.addEventListener("animationend", () => {
+  //       cell.classList.remove("shake")
+  //     }, { once: true })
+  //   })
+  // }
+  // function flipTile(tile, index, array, guess) {
+  //   const letter = tile.dataset.letter
+  //   const key = changeCell().querySelector(`[data-key="${letter}"i]`)
+  //   setTimeout(() => {
+  //     tile.classList.add("flip")
+  //   }, (index * FLIP_ANIMATION_DURATION) / 2)
+  
+  //   tile.addEventListener(
+  //     "transitionend",
+  //     () => {
+  //       tile.classList.remove("flip")
+  //       if (answer === letter) {
+  //         tile.dataset.state = "correct"
+  //         key.classList.add("correct")
+  //       } else if (answer.includes(letter)) {
+  //         tile.dataset.state = "wrong-location"
+  //         key.classList.add("wrong-location")
+  //       } else {
+  //         tile.dataset.state = "wrong"
+  //         key.classList.add("wrong")
+  //       }
+  
+  //       if (index === array.length - 1) {
+  //         tile.addEventListener(
+  //           "transitionend",
+  //           () => {
+  //             App()
+  //             checkGrid()
+  //           },
+  //           { once: true }
+  //         )
+  //       }
+  //     },
+  //     { once: true }
+  //   )
+  // }
 
   const updateCorrectCellCount = (cell) => {
     if (cell.readonly) {

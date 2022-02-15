@@ -72,6 +72,6 @@ function EasyMode(wordList) {
     questionMarks[i] = "?";
   }
 
-  let finalOutput = output.join("").toUpperCase().split("")
-  return finalOutput 
+  let finalOutput = output.join("").toUpperCase().split("");
+  return finalOutput;
 }

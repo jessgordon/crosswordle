@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-// import { RAW_LETTERS } from "./data/rawLetters"
-import { WORDS } from "./data/data";
-import EasyMode from "./EasyMode"
-import Grid from "./components/Grid";
-import Score from "./components/Score.js";
-import LetterBucket from "./components/LetterBucket.js";
-import "./App.css";
 import { SliceArray } from "slice";
+import { WORDS } from "./data/data";
+import "./App.css";
+import EasyMode from "./EasyMode";
 import HowToPlay from "./components/HowToPlay";
+import Grid from "./components/Grid";
+import Score from "./components/Score";
+import LetterBucket from "./components/LetterBucket";
 
-const easy = EasyMode(WORDS)
+const easy = EasyMode(WORDS);
 
 function generateNeighbours(rawLetters) {
   const dummy = SliceArray(...rawLetters);
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
-    const row = { cols: [], index: i };
+    let row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
       let row_n = dummy[[i * 5, i * 5 + 5]];
       let col_n = dummy[[j, , 5]];
       let neighbourSet = new Set([...row_n, ...col_n]);
 
-      const attributes = {
+      let attributes = {
         row: i,
         col: j,
         neighbours: neighbourSet,
@@ -37,33 +36,20 @@ function generateCrosswordle(rawLetters) {
   const raw = rawLetters;
   const result = { rows: [] };
 
-  // const range = Array.from({length: 25}, (x, i) => i);
-  // const randomSet = new Set()
-
-  // while (randomSet.size < 5) {
-  //   let x = Math.floor(Math.random()*range.length)
-  //   randomSet.add(x)
-  // }
-
-  // console.log(randomSet)
-
   for (let i = 0; i < 5; i++) {
-    const row = { cols: [], index: i };
+    let row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
-      const answer = raw[i * 5 + j];
+      let answer = raw[i * 5 + j];
       let value = null;
+      let state_tmp = "default";
+      // Above state types should probably be declared as a constant elsewhere
 
-      for (let k = 0; k < 5; k++) {
-      if (k === Math.floor(Math.random()*15)) {
+      if (i === j) {
         value = answer;
+        state_tmp = "correct";
       }
-    } 
 
-      let state_tmp = ""
-      if (value === answer) {
-        state_tmp = "correct"
-      }
-      const col = {
+      let col = {
         row: i,
         col: j,
         value: value,
@@ -79,7 +65,7 @@ function generateCrosswordle(rawLetters) {
 }
 
 function App() {
-  console.log(easy)
+  console.log(easy);
   const possibleLetters = easy;
   const neighbourObject = generateNeighbours(easy);
   const [grid, setGrid] = useState(generateCrosswordle(easy));
@@ -99,7 +85,7 @@ function App() {
   };
 
   const changeCell = (e) => {
-    let input = e.target.value.toUpperCase();
+    const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
       e.target.preventDefault();
     }
@@ -118,12 +104,11 @@ function App() {
         if (cell.value === cell.answer) {
           newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
-        }
-        else if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
+        } else if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
           newGrid.rows[i].cols[j].state = "wrong-location";
         } else {
           newGrid.rows[i].cols[j].state = "wrong";
-        }   
+        }
         updateCorrectCellCount(cell);
       }
     }
@@ -157,32 +142,48 @@ function App() {
             <LetterBucket answer={possibleLetters} key={"letterbucket"} />
           </div>
 
-          <div className="column"> 
+          <div className="column">
             <div className="container scoreboard m-2">
-              <p id="score-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Score:</p>
+              <p
+                id="score-label"
+                className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
+              >
+                Score:
+              </p>
               <Score score={score} key={"refreshedScore"} />
-              <p id="correct-cells-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Correct Cells:</p>
-              <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">{correctCount}</div>
-              <button id="check-solution" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2" onClick={checkCellsWrapper}>
+              <p
+                id="correct-cells-label"
+                className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
+              >
+                Correct Cells:
+              </p>
+              <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">
+                {correctCount}
+              </div>
+              <button
+                id="check-solution"
+                className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+                onClick={checkCellsWrapper}
+              >
                 Check
                 <br />
                 Cells
               </button>
               <HowToPlay key={"howToPlay"} />
             </div>
-          </div> 
+          </div>
         </div>
-        
+
         <div className="container">
           {showModal && (
             <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <div className="box">
-                <p>You win! Your final score is: {score}</p>
+              <div className="modal-background"></div>
+              <div className="modal-content">
+                <div className="box">
+                  <p>You win! Your final score is: {score}</p>
+                </div>
               </div>
             </div>
-          </div>
           )}
         </div>
       </div>

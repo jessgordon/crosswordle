@@ -1,11 +1,14 @@
-.default, .correct, .wrong, .wrong-location {
+.default,
+.correct,
+.wrong,
+.wrong-location {
   width: 4rem;
   height: 4rem;
   font-size: 2rem;
   text-align: center;
   padding: 0.1rem;
   border-radius: 5px;
-  border-color: #E5E5E5;
+  border-color: #e5e5e5;
 }
 
 .correct {
@@ -14,7 +17,7 @@
 }
 
 .wrong-location {
-  color: #8B8B8B;
+  color: #8b8b8b;
   background-color: yellow;
 }
 

@@ -3,11 +3,7 @@ import "./Cell.css";
 
 export default function Cell({ field, changeCell }) {
   function setColour(field) {
-    if (field.state === "") {
-      return "default";
-    } else {
-      return `${field.state}`;
-    }
+    return `${field.state}`;
   }
 
   return (

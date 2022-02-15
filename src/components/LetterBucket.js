@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Letter from "./Letter.js";
 import "./LetterBucket.css";
 
-export default function LetterBucket(answer) {
+export default function LetterBucket(answer, easy) {
   function getRandomInt(n) {
     return Math.floor(Math.random() * n);
   }
@@ -21,6 +21,20 @@ export default function LetterBucket(answer) {
     }
 
     return arr;
+  }
+
+  function dictionary(easy) {
+    var counts = {};
+    easy.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+    return counts
+  }
+
+  function lettersArr(count) {
+    let arr = []
+    for(const [key, value] of count) {
+      arr.push(key)
+    }
+    return arr
   }
 
   const arr = useRef(randomiseAnswer(answer));

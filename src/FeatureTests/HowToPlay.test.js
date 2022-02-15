@@ -10,8 +10,8 @@ describe("HowToPlay", () => {
   });
 
   test("opens instructions in a modal when how to play button is clicked", () => {
-    expect(wrapper.find('.modal').exists()).toEqual(false);
-    wrapper.find("#how-to-play-btn").simulate('click');
-    expect(wrapper.find('.modal').exists()).toEqual(true);
-  }); 
+    expect(wrapper.find(".modal").exists()).toEqual(false);
+    wrapper.find("#how-to-play-btn").simulate("click");
+    expect(wrapper.find(".modal").exists()).toEqual(true);
+  });
 });

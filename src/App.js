@@ -1,54 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { RAW_LETTERS } from "./data/data";
-import Grid from "./components/Grid";
-import Score from "./components/Score.js";
-import LetterBucket from "./components/LetterBucket.js";
+import { WORDS } from "./data/data";
 import "./App.css";
-import { SliceArray } from "slice";
+import EasyMode from "./EasyMode";
 import HowToPlay from "./components/HowToPlay";
+import Grid from "./components/Grid";
+import Score from "./components/Score";
+import LetterBucket from "./components/LetterBucket";
 
-function generateNeighbours() {
-  const dummy = SliceArray(...RAW_LETTERS);
+const easy = EasyMode(WORDS);
+
+function generateNeighbours(gridObject) {
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
-    const row = { cols: [], index: i };
-    for (let j = 0; j < 5; j++) {
-      let row_n = dummy[[i * 5, i * 5 + 5]];
-      let col_n = dummy[[j, , 5]];
-      let neighbourSet = new Set([...row_n, ...col_n]);
+    let row = { cols: [], index: i };
+    let rowCopy = { ...gridObject }.rows[i].cols;
 
-      const attributes = {
+    for (let j = 0; j < 5; j++) {
+      let charsExcludingSelf = [];
+      for (let cell of rowCopy) {
+        if (cell.col !== j) {
+          charsExcludingSelf.push(cell.answer);
+        }
+        if (cell.answer === cell.value) {
+          charsExcludingSelf.splice(charsExcludingSelf.indexOf(cell.answer), 1);
+        }
+      }
+
+      let attributes = {
         row: i,
         col: j,
-        neighbours: neighbourSet,
+        neighbours: charsExcludingSelf,
       };
+
       row.cols.push(attributes);
     }
     result.rows.push(row);
   }
+
   return result;
 }
 
-function generateCrosswordle() {
-  const raw = RAW_LETTERS;
+function generateCrosswordle(rawLetters) {
+  const raw = rawLetters;
   const result = { rows: [] };
 
   for (let i = 0; i < 5; i++) {
-    const row = { cols: [], index: i };
+    let row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
-      const answer = raw[i * 5 + j];
+      let answer = raw[i * 5 + j];
       let value = null;
-      for (let k = 0; k < 5; k++) {
-      if (k === Math.floor(Math.random()*7)) {
+      let state_tmp = "default";
+      // Above state types should probably be declared as a constant elsewhere
+
+      if (i === j) {
         value = answer;
+        state_tmp = "correct";
       }
-    }
-      const col = {
+
+      let col = {
         row: i,
         col: j,
         value: value,
         answer: answer,
-        state: "",
+        state: state_tmp,
         readonly: value !== null,
       };
       row.cols.push(col);
@@ -58,10 +72,14 @@ function generateCrosswordle() {
   return result;
 }
 
+console.log(easy);
+
 function App() {
-  const answer = RAW_LETTERS;
-  const neighbourObject = generateNeighbours();
-  const [grid, setGrid] = useState(generateCrosswordle());
+  const initialGrid = generateCrosswordle(easy);
+  const possibleLetters = easy;
+  const [grid, setGrid] = useState(initialGrid);
+  let eachCellsNeighbours = generateNeighbours(initialGrid);
+
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
@@ -78,7 +96,7 @@ function App() {
   };
 
   const changeCell = (e) => {
-    let input = e.target.value.toUpperCase();
+    const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
       e.target.preventDefault();
     }
@@ -97,13 +115,15 @@ function App() {
         if (cell.value === cell.answer) {
           newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
-        }
-        if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
+        } else if (
+          eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
+        ) {
           newGrid.rows[i].cols[j].state = "wrong-location";
         } else {
           newGrid.rows[i].cols[j].state = "wrong";
-        }   
+        }
         updateCorrectCellCount(cell);
+        eachCellsNeighbours = generateNeighbours(newGrid);
       }
     }
     setGrid(newGrid);
@@ -133,34 +153,51 @@ function App() {
 
           <div className="column is-two-thirds">
             <Grid grid={grid} changeCell={changeCell} />
-            <LetterBucket answer={answer} key={"letterbucket"} />
+            <LetterBucket answer={possibleLetters} key={"letterbucket"} />
           </div>
 
-          <div className="column"> 
+          <div className="column">
             <div className="container scoreboard m-2">
-              <p id="score-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Score:</p>
+              <p
+                id="score-label"
+                className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
+              >
+                Score:
+              </p>
               <Score score={score} key={"refreshedScore"} />
-              <p id="correct-cells-label" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1">Correct Cells:</p>
-              <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">{correctCount}</div>
-              <button id="check-solution" className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2" onClick={checkCellsWrapper}>
+              <p
+                id="correct-cells-label"
+                className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
+              >
+                Correct Cells:
+              </p>
+              <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">
+                {correctCount}
+              </div>
+              <button
+                id="check-solution"
+                className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+                onClick={checkCellsWrapper}
+              >
                 Check
                 <br />
                 Cells
               </button>
               <HowToPlay key={"howToPlay"} />
             </div>
-          </div> 
+          </div>
         </div>
+
         <div className="container">
           {showModal && (
             <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <div className="box">
-                <p>You win! Your final score is: {score}</p>
+              <div className="modal-background"></div>
+              <div className="modal-content">
+                <div className="box">
+                  <p>You win! Your final score is: {score}</p>
+                </div>
               </div>
             </div>
-          </div>
           )}
         </div>
       </div>

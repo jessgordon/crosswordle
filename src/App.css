@@ -18,22 +18,23 @@ body {
 }
 
 h1 {
-  color:#8B8B8B;
-  font-family: 'Post No Bills Jaffna Regular';
+  color: #8b8b8b;
+  font-family: "Post No Bills Jaffna Regular";
   text-align: center;
   font-size: 110%;
 }
 
 hr.solid {
-  border-top: 0.2rem solid #E9E9E9;
+  border-top: 0.2rem solid #e9e9e9;
 }
 
 .scoreboard {
   display: flex;
   flex-direction: column;
-  background-color: #E9E9E9;
+  background-color: #e9e9e9;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2), 0 6px 20px 0 rgba(50, 75, 59, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2),
+    0 6px 20px 0 rgba(50, 75, 59, 0.19);
 }
 
 .container {
@@ -47,8 +48,8 @@ hr.solid {
   cursor: pointer;
   text-align: center;
   font-weight: bold;
-  color: #8B8B8B;
-  background-color: #F3F3EC;
+  color: #8b8b8b;
+  background-color: #f3f3ec;
   text-decoration: none;
   outline: none;
   border: none;
@@ -58,25 +59,26 @@ hr.solid {
 
 #check-solution:hover {
   background-color: rgb(99, 199, 99);
-  color: #E9E9E9;
+  color: #e9e9e9;
 }
 
 #check-solution:active {
   background-color: rgb(99, 199, 99);
-  color: #E9E9E9;
+  color: #e9e9e9;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
-#score-label, #correct-cells-label {
-  color: #8B8B8B;
+#score-label,
+#correct-cells-label {
+  color: #8b8b8b;
   font-weight: bold;
 }
 
 .correctCells {
   text-align: center;
   color: #8b8b8b;
-  background-color: #F3F3EC;
+  background-color: #f3f3ec;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2) inset;
 }

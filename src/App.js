@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { SliceArray } from "slice";
 import { WORDS } from "./data/data";
 import "./App.css";
 import EasyMode from "./EasyMode";
@@ -37,10 +36,6 @@ function generateNeighbours(gridObject) {
     }
     result.rows.push(row);
   }
-
-  // for (let x of result.rows[0].cols) {
-  //   console.log(`Column ${x.col}`, x.neighbours)
-  // }
 
   return result;
 }

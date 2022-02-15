@@ -1,4 +1,4 @@
-letter-default, .letter-correct, .letter-wrong, .letter-wrong-location {
+.letter-default, .letter-correct, .letter-wrong, .letter-wrong-location {
   font-size: inherit;
   font-weight: bold;
   grid-column: span 2;

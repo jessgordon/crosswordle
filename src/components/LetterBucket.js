@@ -2,28 +2,39 @@ import React, { useRef } from "react";
 import Letter from "./Letter.js";
 import "./LetterBucket.css";
 
-export default function LetterBucket(answer) {
+export default function LetterBucket(grid) {
+  function formatLetters(grid) {
+    let lettersArr = []
+    grid.grid.rows.forEach((row) => {
+      row.cols.forEach((cell) => {
+        lettersArr.push(cell);
+      });
+    });
+    return lettersArr;
+  }
+
+  
   function getRandomInt(n) {
     return Math.floor(Math.random() * n);
   }
-
-  function randomiseAnswer(answer) {
-    let arr = answer.answer.slice();
-    // console.log(answer.answer);
+  
+  function randomiseAnswer(lettersArr) {
+    let arr = lettersArr.slice();
     const n = arr.length;
-
+    
     for (let i = 0; i < n - 1; ++i) {
       let j = getRandomInt(n);
-
+      
       let current_element = arr[i];
       arr[i] = arr[j];
       arr[j] = current_element;
     }
-
+    
     return arr;
   }
-
-  const arr = useRef(randomiseAnswer(answer));
+  
+  let lettersArr = formatLetters(grid);
+  const arr = useRef(randomiseAnswer(lettersArr));
 
   return (
     <>

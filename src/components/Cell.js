@@ -4,18 +4,14 @@ export default function Cell({ field, changeCell }) {
   function setColour(field) {
     if (field.state === "") {
       return "default";
-    } else if (field.state === "wrong-location") {
-      return "wrong-location";
-    } else if (field.state === "wrong") {
-      return "wrong";
-    } else if (field.state === "correct") {
-      return "correct";
+    } else {
+      return `${field.state}`;
     }
   }
 
   return (
     <input
-      className={field.readonly ? "correct" : setColour(field)}
+      className={setColour(field)}
       row={field.row}
       col={field.col}
       state={field.state}

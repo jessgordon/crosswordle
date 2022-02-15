@@ -56,13 +56,18 @@ function generateCrosswordle(rawLetters) {
       if (k === Math.floor(Math.random()*15)) {
         value = answer;
       }
-    }
+    } 
+
+      let state_tmp = ""
+      if (value === answer) {
+        state_tmp = "correct"
+      }
       const col = {
         row: i,
         col: j,
         value: value,
         answer: answer,
-        state: "",
+        state: state_tmp,
         readonly: value !== null,
       };
       row.cols.push(col);
@@ -113,7 +118,7 @@ function App() {
           newGrid.rows[i].cols[j].state = "correct";
           newGrid.rows[i].cols[j].readonly = true;
         }
-        if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
+        else if (neighbourObject.rows[i].cols[j].neighbours.has(cell.value)) {
           newGrid.rows[i].cols[j].state = "wrong-location";
         } else {
           newGrid.rows[i].cols[j].state = "wrong";

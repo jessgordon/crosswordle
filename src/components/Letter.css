@@ -1,3 +1,8 @@
+/* :root {
+  --green: #9ef54d;
+  --ten: linear-gradient(90deg, #9cf75c 50%, #ffffff 0%);
+} */
+
 .randomLetter {
   font-size: inherit;
   font-weight: bold;
@@ -7,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d4d4d4;
+  /* background: var(--green); */
   color: #8b8b8b;
   text-transform: uppercase;
   border-radius: 0.25em;

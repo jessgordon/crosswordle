@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import Letter from "./Letter.js";
 import "./LetterBucket.css";
-import { useEffect } from 'react';
 
 export default function LetterBucket( { answer, grid } ) {
   function getRandomInt(n) {
@@ -52,7 +51,7 @@ export default function LetterBucket( { answer, grid } ) {
         if (state === "wrong-location") letterDictionary[letter].yellow += 1;
       }
     }
-    console.log(letterDictionary);
+    
   }
 
   function lettersArr(answer) {
@@ -79,7 +78,6 @@ export default function LetterBucket( { answer, grid } ) {
   }
   const rowLength = keyRowLength(uniqueLetters)
   setKeyboardLength(rowLength)
-  console.log(typeof rowLength)
 
   return (
     <>

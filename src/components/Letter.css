@@ -1,23 +1,14 @@
-/* :root {
-  --green: #9ef54d;
-  --ten: linear-gradient(90deg, #9cf75c 50%, #ffffff 0%);
-} */
-
 .randomLetter {
   font-size: inherit;
   font-weight: bold;
-  /* grid-column: span 2; */
   border: none;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: var(--green); */
   color: #8b8b8b;
   text-transform: uppercase;
   border-radius: 0.25em;
-  /* cursor: pointer; */
-  /* user-select: none; */
 }
 
 .randomLetter > svg {

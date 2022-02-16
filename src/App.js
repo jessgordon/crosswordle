@@ -132,7 +132,13 @@ function App() {
           eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
         ) {
           newGrid.rows[i].cols[j].state = "wrong-location";
-        } else {
+        } else if (((i === 1 && j === 3 )||
+        (i === 3 && j === 1) || 
+        (i === 3 && j === 3 )||
+        (i === 1 && j === 1))) {
+
+        }
+        else {
           newGrid.rows[i].cols[j].state = "wrong";
         }
         updateCorrectCellCount(cell);

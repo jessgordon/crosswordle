@@ -62,15 +62,16 @@ export default function LetterBucket( { answer, grid } ) {
   const letterDictionary = dictionary(answer);
   const uniqueLetters = lettersArr(answer); 
   const arr = useRef(randomiseAnswer(uniqueLetters));
-  const gridarr = formatLetters(grid)
-  backgroundColour(gridarr, letterDictionary)
+  const gridarr = formatLetters(grid);
+  backgroundColour(gridarr, letterDictionary);
+
   return (
     <>
       <div className="letterBucket" key={"letter-bucket"}>
         <div />
         {arr.current.map((letter, index) => (
           <>
-            <Letter key={`letter-${index}`} letter={letter} index={index} />
+            <Letter key={`letter-${index}`} countColours={letterDictionary[letter]} letter={letter} index={index} />
             {index === 16 && <div />}
           </>
         ))}

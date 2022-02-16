@@ -59,15 +59,27 @@ export default function LetterBucket( { answer, grid } ) {
     return arr
   }
 
+  function keyRowLength(uniqueLetters) {
+    let numberOfLetters = uniqueLetters.length;
+    if (numberOfLetters % 2 !== 0) {
+      numberOfLetters += 1;
+    }
+    return numberOfLetters / 2;
+  }
+
   const letterDictionary = dictionary(answer);
   const uniqueLetters = lettersArr(answer); 
   const arr = useRef(randomiseAnswer(uniqueLetters));
   const gridarr = formatLetters(grid);
-  backgroundColour(gridarr, letterDictionary);
+  backgroundColour(gridarr, letterDictionary); 
+  
+  const myStyle={
+    grid-template-columns:`repeat(${keyRowLength(uniqueLetters)}, minmax(auto, 1.25em))`,
+  };
 
   return (
     <>
-      <div className="letterBucket" key={"letter-bucket"}>
+      <div style={myStyle} className="letterBucket" key={"letter-bucket"}>
         <div />
         {arr.current.map((letter, index) => (
           <>

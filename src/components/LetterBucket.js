@@ -29,7 +29,6 @@ export default function LetterBucket( { answer, grid } ) {
     let count = counts[key];
     counts[key] = { count: count, green: 0, yellow: 0 };
   });
-    console.log(counts)
     return counts
   }
 
@@ -43,11 +42,16 @@ export default function LetterBucket( { answer, grid } ) {
     return lettersArr;
   }
 
-  function backgroundColour(grid) {
-    // for (let i = 0; i < 25; ++i) {
-    //   if ( grid[i].value === gird[i].answer )
-
-    // }
+  function backgroundColour(grid, letterDictionary) {
+    for (let i = 0; i < 25; ++i) {
+      let letter = grid[i].value 
+      if (letter != null) {
+        let state = grid[i].state;
+        if (state === "correct") letterDictionary[letter].green += 1;
+        if (state === "wrong-location") letterDictionary[letter].yellow += 1;
+      }
+    }
+    console.log(letterDictionary);
   }
 
   function lettersArr(answer) {
@@ -55,11 +59,11 @@ export default function LetterBucket( { answer, grid } ) {
     return arr
   }
 
-  const letterCount = dictionary(answer);
+  const letterDictionary = dictionary(answer);
   const uniqueLetters = lettersArr(answer); 
   const arr = useRef(randomiseAnswer(uniqueLetters));
   const gridarr = formatLetters(grid)
-  backgroundColour(gridarr)
+  backgroundColour(gridarr, letterDictionary)
   return (
     <>
       <div className="letterBucket" key={"letter-bucket"}>

@@ -41,3 +41,7 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+#hard-mode-img, #easy-mode-img {
+  max-width: 20rem;
+}

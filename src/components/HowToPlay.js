@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./HowToPlay.css";
+import hardModeImg from '../Images/hard-mode.png';
+import easyModeImg from '../Images/easy-mode.png';
 
 export default function HowToPlay() {
   const [showModal, setShowModal] = useState(false);
@@ -35,6 +37,7 @@ export default function HowToPlay() {
                 <p className="has-text-weight-medium">EASY MODE</p>
                 <hr className="solid"></hr>
                 <p className="p-2">Each row must be a valid five-letter word containing the letter from the diagonal word.</p>
+                <img id="easy-mode-img" src={easyModeImg} alt="Easy Mode Grid Diagram" />
                 <p className="p-2">Hit the check solution button to see if you're right.</p>
                 <p className="p-2">
                   After each check, the color of the tiles will change to show
@@ -60,7 +63,7 @@ export default function HowToPlay() {
                 <p className="has-text-weight-medium">HARD MODE</p>
                 <hr className="solid"></hr>
                 <p className="p-2">Each row and column must be a valid five-letter word.</p>
-                <p>***** INSERT PHOTO *****</p>
+                <img id="hard-mode-img" src={hardModeImg} alt="Hard Mode Grid Diagram" />
                 <p className="p-2">Hit the check solution button to see if you're right.</p>
                 <p className="p-2">
                   After each check, the color of the tiles will change to show

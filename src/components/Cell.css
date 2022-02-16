@@ -1,6 +1,7 @@
 .default,
 .correct,
 .wrong,
+.blank,
 .wrong-location {
   width: 4rem;
   height: 4rem;
@@ -24,4 +25,9 @@
 .wrong {
   color: white;
   background-color: lightgray;
+}
+
+.blank {
+  color: #d4d4d4;
+  background-color: #d4d4d4;
 }

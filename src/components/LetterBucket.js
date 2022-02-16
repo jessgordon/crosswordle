@@ -28,14 +28,15 @@ export default function LetterBucket(answer) {
   return (
     <>
       <div className="letterBucket" key={"letter-bucket"}>
-        <div />
+        <div/>
         {arr.current.map((letter, index) => (
-          <>
+          <div key={index}>
             <Letter key={`letter-${index}`} letter={letter} index={index} />
             {index === 16 && <div />}
-          </>
+          </div>
         ))}
       </div>
+
     </>
   );
 }

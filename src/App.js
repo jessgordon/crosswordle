@@ -57,7 +57,14 @@ function generateCrosswordle(rawLetters) {
       let state_tmp = "default";
       // Above state types should probably be declared as a constant elsewhere
 
-      if (i === j) {
+      if ((i === 1 && j === 3 )||
+      (i === 3 && j === 1) || 
+      (i === 3 && j === 3 )||
+      (i === 1 && j === 1)) {
+        value = " ";
+        state_tmp = "blank";
+      }
+      if (i == 0){
         value = answer;
         state_tmp = "correct";
       }
@@ -72,6 +79,7 @@ function generateCrosswordle(rawLetters) {
       };
       row.cols.push(col);
     }
+    console.log()
     result.rows.push(row);
   }
   return result;

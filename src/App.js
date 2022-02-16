@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { WORDS } from "./data/data";
+import React from "react";
 import "./App.css";
-import EasyMode from "./EasyMode";
-import HowToPlay from "./components/HowToPlay";
-import Grid from "./components/Grid";
-import Score from "./components/Score";
-import LetterBucket from "./components/LetterBucket";
-import DiagonalMode from "./components/DiagonalMode";
+import DiagonalMode from "./DiagonalMode";
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 
 function App() {
@@ -24,7 +18,7 @@ function App() {
         </div>
         <Routes>
           <Route path="/easy" element={<DiagonalMode />}></Route>
-          <Route path="*" element={<Navigate to="/easy" />} />
+          <Route path="*" element={<Navigate to="/easy" />}></Route>
         </Routes>
       </BrowserRouter>
     </>

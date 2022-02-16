@@ -1,16 +1,19 @@
 .coordMatch {
   color: #8b8b8b;
   background-color: yellow;
+  border-radius: 5px;
 }
 
 .noMatch {
   color: white;
   background-color: lightgray;
+  border-radius: 5px;
 }
 
 .fixedChar {
   color: white;
   background-color: rgb(99, 199, 99);
+  border-radius: 5px;
 }
 
 #how-to-play-btn {

@@ -29,55 +29,66 @@ export default function HowToPlay() {
                 ></button>
               </header>
               <section className="modal-card-body">
-                <p>Guess the CROSSWORDLE in five tries.</p>
-                <p>The lower the score the better</p>
+                <p>Guess the CROSSWORDLE in ten tries</p>
+                <p>The higher the score the better</p>
                 <hr className="solid"></hr>
-                <p>Each row and column must be a valid five-letter word.</p>
-                <p>Reading from left to right:</p>
-                <p>
-                  ****EXAMPLES NEED CHANGING AND STYLING WITH IMAGES ONCE OUR
-                  GAME PLAY IS CONFIRMED***
-                </p>
-                <p>And up to down:</p>
-                <p>
-                  ****EXAMPLES NEED CHANGING AND STYLING WITH IMAGES ONCE OUR
-                  GAME PLAY IS CONFIRMED***
-                </p>
+                <p className="has-text-weight-medium">EASY MODE</p>
                 <hr className="solid"></hr>
-                <p>Hit the check solution button to see if you're right.</p>
-                <p>
+                <p className="p-2">Each row must be a valid five-letter word containing the letter from the diagonal word.</p>
+                <p className="p-2">Hit the check solution button to see if you're right.</p>
+                <p className="p-2">
                   After each check, the color of the tiles will change to show
-                  how close your guess was to the solution.
+                  how close your guess was to the solution:
                 </p>
-                <p>
-                  ****EXAMPLES NEED CHANGING AND STYLING WITH IMAGES ONCE OUR
-                  GAME PLAY IS CONFIRMED***
+                <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                  <p>
+                    The letter is in the word but
+                    in the wrong place
+                  </p>
+                </div>
+                <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                  <p>
+                    The letter is not in the word
+                  </p>
+                </div>
+                <div className="fixedChar pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                  <p>The letter is in the word and in the correct place</p>
+                </div>
+
+
+                <hr className="solid"></hr>
+                <p className="has-text-weight-medium">HARD MODE</p>
+                <hr className="solid"></hr>
+                <p className="p-2">Each row and column must be a valid five-letter word.</p>
+                <p>***** INSERT PHOTO *****</p>
+                <p className="p-2">Hit the check solution button to see if you're right.</p>
+                <p className="p-2">
+                  After each check, the color of the tiles will change to show
+                  how close your guess was to the solution:
                 </p>
-                <div className="coordMatch">
+                <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
                   <p>
                     The letter is in either the horizontal or vertical word but
-                    in the wrong spot
+                    in the wrong place
                   </p>
                 </div>
-                <div className="noMatch">
+                <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
                   <p>
                     The letter is not in either the horizontal or vertical word
-                    in any spot
                   </p>
                 </div>
-                <div className="fixedChar">
-                  <p>The letter is in the word and in the correct spot</p>
+                <div className="fixedChar pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                  <p>The letter is in the word(s) and in the correct place</p>
                 </div>
                 <hr className="solid"></hr>
-                <p>Remember:</p>
-                <p>
-                  You can only check your solution a maximum of five times
-                  before you're locked out.
+                <p className="is-italic">Remember:</p>
+                <p className="is-italic">You can only check your solution a 
+                maximum of ten times before you're locked out!
                 </p>
-                <p>Good luck!</p>
+                <p className="pt-5">Good luck!</p>
               </section>
               <footer className="modal-card-foot">
-                A new CROSSWORDLE will be available each day!
+                A new CROSSWORDLE will be available each day.
               </footer>
             </div>
           </div>

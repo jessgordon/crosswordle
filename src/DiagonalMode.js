@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { DIAGONALS } from "../data/diagonals";
-import "../App.css";
-import HowToPlay from "./HowToPlay";
-import Grid from "./Grid";
-import Score from "./Score";
-import LetterBucket from "./LetterBucket";
+import { DIAGONALS } from "./data/diagonals";
+import HowToPlay from "./components/HowToPlay";
+import Grid from "./components/Grid";
+import Score from "./components/Score";
+import LetterBucket from "./components/LetterBucket";
 import {
   generateDiagonalNeighbours,
   generateDiagonalCrosswordle,
   parseWords,
-  getDate,
-} from "../Helpers";
+  getDayNumber,
+} from "./Helpers";
 
-const rawDailyAnswer = DIAGONALS[getDate() - 1];
+const rawDailyAnswer = DIAGONALS[getDayNumber() - 1];
 const parsedDailyAnswer = parseWords(rawDailyAnswer);
-const MAXSCORE = 25
-const WORDLENGTH = 5
+const MAXSCORE = 25;
+const WORDLENGTH = 5;
 
-console.log(rawDailyAnswer);
-console.log(parsedDailyAnswer);
+// console.log(rawDailyAnswer);
+// console.log(parsedDailyAnswer);
 
 export default function DiagonalMode() {
   const initialGrid = generateDiagonalCrosswordle(parsedDailyAnswer);
@@ -28,7 +27,7 @@ export default function DiagonalMode() {
 
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(100);
 
   useEffect(() => {
     checkWin();
@@ -73,7 +72,7 @@ export default function DiagonalMode() {
       }
     }
     setGrid(newGrid);
-    setScore((prevScore) => prevScore + 1);
+    setScore((prevScore) => prevScore - 1);
   };
 
   const updateCorrectCellCount = (cell) => {
@@ -110,7 +109,7 @@ export default function DiagonalMode() {
               id="correct-cells-label"
               className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
             >
-              Correct Cells:
+              Correct Letters:
             </p>
             <div className="correctCells is-size-4-touch is-size-2-tablet is-size-1-desktop m-3">
               {correctCount}
@@ -122,7 +121,7 @@ export default function DiagonalMode() {
             >
               Check
               <br />
-              Cells
+              Answer
             </button>
             <HowToPlay key={"howToPlay"} />
           </div>

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Letter from "./Letter.js";
 import "./LetterBucket.css";
+import { useEffect } from 'react';
 
 export default function LetterBucket( { answer, grid } ) {
   function getRandomInt(n) {
@@ -73,19 +74,18 @@ export default function LetterBucket( { answer, grid } ) {
   const gridarr = formatLetters(grid);
   backgroundColour(gridarr, letterDictionary); 
   
-  const myStyle={
-    grid-template-columns:`repeat(${keyRowLength(uniqueLetters)}, minmax(auto, 1.25em))`,
-  };
+  function setKeyboardLength(keyLength) {
+    document.documentElement.style.setProperty('--row-length', keyLength);
+  }
+  const rowLength = keyRowLength(uniqueLetters)
+  setKeyboardLength(rowLength)
+  console.log(typeof rowLength)
 
   return (
     <>
-      <div style={myStyle} className="letterBucket" key={"letter-bucket"}>
-        <div />
+      <div className="letterBucket" key={"letter-bucket"}>
         {arr.current.map((letter, index) => (
-          <>
             <Letter key={`letter-${index}`} countColours={letterDictionary[letter]} letter={letter} index={index} />
-            {index === 16 && <div />}
-          </>
         ))}
       </div>
     </>

@@ -72,7 +72,7 @@ function generateCrosswordle(rawLetters) {
   return result;
 }
 
-console.log(easy);
+// console.log(easy);
 
 function App() {
   const initialGrid = generateCrosswordle(easy);
@@ -153,7 +153,7 @@ function App() {
 
           <div className="column is-two-thirds">
             <Grid grid={grid} changeCell={changeCell} />
-            <LetterBucket answer={possibleLetters} easy={easy} key={"letterbucket"} />
+            <LetterBucket answer={possibleLetters} key={"letterbucket"} />
           </div>
 
           <div className="column">

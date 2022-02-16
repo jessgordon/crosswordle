@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { WORDS } from "../data/data";
 import { DIAGONALS } from "../data/diagonals";
 import "../App.css";
-import EasyMode from "../EasyMode";
 import HowToPlay from "./HowToPlay";
 import Grid from "./Grid";
 import Score from "./Score";
@@ -10,25 +8,21 @@ import LetterBucket from "./LetterBucket";
 import {
   generateDiagonalNeighbours,
   generateDiagonalCrosswordle,
+  parseWords,
+  getDate,
 } from "../Helpers";
 
-const easy = EasyMode(WORDS);
+const rawDailyAnswer = DIAGONALS[getDate() - 1];
+const parsedDailyAnswer = parseWords(rawDailyAnswer);
+const MAXSCORE = 25
+const WORDLENGTH = 5
 
-const getDate = () => {
-  let now = new Date();
-  let start = new Date(now.getFullYear(), 0, 0);
-  let diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-  let oneDay = 1000 * 60 * 60 * 24;
-  let dayNumber = Math.floor(diff / oneDay);
-  return dayNumber
-}
+console.log(rawDailyAnswer);
+console.log(parsedDailyAnswer);
 
 export default function DiagonalMode() {
-  console.log(easy);
-  console.log(DIAGONALS[getDate()-1])
-
-  const initialGrid = generateDiagonalCrosswordle(easy);
-  const possibleLetters = easy;
+  const initialGrid = generateDiagonalCrosswordle(parsedDailyAnswer);
+  const possibleLetters = parsedDailyAnswer;
   const [grid, setGrid] = useState(initialGrid);
   let eachCellsNeighbours = generateDiagonalNeighbours(initialGrid);
 
@@ -41,7 +35,7 @@ export default function DiagonalMode() {
   }, [correctCount]);
 
   const checkWin = () => {
-    if (correctCount === 25) {
+    if (correctCount === MAXSCORE) {
       console.log("You win");
       setShowModal(true);
     }
@@ -61,8 +55,8 @@ export default function DiagonalMode() {
 
   const checkGrid = () => {
     const newGrid = { ...grid };
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 5; j++) {
+    for (let i = 0; i < WORDLENGTH; i++) {
+      for (let j = 0; j < WORDLENGTH; j++) {
         const cell = newGrid.rows[i].cols[j];
         if (cell.value === cell.answer) {
           newGrid.rows[i].cols[j].state = "correct";

@@ -1,3 +1,19 @@
+function getDate() {
+  let now = new Date();
+  let start = new Date(now.getFullYear(), 0, 0);
+  let diff =
+    now -
+    start +
+    (start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000;
+  let oneDay = 1000 * 60 * 60 * 24;
+  let dayNumber = Math.floor(diff / oneDay);
+  return dayNumber;
+}
+
+function parseWords(words) {
+  return words.split("").map((chars) => chars.toUpperCase());
+}
+
 function generateDiagonalNeighbours(gridObject) {
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
@@ -29,14 +45,14 @@ function generateDiagonalNeighbours(gridObject) {
   return result;
 }
 
-function generateDiagonalCrosswordle(rawLetters) {
-  const parsed = rawLetters;
+// Takes in a list of parsedChars e.g ["A","B","C"....]
+function generateDiagonalCrosswordle(parsedChars) {
   const result = { rows: [] };
 
   for (let i = 0; i < 5; i++) {
     let row = { cols: [], index: i };
     for (let j = 0; j < 5; j++) {
-      let answer = parsed[i * 5 + j];
+      let answer = parsedChars[i * 5 + j];
       let value = null;
       let state_tmp = "default";
       // Above state types should probably be declared as a constant elsewhere
@@ -61,4 +77,4 @@ function generateDiagonalCrosswordle(rawLetters) {
   return result;
 }
 
-export { generateDiagonalCrosswordle, generateDiagonalNeighbours };
+export { generateDiagonalCrosswordle, generateDiagonalNeighbours, parseWords, getDate};

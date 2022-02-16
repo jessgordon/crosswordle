@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { DIAGONALS } from "./data/diagonals";
+import { THREE_BY_THREES } from "./data/threeByThree";
 import HowToPlay from "./components/HowToPlay";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 import {
-  generateDiagonalNeighbours,
+  generateThreeByThreeNeighbours,
   generateGrid,
   parseWords,
   getDayNumber,
 } from "./Helpers";
 
-export default function DiagonalMode() {
+console.log(THREE_BY_THREES[getDayNumber() - 1])
+
+export default function ThreeByThreeMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
-  const rawDailyAnswer = DIAGONALS[getDayNumber() - 1];
+  const rawDailyAnswer = THREE_BY_THREES[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
   const initialGrid = generateGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
-  let eachCellsNeighbours = generateDiagonalNeighbours(initialGrid);
+  let eachCellsNeighbours = generateThreeByThreeNeighbours(initialGrid);
+  console.log("Cell 0,0",eachCellsNeighbours.rows[0].cols[0].neighbours)
+  console.log("Cell 1,2",eachCellsNeighbours.rows[1].cols[2].neighbours)
 
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
@@ -65,7 +69,7 @@ export default function DiagonalMode() {
           newGrid.rows[i].cols[j].state = "wrong";
         }
         updateCorrectCellCount(cell);
-        eachCellsNeighbours = generateDiagonalNeighbours(newGrid);
+        eachCellsNeighbours = generateThreeByThreeNeighbours(newGrid);
       }
     }
     setGrid(newGrid);

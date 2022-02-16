@@ -36,7 +36,7 @@ export default function HowToPlay( { mode }) {
                 { mode === "easy" &&
                   <>
                     <hr className="solid"></hr>
-                    <p className="has-text-weight-medium">EASY MODE</p>
+                    <p className="has-text-weight-medium"> 😄 EASY MODE 😄 </p>
                     <hr className="solid"></hr>
                     <p className="p-2">Each row must be a valid five-letter word containing the letter from the diagonal word.</p>
                     <img id="easy-mode-img" src={easyModeImg} alt="Easy Mode Grid Diagram" />
@@ -65,7 +65,7 @@ export default function HowToPlay( { mode }) {
                 { mode === "hard" &&
                   <>
                     <hr className="solid"></hr>
-                    <p className="has-text-weight-medium">HARD MODE</p>
+                    <p className="has-text-weight-medium"> 🤯 HARD MODE 🤯 </p>
                     <hr className="solid"></hr>
                     <p className="p-2">Each row and column must be a valid five-letter word.</p>
                     <img id="hard-mode-img" src={hardModeImg} alt="Hard Mode Grid Diagram" />
@@ -90,7 +90,7 @@ export default function HowToPlay( { mode }) {
                     </div>
                   </>
                 }
-                
+
                 <hr className="solid"></hr>
                 <p className="is-italic">Remember:</p>
                 <p className="is-italic">You can only check your solution a 
@@ -99,7 +99,7 @@ export default function HowToPlay( { mode }) {
                 <p className="pt-5">Good luck!</p>
               </section>
               <footer className="modal-card-foot">
-                A new CROSSWORDLE will be available each day.
+                ⛅ A new CROSSWORDLE will be available each day
               </footer>
             </div>
           </div>

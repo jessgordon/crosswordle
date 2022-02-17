@@ -41,7 +41,7 @@ This is a wordle style application made by team Wordle-peeps for our final Group
 
 The user is presented with a 5 by 5 grid with a starting diagonal word. The user then has to find the 5 correct horizontal 5 letter words each of which will intercept with a character from the diaganol word.
 
-<img src="./public/crosswordle_grid.png" height="1500" width="70">
+<img src="./public/crosswordle_grid.png" height="150" width="80">
 
 ## Hard mode:
 
@@ -49,7 +49,7 @@ The user is presented with a 5 by 5 grid with a letter in each corner and the ce
 
 For both game modes the check solution button can be clicked to check the users attempt. Colours of the letters in the letter bucket will adjust accordingly, green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
 
-<img src="./public/crosswordle_grid2.46.36.png" height="150" width="70">
+<img src="./public/crosswordle_grid2.46.36.png" height="150" width="80">
 
 ## Installation
 

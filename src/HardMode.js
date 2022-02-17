@@ -7,16 +7,18 @@ import LetterBucket from "./components/LetterBucket";
 import { parseWords, getDayNumber } from "./helpers/Helpers";
 import {
   generateRowColNeighbours,
-  generateNormalGrid,
-} from "./helpers/normalModeMethods";
+  generateHardGrid,
+} from "./helpers/hardModeMethods";
 
-export default function NormalMode() {
+console.log(THREE_BY_THREES[getDayNumber() - 1]);
+
+export default function HardMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
   const rawDailyAnswer = THREE_BY_THREES[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
-  const initialGrid = generateNormalGrid(parsedDailyAnswer);
+  const initialGrid = generateHardGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
   let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
 
@@ -90,7 +92,7 @@ export default function NormalMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
+          <LetterBucket answer={possibleLetters} key={"letterbucket"} />
         </div>
 
         <div className="column">

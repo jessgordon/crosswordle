@@ -11,7 +11,7 @@ import {
   getDayNumber,
 } from "./Helpers";
 
-console.log(THREE_BY_THREES[getDayNumber() - 1])
+console.log(THREE_BY_THREES[getDayNumber() - 1]);
 
 export default function ThreeByThreeMode() {
   const MAXSCORE = 25;
@@ -22,8 +22,8 @@ export default function ThreeByThreeMode() {
   const initialGrid = generateGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
   let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
-  console.log("Cell 0,0",eachCellsNeighbours.rows[0].cols[0].neighbours)
-  console.log("Cell 1,2",eachCellsNeighbours.rows[1].cols[2].neighbours)
+  console.log("Cell 0,0", eachCellsNeighbours.rows[0].cols[0].neighbours);
+  console.log("Cell 1,2", eachCellsNeighbours.rows[1].cols[2].neighbours);
 
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);

@@ -100,7 +100,7 @@ export default function NormalMode() {
               id="score-label"
               className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
             >
-              Score:
+              Guesses:
             </p>
             <Score score={score} key={"refreshedScore"} />
             <p
@@ -121,7 +121,7 @@ export default function NormalMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} />
+            <HowToPlay key={"howToPlay"} mode={"normal"} />
           </div>
         </div>
       </div>

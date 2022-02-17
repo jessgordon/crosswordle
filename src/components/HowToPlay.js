@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./HowToPlay.css";
-import hardModeImg from '../Images/hard-mode.png';
 import easyModeImg from '../Images/easy-mode.png';
+import normalModeImg from '../Images/normal-mode.png';
+import hardModeImg from '../Images/hard-mode.png';
 
 export default function HowToPlay( { mode }) {
   const [showModal, setShowModal] = useState(false);
@@ -31,8 +32,8 @@ export default function HowToPlay( { mode }) {
                 ></button>
               </header>
               <section className="modal-card-body">
-                <p>Guess the CROSSWORDLE in ten tries</p>
-                <p>The higher the score the better</p>
+                <p>Guess the CROSSWORDLE</p>
+                <p>The lower the guesses the better!</p>
                 { mode === "easy" &&
                   <>
                     <hr className="solid"></hr>
@@ -58,6 +59,36 @@ export default function HowToPlay( { mode }) {
                     </div>
                     <div className="fixedChar pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
                       <p>The letter is in the word and in the correct place</p>
+                    </div>
+                  </>
+                }
+
+                { mode === "normal" &&
+                  <>
+                    <hr className="solid"></hr>
+                    <p className="has-text-weight-medium"> 🤔 NORMAL MODE 🤔 </p>
+                    <hr className="solid"></hr>
+                    <p className="p-2">Each row and column must be a valid five-letter word.</p>
+                    <p className="p-2">Some characters will be filled out for you to help you get started.</p>
+                    <img id="normal-mode-img" src={normalModeImg} alt="Normal Mode Grid Diagram" />
+                    <p className="p-2">Hit the check solution button to see if you're right.</p>
+                    <p className="p-2">
+                      After each check, the color of the tiles will change to show
+                      how close your guess was to the solution:
+                    </p>
+                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                      <p>
+                        The letter is in either the horizontal or vertical word but
+                        in the wrong place
+                      </p>
+                    </div>
+                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                      <p>
+                        The letter is not in either the horizontal or vertical word
+                      </p>
+                    </div>
+                    <div className="fixedChar pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                      <p>The letter is in the word(s) and in the correct place</p>
                     </div>
                   </>
                 }
@@ -90,13 +121,10 @@ export default function HowToPlay( { mode }) {
                     </div>
                   </>
                 }
-
                 <hr className="solid"></hr>
-                <p className="is-italic">Remember:</p>
-                <p className="is-italic">You can only check your solution a 
-                maximum of ten times before you're locked out!
-                </p>
-                <p className="pt-5">Good luck!</p>
+                <p className="p-2">Hint:</p>
+                <p className="p-2">The keys at the bottom may help you figure out how many times each character will appear within the grid (you'll start to see them change colour when you check your solution).</p>
+                <p className="p-2">Good luck!</p>
               </section>
               <footer className="modal-card-foot">
                 ⛅ A new CROSSWORDLE will be available each day

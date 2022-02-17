@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { THREE_BY_THREES } from "./data/threeByThree";
+import { NORMALMODE_WORDS } from "./data/normalModeData";
 import HowToPlay from "./components/HowToPlay";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
@@ -13,7 +13,7 @@ import {
 export default function NormalMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
-  const rawDailyAnswer = THREE_BY_THREES[getDayNumber() - 1];
+  const rawDailyAnswer = NORMALMODE_WORDS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
   const initialGrid = generateNormalGrid(parsedDailyAnswer);

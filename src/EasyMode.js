@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DIAGONALS } from "./data/diagonals";
+import { EASYMODE_WORDS } from "./data/easyModeData";
 import HowToPlay from "./components/HowToPlay";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
@@ -13,7 +13,7 @@ import {
 export default function EasyMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
-  const rawDailyAnswer = DIAGONALS[getDayNumber() - 1];
+  const rawDailyAnswer = EASYMODE_WORDS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
   const initialGrid = generateEasyGrid(parsedDailyAnswer);

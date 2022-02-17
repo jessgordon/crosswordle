@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Crosswordle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created using React frontend and python backend.
 
 ## Quickstart
 
@@ -31,6 +31,8 @@ Titus Chang
 
 From Makers Cohort November 2021
 
+<img src="./public/makers academy.png" height="30">
+
 ## About
 
 This is a wordle style application made by team Wordle-peeps for our final Group Project. This application has two settings, easy and hard, in which the user has to make five letter words. 
@@ -39,13 +41,17 @@ This is a wordle style application made by team Wordle-peeps for our final Group
 
 The user is presented with a 5 by 5 grid with a starting diagonal word. The user then has to find the 5 correct horizontal 5 letter words each of which will intercept with a character from the diaganol word.
 
+<img src="./public/crosswordle_grid.png" height="30">
+
 ## Hard mode:
 
 The user is presented with a 5 by 5 grid with a letter in each corner and the center cell. The user then has to find the 5 letter words for rows 1, 3 and 5 as well as the vertical 5 letter words for columns 1, 3 and 5. 
 
 For both game modes the check solution button can be clicked to check the users attempt. Colours of the letters in the letter bucket will adjust accordingly, green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
 
+<img src="./public/crosswordle_grid2.46.36.png" height="30">
+
 ## Installation
 
-To use, please download the files and run npm install. Run npm start to run on your local machine at localhost:3000. Alternatively, visit https://crosswordle.herokuapp.com/ - to view the full site!\
+To use, please download the files and run npm install. Run npm start to run on your local machine at localhost:3000. Alternatively, visit https://crosswordle-production.herokuapp.com - to view the full site!\
 You can find the python code used to generate the solutions here https://github.com/tc1316/crosswordle-solutions

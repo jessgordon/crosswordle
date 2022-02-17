@@ -6,7 +6,7 @@ import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 import {
   generateRowNeighbours,
-  generateGrid,
+  generateEasyGrid,
   parseWords,
   getDayNumber,
 } from "./Helpers";
@@ -17,7 +17,7 @@ export default function DiagonalMode() {
   const rawDailyAnswer = DIAGONALS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
-  const initialGrid = generateGrid(parsedDailyAnswer);
+  const initialGrid = generateEasyGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
   let eachCellsNeighbours = generateRowNeighbours(initialGrid);
 

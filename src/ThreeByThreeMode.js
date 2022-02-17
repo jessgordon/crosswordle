@@ -6,7 +6,7 @@ import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 import {
   generateRowColNeighbours,
-  generateGrid,
+  generateNormalGrid,
   parseWords,
   getDayNumber,
 } from "./Helpers";
@@ -19,7 +19,7 @@ export default function ThreeByThreeMode() {
   const rawDailyAnswer = THREE_BY_THREES[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
-  const initialGrid = generateGrid(parsedDailyAnswer);
+  const initialGrid = generateNormalGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
   let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
   console.log("Cell 0,0", eachCellsNeighbours.rows[0].cols[0].neighbours);

@@ -23,7 +23,6 @@ function App() {
         <Routes>
           <Route path="/easy" element={<DiagonalMode />}></Route>
           <Route path="/normal" element={<ThreeByThreeMode />}></Route>
-
           <Route path="*" element={<Navigate to="/easy" />}></Route>
         </Routes>
       </BrowserRouter>

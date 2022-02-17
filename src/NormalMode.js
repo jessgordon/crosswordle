@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NORMALMODE_WORDS } from "./data/normalModeData";
 import HowToPlay from "./components/HowToPlay";
+import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
@@ -11,7 +12,7 @@ import {
 } from "./helpers/normalModeMethods";
 
 export default function NormalMode() {
-  const MAXSCORE = 25;
+  const MAXSCORE = 21;
   const WORDLENGTH = 5;
   const rawDailyAnswer = NORMALMODE_WORDS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
@@ -23,7 +24,7 @@ export default function NormalMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(100);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     checkWin();
@@ -69,11 +70,11 @@ export default function NormalMode() {
       }
     }
     setGrid(newGrid);
-    setScore((prevScore) => prevScore - 1);
+    setScore((prevScore) => prevScore + 1);
   };
 
   const updateCorrectCellCount = (cell) => {
-    if (cell.readonly) {
+    if (cell.readonly && cell.answer !== "*") {
       setCorrectCount((prevCount) => prevCount + 1);
     }
   };
@@ -126,16 +127,7 @@ export default function NormalMode() {
       </div>
 
       <div className="container">
-        {showModal && (
-          <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <div className="box">
-                <p>You win! Your final score is: {score}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        {showModal && <YouWin score={score} />}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { HARDMODE_WORDS } from "./data/hardModeData";
 import HowToPlay from "./components/HowToPlay";
+import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
@@ -10,8 +11,10 @@ import {
   generateHardGrid,
 } from "./helpers/hardModeMethods";
 
+console.log(HARDMODE_WORDS[getDayNumber() - 1])
+
 export default function HardMode() {
-  const MAXSCORE = 25;
+  const MAXSCORE = 21;
   const WORDLENGTH = 5;
   const rawDailyAnswer = HARDMODE_WORDS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
@@ -23,7 +26,7 @@ export default function HardMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(100);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     checkWin();
@@ -69,11 +72,11 @@ export default function HardMode() {
       }
     }
     setGrid(newGrid);
-    setScore((prevScore) => prevScore - 1);
+    setScore((prevScore) => prevScore + 1);
   };
 
   const updateCorrectCellCount = (cell) => {
-    if (cell.readonly) {
+    if (cell.readonly && cell.answer !== "*") {
       setCorrectCount((prevCount) => prevCount + 1);
     }
   };
@@ -126,16 +129,7 @@ export default function HardMode() {
       </div>
 
       <div className="container">
-        {showModal && (
-          <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <div className="box">
-                <p>You win! Your final score is: {score}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        {showModal && <YouWin score={score} />}
       </div>
     </>
   );

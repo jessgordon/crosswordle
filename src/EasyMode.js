@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { EASYMODE_WORDS } from "./data/easyModeData";
 import HowToPlay from "./components/HowToPlay";
+import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
@@ -23,7 +24,7 @@ export default function EasyMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(15);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     checkWin();
@@ -68,7 +69,7 @@ export default function EasyMode() {
       }
     }
     setGrid(newGrid);
-    setScore((prevScore) => prevScore - 1);
+    setScore((prevScore) => prevScore + 1);
   };
 
   const updateCorrectCellCount = (cell) => {
@@ -125,16 +126,7 @@ export default function EasyMode() {
       </div>
 
       <div className="container">
-        {showModal && (
-          <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <div className="box">
-                <p>You win! Your final score is: {score}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        { showModal && <YouWin score={score} /> }
       </div>
     </>
   );

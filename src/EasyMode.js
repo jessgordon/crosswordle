@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { THREE_BY_THREES } from "./data/threeByThree";
+import { DIAGONALS } from "./data/diagonals";
 import HowToPlay from "./components/HowToPlay";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
+import { parseWords, getDayNumber } from "./helpers/Helpers";
 import {
-  generateRowColNeighbours,
-  generateNormalGrid,
-  parseWords,
-  getDayNumber,
-} from "./Helpers";
+  generateRowNeighbours,
+  generateEasyGrid,
+} from "./helpers/easyModeMethods";
 
-console.log(THREE_BY_THREES[getDayNumber() - 1]);
+console.log(DIAGONALS[getDayNumber() - 1]);
 
-export default function ThreeByThreeMode() {
+export default function EasyMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
-  const rawDailyAnswer = THREE_BY_THREES[getDayNumber() - 1];
+  const rawDailyAnswer = DIAGONALS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
-  const initialGrid = generateNormalGrid(parsedDailyAnswer);
+  const initialGrid = generateEasyGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
-  let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
+  let eachCellsNeighbours = generateRowNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
@@ -42,7 +41,7 @@ export default function ThreeByThreeMode() {
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-      e.target.preventDefault();
+      return false;
     }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
@@ -63,12 +62,11 @@ export default function ThreeByThreeMode() {
           eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
         ) {
           newGrid.rows[i].cols[j].state = "wrong-location";
-        } else if (cell.answer === "*") {
         } else {
           newGrid.rows[i].cols[j].state = "wrong";
         }
         updateCorrectCellCount(cell);
-        eachCellsNeighbours = generateRowColNeighbours(newGrid);
+        eachCellsNeighbours = generateRowNeighbours(newGrid);
       }
     }
     setGrid(newGrid);

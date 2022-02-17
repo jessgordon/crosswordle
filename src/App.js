@@ -1,8 +1,10 @@
 import React from "react";
 import "./App.css";
-import DiagonalMode from "./DiagonalMode";
-import ThreeByThreeMode from "./ThreeByThreeMode";
+import DiagonalMode from "./EasyMode";
+import ThreeByThreeMode from "./NormalMode";
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import EasyMode from "./EasyMode";
+import NormalMode from "./NormalMode";
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
           <hr className="solid mb-6"></hr>
         </div>
         <Routes>
-          <Route path="/easy" element={<DiagonalMode />}></Route>
-          <Route path="/normal" element={<ThreeByThreeMode />}></Route>
+          <Route path="/easy" element={<EasyMode />}></Route>
+          <Route path="/normal" element={<NormalMode />}></Route>
           <Route path="*" element={<Navigate to="/easy" />}></Route>
         </Routes>
       </BrowserRouter>

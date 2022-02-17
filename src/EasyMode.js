@@ -10,8 +10,6 @@ import {
   generateEasyGrid,
 } from "./helpers/easyModeMethods";
 
-console.log(DIAGONALS[getDayNumber() - 1]);
-
 export default function EasyMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
@@ -25,7 +23,7 @@ export default function EasyMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(100);
+  const [score, setScore] = useState(15);
 
   useEffect(() => {
     checkWin();
@@ -91,7 +89,7 @@ export default function EasyMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} key={"letterbucket"} />
+          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
         </div>
 
         <div className="column">
@@ -121,7 +119,7 @@ export default function EasyMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} />
+            <HowToPlay key={"howToPlay"} mode={"easy"} />
           </div>
         </div>
       </div>

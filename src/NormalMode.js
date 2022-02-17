@@ -10,8 +10,6 @@ import {
   generateNormalGrid,
 } from "./helpers/normalModeMethods";
 
-console.log(THREE_BY_THREES[getDayNumber() - 1]);
-
 export default function NormalMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
@@ -92,7 +90,7 @@ export default function NormalMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} key={"letterbucket"} />
+          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
         </div>
 
         <div className="column">

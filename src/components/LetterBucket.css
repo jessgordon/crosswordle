@@ -1,6 +1,10 @@
+:root {
+  --row-length: 8;
+}
+
 .letterBucket {
   display: grid;
-  grid-template-columns: repeat(18, minmax(auto, 1.25em));
+  grid-template-columns:repeat(var(--row-length), minmax(auto, 2.5em));
   grid-auto-rows: 3em;
   gap: 0.25em;
   justify-content: center;

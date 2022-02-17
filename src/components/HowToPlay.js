@@ -121,9 +121,10 @@ export default function HowToPlay( { mode }) {
                     </div>
                   </>
                 }
-
                 <hr className="solid"></hr>
-                <p>Good luck!</p>
+                <p className="p-2">Hint:</p>
+                <p className="p-2">The keys at the bottom may help you figure out how many times each character will appear within the grid (you'll start to see them change colour when you check your solution).</p>
+                <p className="p-2">Good luck!</p>
               </section>
               <footer className="modal-card-foot">
                 ⛅ A new CROSSWORDLE will be available each day

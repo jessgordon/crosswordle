@@ -18,13 +18,13 @@ function App() {
           </div>
           <div className="columns mode-links">
           <div className="column">
-              <Link className="mode-link button is-success is-light is-size-5" to="/easy">Easy Difficulty</Link>
+              <Link className="mode-link button is-success is-light is-size-5 is-outlined" to="/easy">Easy Difficulty</Link>
             </div>
             <div className="column">
-              <Link className="mode-link button is-warning is-light is-size-5" to="/normal">Normal Difficulty</Link>
+              <Link className="mode-link button is-warning is-light is-size-5 is-outlined" to="/normal">Normal Difficulty</Link>
             </div>
             <div className="column">
-              <Link className="mode-link button is-danger is-light is-size-5" to="/hard">Hard Difficulty</Link>
+              <Link className="mode-link button is-danger is-light is-size-5 is-outlined" to="/hard">Hard Difficulty</Link>
             </div>        
           </div>
           <hr className="solid mb-6"></hr>

@@ -142,12 +142,6 @@ function generateRowColNeighbours(gridObject) {
         }
       }
 
-      // for (let m = 0; m<5;m++) {
-      //   if (rows[m].cols[j].answer === rows[m].cols[j].value) {
-      //     tempArray.splice(tempArray.indexOf(rows[m].cols[j].answer), 1);
-      //   }
-      // }
-
       if (i === 0 && j == 0) {
         console.log(`${i},${j}`, tempArray);
       }
@@ -164,55 +158,6 @@ function generateRowColNeighbours(gridObject) {
   }
   return result;
 }
-
-// let sliceableArray = SliceArray(...tempArray)
-//     console.log(sliceableArray)
-
-// for (let i = 0; i < 5; i++) {
-//   // let row = { cols: [], index: i }
-
-//   for (let j = 0; j < 5; j++) {
-//     // let charsExcludingSelf = [];
-
-//     // for (let cell of gridCopy.rows[i].cols) {
-//       let row_n = sliceableArray[[i * 5, i * 5 + 5]];
-//       let col_n = sliceableArray[[j, , 5]];
-//       let neighbours = [...row_n, ...col_n]
-//       console.log(neighbours)
-//   }}
-// }
-
-//         if (cell.col !== j) {
-//           charsExcludingSelf.push(cell.answer);
-//           if (i % 2 === 0) {
-//             for (let row of gridCopy.rows) {
-//               // console.log("Grid copy", row)
-//               if (row.cols[j].col === j)
-
-//                 charsExcludingSelf.push(row.cols[j].answer)
-//             }
-
-//           }
-//         }
-
-//         if (cell.answer === cell.value) {
-//           charsExcludingSelf.splice(charsExcludingSelf.indexOf(cell.answer), 1);
-//         }
-//       }
-
-//       console.log(charsExcludingSelf)
-//       let attributes = {
-//         row: i,
-//         col: j,
-//         neighbours: charsExcludingSelf,
-//       };
-
-//       row.cols.push(attributes);
-//     }
-//     result.rows.push(row);
-
-//   return result;
-// }
 
 export {
   generateEasyGrid,

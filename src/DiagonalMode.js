@@ -11,6 +11,8 @@ import {
   getDayNumber,
 } from "./Helpers";
 
+console.log(DIAGONALS[getDayNumber() - 1]);
+
 export default function DiagonalMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
@@ -40,7 +42,7 @@ export default function DiagonalMode() {
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-      e.target.preventDefault();
+      return false;
     }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;

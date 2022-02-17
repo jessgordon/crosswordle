@@ -56,11 +56,11 @@ function generateNormalGrid(parsedChars) {
       let value = null;
       let state_tmp = "default";
       // Above state types should probably be declared as a constant elsewhere
-      if(answer === "*") {
+      if (answer === "*") {
         value = " ";
         state_tmp = "blank";
       }
-      if (i === 0) {
+      if ((i % 4 === 0 && j % 4 === 0) || (i === 2 && j === 2)) {
         value = answer;
         state_tmp = "correct";
       }
@@ -90,11 +90,8 @@ function generateRowNeighbours(gridObject) {
     for (let j = 0; j < 5; j++) {
       let charsExcludingSelf = [];
       for (let cell of rowCopy) {
-        if (cell.col !== j) {
+        if (cell.col !== j && cell.answer !== cell.value) {
           charsExcludingSelf.push(cell.answer);
-        }
-        if (cell.answer === cell.value) {
-          charsExcludingSelf.splice(charsExcludingSelf.indexOf(cell.answer), 1);
         }
       }
 
@@ -118,34 +115,43 @@ function generateRowColNeighbours(gridObject) {
 
   for (let i = 0; i < 5; i++) {
     let row = { cols: [], index: i };
+    let rows = { ...gridObject }.rows;
 
-    let y = { ...gridObject }.rows[i].cols; // list of cells
-    let x = { ...gridObject }.rows; // list of cols
     for (let j = 0; j < 5; j++) {
       let tempArray = [];
 
+      // Neighbours along the column
       if (j % 2 === 0) {
         for (let k = 0; k < 5; k++) {
-          if (x[k].cols[j].row !== i) {
-            tempArray.push(x[k].cols[j].answer);
-          }
-          if (x[k].cols[j].answer === x[k].cols[j].value) { 
-            tempArray.splice(tempArray.indexOf(x[k].cols[j].answer), 1);
+          if (
+            rows[k].cols[j].row !== i &&
+            rows[k].cols[j].answer !== rows[k].cols[j].value
+          ) {
+            tempArray.push(rows[k].cols[j].answer);
           }
         }
       }
 
+      // Neighbours along the rows
       for (let l = 0; l < 5; l++) {
-        if (y[l].col !== j) {
-          tempArray.push(y[l].answer);
-        }
-        if ((x[l].cols[j].answer === x[l].cols[j].value) && (x[l].cols[j].state === "correct")) { 
-           tempArray.splice(tempArray.indexOf(x[l].cols[j].answer), 1);
+        if (
+          rows[i].cols[l].col !== j &&
+          rows[i].cols[l].answer !== rows[i].cols[l].value
+        ) {
+          tempArray.push(rows[i].cols[l].answer);
         }
       }
-      if (i === 2 && j === 0) {
+
+      // for (let m = 0; m<5;m++) {
+      //   if (rows[m].cols[j].answer === rows[m].cols[j].value) {
+      //     tempArray.splice(tempArray.indexOf(rows[m].cols[j].answer), 1);
+      //   }
+      // }
+
+      if (i === 0 && j == 0) {
         console.log(`${i},${j}`, tempArray);
       }
+
       let attributes = {
         row: i,
         col: j,

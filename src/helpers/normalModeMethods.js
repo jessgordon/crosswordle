@@ -34,8 +34,6 @@ function generateNormalGrid(parsedChars) {
 
 function generateRowColNeighbours(gridObject) {
   const result = { rows: [] };
-  // P (0,0) should have row = ASTY; col = EDAL
-  // "pasty,e*o*i,delve,a*a*l,lurid"
 
   for (let i = 0; i < 5; i++) {
     let row = { cols: [], index: i };
@@ -64,10 +62,6 @@ function generateRowColNeighbours(gridObject) {
         ) {
           tempArray.push(rows[i].cols[l].answer);
         }
-      }
-
-      if (i === 0 && j == 0) {
-        console.log(`${i},${j}`, tempArray);
       }
 
       let attributes = {

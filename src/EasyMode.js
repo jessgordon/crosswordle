@@ -10,8 +10,6 @@ import {
   generateEasyGrid,
 } from "./helpers/easyModeMethods";
 
-console.log(DIAGONALS[getDayNumber() - 1]);
-
 export default function EasyMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;

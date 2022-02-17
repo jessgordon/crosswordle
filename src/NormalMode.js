@@ -10,8 +10,6 @@ import {
   generateNormalGrid,
 } from "./helpers/normalModeMethods";
 
-console.log(THREE_BY_THREES[getDayNumber() - 1]);
-
 export default function NormalMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;

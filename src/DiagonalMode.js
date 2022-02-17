@@ -127,7 +127,7 @@ export default function DiagonalMode() {
       </div>
 
       <div className="container">
-        { <YouWin score={score} /> }
+        { showModal && <YouWin score={score} /> }
       </div>
     </>
   );

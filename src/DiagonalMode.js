@@ -24,7 +24,7 @@ export default function DiagonalMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(100);
+  const [score, setScore] = useState(15);
 
   useEffect(() => {
     checkWin();
@@ -40,7 +40,7 @@ export default function DiagonalMode() {
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-      e.target.preventDefault();
+      return false
     }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
@@ -90,7 +90,7 @@ export default function DiagonalMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} key={"letterbucket"} />
+          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
         </div>
 
         <div className="column">

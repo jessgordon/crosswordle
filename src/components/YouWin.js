@@ -14,9 +14,9 @@ import {
   RedditIcon,
 } from "react-share";
 
-export default function YouWin( { score }) {
+export default function YouWin( { score, mode }) {
   const shareUrl = 'https://crosswordle-production.herokuapp.com/';
-  const title = `I've just solved today's CROSSWORDLE in ${score} many guesses - can you beat me!?`;
+  const title = `I've just solved today's ${mode} CROSSWORDLE challenge in ${score} guesses - can you beat me!?`;
 
   return (
     <>
@@ -38,7 +38,9 @@ export default function YouWin( { score }) {
           </section>
           <footer className="modal-card-foot">
             <div className="networks columns">
-            <div className="column is-one-third"></div>
+              <div className="column is-one-third">
+                <p>Share your score:</p>
+              </div>
             <div className="network column">
               <FacebookShareButton
                 url={shareUrl}

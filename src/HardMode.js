@@ -129,7 +129,7 @@ export default function HardMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score} />}
+        {showModal && <YouWin score={score}  mode={"hard"}/>}
       </div>
     </>
   );

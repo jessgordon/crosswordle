@@ -12,22 +12,22 @@ function App() {
     <>
       <BrowserRouter>
         <div className="App">
-          <header className="title is-1 mt-1">
-            <h1>Crosswordle</h1>
-          </header>
-          <div className="columns">
-          <div className="column mode-link">
-              <Link to="/easy">Easy Difficulty</Link>
+            <header className="title is-1 mt-1">
+              <h1>Crosswordle</h1>
+            </header>
+          </div>
+          <div className="columns mode-links">
+          <div className="column">
+              <Link className="mode-link" to="/easy">Easy Difficulty</Link>
             </div>
-            <div className="column mode-link">
-              <Link to="/normal">Normal Difficulty</Link>
+            <div className="column">
+              <Link className="mode-link" to="/normal">Normal Difficulty</Link>
             </div>
-            <div className="column mode-link">
-              <Link to="/hard">Hard Difficulty</Link>
+            <div className="column">
+              <Link className="mode-link" to="/hard">Hard Difficulty</Link>
             </div>        
           </div>
           <hr className="solid mb-6"></hr>
-        </div>
         <Routes>
           <Route path="/easy" element={<EasyMode />}></Route>
           <Route path="/normal" element={<NormalMode />}></Route>

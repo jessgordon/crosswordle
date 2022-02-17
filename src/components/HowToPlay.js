@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./HowToPlay.css";
-import hardModeImg from '../Images/hard-mode.png';
 import easyModeImg from '../Images/easy-mode.png';
+import normalModeImg from '../Images/normal-mode.png';
+import hardModeImg from '../Images/hard-mode.png';
 
 export default function HowToPlay( { mode }) {
   const [showModal, setShowModal] = useState(false);
@@ -32,7 +33,7 @@ export default function HowToPlay( { mode }) {
               </header>
               <section className="modal-card-body">
                 <p>Guess the CROSSWORDLE in ten tries</p>
-                <p>The higher the score the better</p>
+                <p>The lower the guesses the better</p>
                 { mode === "easy" &&
                   <>
                     <hr className="solid"></hr>
@@ -69,8 +70,7 @@ export default function HowToPlay( { mode }) {
                     <hr className="solid"></hr>
                     <p className="p-2">Each row and column must be a valid five-letter word.</p>
                     <p className="p-2">Some characters will be filled out for you to help you get started.</p>
-                    {/* TODO: new image for normal mode */}
-                    <img id="hard-mode-img" src={hardModeImg} alt="Hard Mode Grid Diagram" />
+                    <img id="normal-mode-img" src={normalModeImg} alt="Normal Mode Grid Diagram" />
                     <p className="p-2">Hit the check solution button to see if you're right.</p>
                     <p className="p-2">
                       After each check, the color of the tiles will change to show
@@ -123,11 +123,7 @@ export default function HowToPlay( { mode }) {
                 }
 
                 <hr className="solid"></hr>
-                <p className="is-italic">Remember:</p>
-                <p className="is-italic">You can only check your solution a 
-                maximum of ten times before you're locked out!
-                </p>
-                <p className="pt-5">Good luck!</p>
+                <p>Good luck!</p>
               </section>
               <footer className="modal-card-foot">
                 ⛅ A new CROSSWORDLE will be available each day

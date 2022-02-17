@@ -21,7 +21,7 @@ h1 {
   color: #8b8b8b;
   font-family: "Post No Bills Jaffna Regular";
   text-align: center;
-  font-size: 110%;
+  font-size: 200%;
 }
 
 hr.solid {
@@ -38,7 +38,7 @@ hr.solid {
 }
 
 .container {
-  padding: 25px;
+  padding: 20px;
   text-align: center;
   position: relative;
 }

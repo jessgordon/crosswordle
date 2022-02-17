@@ -126,7 +126,7 @@ export default function EasyMode() {
       </div>
 
       <div className="container">
-        { <YouWin score={score}  mode={"easy"} /> }
+        {showModal && <YouWin score={score}  mode={"easy"} /> }
       </div>
     </>
   );

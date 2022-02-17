@@ -46,13 +46,13 @@ export default function HowToPlay( { mode }) {
                       After each check, the color of the tiles will change to show
                       how close your guess was to the solution:
                     </p>
-                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5 has-text-black">
                       <p>
                         The letter is in the word but
                         in the wrong place
                       </p>
                     </div>
-                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5 has-text-black">
                       <p>
                         The letter is not in the word
                       </p>
@@ -76,13 +76,13 @@ export default function HowToPlay( { mode }) {
                       After each check, the color of the tiles will change to show
                       how close your guess was to the solution:
                     </p>
-                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5 has-text-black">
                       <p>
                         The letter is in either the horizontal or vertical word but
                         in the wrong place
                       </p>
                     </div>
-                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5 has-text-black">
                       <p>
                         The letter is not in either the horizontal or vertical word
                       </p>
@@ -105,13 +105,13 @@ export default function HowToPlay( { mode }) {
                       After each check, the color of the tiles will change to show
                       how close your guess was to the solution:
                     </p>
-                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5 has-text-black">
                       <p>
                         The letter is in either the horizontal or vertical word but
                         in the wrong place
                       </p>
                     </div>
-                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5 has-text-black">
                       <p>
                         The letter is not in either the horizontal or vertical word
                       </p>

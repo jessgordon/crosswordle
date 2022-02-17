@@ -16,7 +16,7 @@ import {
 
 export default function YouWin( { score, mode }) {
   const shareUrl = 'https://crosswordle-production.herokuapp.com/';
-  const title = `I've just solved today's ${mode} CROSSWORDLE challenge in ${score} guesses - can you beat me!?`;
+  const title = `I've just solved today's ${mode.toUpperCase()} CROSSWORDLE challenge in ${score} guesses - can you beat me!?`;
 
   return (
     <>

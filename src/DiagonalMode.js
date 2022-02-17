@@ -24,7 +24,7 @@ export default function DiagonalMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(100);
+  const [score, setScore] = useState(15);
 
   useEffect(() => {
     checkWin();
@@ -120,7 +120,7 @@ export default function DiagonalMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} />
+            <HowToPlay key={"howToPlay"} mode={"easy"} />
           </div>
         </div>
       </div>

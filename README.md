@@ -35,21 +35,31 @@ From Makers Cohort November 2021
 
 ## About
 
-This is a wordle style application made by team Wordle-peeps for our final Group Project. This application has two settings, easy and hard, in which the user has to make five letter words. 
+This is a wordle style application made by team Wordle-peeps for our final Group Project. This application has three game modes: Easy, Normal and Hard, in which the user has to guess the correct 5-letter words according to the ruleset.
+
+For all game modes, the check solution button can be clicked to check the users attempt. Each guess increments the user's guess count, hence a lower guess count indicates a better score.
+
+The letters shown below the grid indicate the characters that are usable for the given daily solution. Note that not all characters are present, giving the user an easier time guessing words.
+
+Colours of the letters in the letter bucket will adjust accordingly i.e. green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
 
 ## Easy mode:
 
-The user is presented with a 5 by 5 grid with a starting diagonal word. The user then has to find the 5 correct horizontal 5 letter words each of which will intercept with a character from the diaganol word.
+The user is presented with a 5x5 grid with the diagonal characters shown. The user then has to find 5 horizontal words, each of which intercepts with one character in the diagonal.
 
-<img src="./public/crosswordle_grid.png" height="150" width="80">
+<img src="./public/easy_mode_grid.png" height="250" width="200">
+
+## Normal mode:
+
+The user is presented with a 5x5 grid with the characters revealed in the 4 corner boxes and the centermost box. The user then has to find 6 words in total: 3 across and 3 down.
+
+<img src="./public/normal_mode_grid.png" height="250" width="200">
 
 ## Hard mode:
 
-The user is presented with a 5 by 5 grid with a letter in each corner and the center cell. The user then has to find the 5 letter words for rows 1, 3 and 5 as well as the vertical 5 letter words for columns 1, 3 and 5. 
+The user is presented with a 5x5 grid with no revealed characters. Similarly, the user then has to find 6 words in total: 3 across and 3 down.
 
-For both game modes the check solution button can be clicked to check the users attempt. Colours of the letters in the letter bucket will adjust accordingly, green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
-
-<img src="./public/crosswordle_grid2.46.36.png" height="150" width="80">
+<img src="./public/hard_mode_grid.png" height="250" width="200">
 
 ## Installation
 

@@ -1,4 +1,4 @@
-export const THREE_BY_THREES = [
+export const NORMALMODE_WORDS = [
   "brinee*n*xleasto*n*owheel",
   "abhorl*e*olyingo*s*ewater",
   "leakye*t*ifrozet*n*lyield",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { THREE_BY_THREES } from "./data/threeByThree";
+import { HARDMODE_WORDS } from "./data/hardModeData";
 import HowToPlay from "./components/HowToPlay";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
@@ -10,12 +10,10 @@ import {
   generateHardGrid,
 } from "./helpers/hardModeMethods";
 
-console.log(THREE_BY_THREES[getDayNumber() - 1]);
-
 export default function HardMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
-  const rawDailyAnswer = THREE_BY_THREES[getDayNumber() - 1];
+  const rawDailyAnswer = HARDMODE_WORDS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
   const initialGrid = generateHardGrid(parsedDailyAnswer);

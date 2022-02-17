@@ -120,7 +120,7 @@ export default function DiagonalMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} />
+            <HowToPlay key={"howToPlay"} mode={"easy"} />
           </div>
         </div>
       </div>

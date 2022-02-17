@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { DIAGONALS } from "./data/diagonals";
+import { NORMALMODE_WORDS } from "./data/normalModeData";
 import HowToPlay from "./components/HowToPlay";
-import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
+import { parseWords, getDayNumber } from "./helpers/Helpers";
 import {
-  generateDiagonalNeighbours,
-  generateDiagonalCrosswordle,
-  parseWords,
-  getDayNumber,
-} from "./Helpers";
+  generateRowColNeighbours,
+  generateNormalGrid,
+} from "./helpers/normalModeMethods";
 
-export default function DiagonalMode() {
+export default function NormalMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
-  const rawDailyAnswer = DIAGONALS[getDayNumber() - 1];
+  const rawDailyAnswer = NORMALMODE_WORDS[getDayNumber() - 1];
   const parsedDailyAnswer = parseWords(rawDailyAnswer);
 
-  const initialGrid = generateDiagonalCrosswordle(parsedDailyAnswer);
+  const initialGrid = generateNormalGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
-  let eachCellsNeighbours = generateDiagonalNeighbours(initialGrid);
+  let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(15);
+  const [score, setScore] = useState(100);
 
   useEffect(() => {
     checkWin();
@@ -41,7 +39,7 @@ export default function DiagonalMode() {
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-      return false
+      e.target.preventDefault();
     }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
@@ -56,17 +54,18 @@ export default function DiagonalMode() {
       for (let j = 0; j < WORDLENGTH; j++) {
         const cell = newGrid.rows[i].cols[j];
         if (cell.value === cell.answer) {
-          newGrid.rows[i].cols[j].state = "correct";
-          newGrid.rows[i].cols[j].readonly = true;
+          cell.state = "correct";
+          cell.readonly = true;
         } else if (
           eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
         ) {
-          newGrid.rows[i].cols[j].state = "wrong-location";
+          cell.state = "wrong-location";
+        } else if (cell.answer === "*") {
         } else {
-          newGrid.rows[i].cols[j].state = "wrong";
+          cell.state = "wrong";
         }
         updateCorrectCellCount(cell);
-        eachCellsNeighbours = generateDiagonalNeighbours(newGrid);
+        eachCellsNeighbours = generateRowColNeighbours(newGrid);
       }
     }
     setGrid(newGrid);
@@ -121,13 +120,22 @@ export default function DiagonalMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} mode={"easy"} />
+            <HowToPlay key={"howToPlay"} />
           </div>
         </div>
       </div>
 
       <div className="container">
-        { showModal && <YouWin score={score} /> }
+        {showModal && (
+          <div className="modal is-active">
+            <div className="modal-background"></div>
+            <div className="modal-content">
+              <div className="box">
+                <p>You win! Your final score is: {score}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

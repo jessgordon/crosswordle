@@ -1,4 +1,4 @@
-export const DIAGONALS = [
+export const EASYMODE_WORDS = [
   "epochskulkblindthinkthing",
   "sootychoiradaptfablevaunt",
   "ninjasieveminerbanjodelta",

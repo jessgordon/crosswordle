@@ -24,7 +24,7 @@ export default function EasyMode() {
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [score, setScore] = useState(15);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     checkWin();
@@ -69,7 +69,7 @@ export default function EasyMode() {
       }
     }
     setGrid(newGrid);
-    setScore((prevScore) => prevScore - 1);
+    setScore((prevScore) => prevScore + 1);
   };
 
   const updateCorrectCellCount = (cell) => {

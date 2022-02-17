@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DIAGONALS } from "./data/diagonals";
 import HowToPlay from "./components/HowToPlay";
+import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
@@ -126,16 +127,7 @@ export default function DiagonalMode() {
       </div>
 
       <div className="container">
-        {showModal && (
-          <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-content">
-              <div className="box">
-                <p>You win! Your final score is: {score}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        { showModal && <YouWin score={score} /> }
       </div>
     </>
   );

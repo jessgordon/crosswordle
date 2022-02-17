@@ -11,6 +11,8 @@ import {
   generateNormalGrid,
 } from "./helpers/normalModeMethods";
 
+console.log(NORMALMODE_WORDS[getDayNumber() - 1])
+
 export default function NormalMode() {
   const MAXSCORE = 21;
   const WORDLENGTH = 5;

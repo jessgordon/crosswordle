@@ -90,7 +90,7 @@ export default function NormalMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} key={"letterbucket"} />
+          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
         </div>
 
         <div className="column">

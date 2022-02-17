@@ -120,7 +120,7 @@ export default function HardMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} />
+            <HowToPlay key={"howToPlay"} mode={"hard"} />
           </div>
         </div>
       </div>

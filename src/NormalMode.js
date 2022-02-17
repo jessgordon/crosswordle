@@ -120,7 +120,7 @@ export default function NormalMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} />
+            <HowToPlay key={"howToPlay"} mode={"normal"} />
           </div>
         </div>
       </div>

@@ -62,6 +62,37 @@ export default function HowToPlay( { mode }) {
                   </>
                 }
 
+                { mode === "normal" &&
+                  <>
+                    <hr className="solid"></hr>
+                    <p className="has-text-weight-medium"> 🤔 NORMAL MODE 🤔 </p>
+                    <hr className="solid"></hr>
+                    <p className="p-2">Each row and column must be a valid five-letter word.</p>
+                    <p className="p-2">Some characters will be filled out for you to help you get started.</p>
+                    {/* TODO: new image for normal mode */}
+                    <img id="hard-mode-img" src={hardModeImg} alt="Hard Mode Grid Diagram" />
+                    <p className="p-2">Hit the check solution button to see if you're right.</p>
+                    <p className="p-2">
+                      After each check, the color of the tiles will change to show
+                      how close your guess was to the solution:
+                    </p>
+                    <div className="coordMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                      <p>
+                        The letter is in either the horizontal or vertical word but
+                        in the wrong place
+                      </p>
+                    </div>
+                    <div className="noMatch pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                      <p>
+                        The letter is not in either the horizontal or vertical word
+                      </p>
+                    </div>
+                    <div className="fixedChar pt-2 pb-2 pl-4 pr-4 mt-2 mb-2 ml-5 mr-5">
+                      <p>The letter is in the word(s) and in the correct place</p>
+                    </div>
+                  </>
+                }
+
                 { mode === "hard" &&
                   <>
                     <hr className="solid"></hr>

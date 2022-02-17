@@ -49,7 +49,7 @@ function generateGrid(parsedChars) {
 }
 
 // Generates neighbours for the diagonal mode i.e. only considers letters of a row
-function generateDiagonalNeighbours(gridObject) {
+function generateRowNeighbours(gridObject) {
   const result = { rows: [] };
   for (let i = 0; i < 5; i++) {
     let row = { cols: [], index: i };
@@ -80,7 +80,7 @@ function generateDiagonalNeighbours(gridObject) {
   return result;
 }
 
-function generateThreeByThreeNeighbours(gridObject) {
+function generateRowColNeighbours(gridObject) {
   const result = { rows: [] };
   // B (0,0) should have row = L,O,O,D; col = O,S,O,M
   let gridCopy = {...gridObject}
@@ -127,8 +127,8 @@ function generateThreeByThreeNeighbours(gridObject) {
 
 export {
   generateGrid,
-  generateDiagonalNeighbours,
-  generateThreeByThreeNeighbours,
+  generateRowNeighbours,
+  generateRowColNeighbours,
   parseWords,
   getDayNumber,
 };

@@ -5,7 +5,7 @@ import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 import {
-  generateDiagonalNeighbours,
+  generateRowNeighbours,
   generateGrid,
   parseWords,
   getDayNumber,
@@ -19,7 +19,7 @@ export default function DiagonalMode() {
 
   const initialGrid = generateGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
-  let eachCellsNeighbours = generateDiagonalNeighbours(initialGrid);
+  let eachCellsNeighbours = generateRowNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
@@ -65,7 +65,7 @@ export default function DiagonalMode() {
           newGrid.rows[i].cols[j].state = "wrong";
         }
         updateCorrectCellCount(cell);
-        eachCellsNeighbours = generateDiagonalNeighbours(newGrid);
+        eachCellsNeighbours = generateRowNeighbours(newGrid);
       }
     }
     setGrid(newGrid);

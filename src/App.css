@@ -82,3 +82,13 @@ hr.solid {
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(119, 103, 103, 0.2) inset;
 }
+
+.mode-link {
+  color: #8b8b8b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.mode-links {
+  text-align: center;
+}

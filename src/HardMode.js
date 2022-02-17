@@ -11,8 +11,6 @@ import {
   generateHardGrid,
 } from "./helpers/hardModeMethods";
 
-console.log(HARDMODE_WORDS[getDayNumber() - 1])
-
 export default function HardMode() {
   const MAXSCORE = 21;
   const WORDLENGTH = 5;

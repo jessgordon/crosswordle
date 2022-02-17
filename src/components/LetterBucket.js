@@ -56,6 +56,7 @@ export default function LetterBucket( { answer, grid } ) {
 
   function lettersArr(answer) {
     let arr = [...new Set(answer)];
+    arr = arr.filter(char => char !== "*")
     return arr
   }
 

@@ -45,7 +45,7 @@ export default function LetterBucket( { answer, grid } ) {
   function backgroundColour(grid, letterDictionary) {
     for (let i = 0; i < 25; ++i) {
       let letter = grid[i].value 
-      if (letter != null) {
+      if (letter !== "") {
         let state = grid[i].state;
         if (state === "correct") letterDictionary[letter].green += 1;
         if (state === "wrong-location") letterDictionary[letter].yellow += 1;

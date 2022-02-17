@@ -108,7 +108,6 @@ function generateRowNeighbours(gridObject) {
     }
     result.rows.push(row);
   }
-
   return result;
 }
 
@@ -140,13 +139,13 @@ function generateRowColNeighbours(gridObject) {
         if (y[l].col !== j) {
           tempArray.push(y[l].answer);
         }
+        if ((x[l].cols[j].answer === x[l].cols[j].value) && (x[l].cols[j].state === "correct")) { 
+           tempArray.splice(tempArray.indexOf(x[l].cols[j].answer), 1);
+        }
       }
-
-      // if (y[j].answer === y[j].value) {
-      //   tempArray.splice(tempArray.indexOf(y[j].answer), 1);
-      // }
-
-      console.log(`${i},${j}`, tempArray);
+      if (i === 2 && j === 0) {
+        console.log(`${i},${j}`, tempArray);
+      }
       let attributes = {
         row: i,
         col: j,

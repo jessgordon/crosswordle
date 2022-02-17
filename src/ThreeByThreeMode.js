@@ -22,8 +22,7 @@ export default function ThreeByThreeMode() {
   const initialGrid = generateNormalGrid(parsedDailyAnswer);
   const possibleLetters = parsedDailyAnswer;
   let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
-  console.log("Cell 0,0", eachCellsNeighbours.rows[0].cols[0].neighbours);
-  console.log("Cell 1,2", eachCellsNeighbours.rows[1].cols[2].neighbours);
+
 
   const [grid, setGrid] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
@@ -65,6 +64,8 @@ export default function ThreeByThreeMode() {
           eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
         ) {
           newGrid.rows[i].cols[j].state = "wrong-location";
+        } else if(cell.answer === "*"){
+
         } else {
           newGrid.rows[i].cols[j].state = "wrong";
         }

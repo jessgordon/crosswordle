@@ -15,15 +15,17 @@ function App() {
           <header className="title is-1 mt-1">
             <h1>Crosswordle</h1>
           </header>
-          <p>
-            <Link to="/easy">Easy Difficulty</Link>
-          </p>
-          <p>
-            <Link to="/normal">Normal Difficulty</Link>
-          </p>
-          <p>
-            <Link to="/hard">Hard Difficulty</Link>
-          </p>
+          <div className="columns">
+          <div className="column mode-link">
+              <Link to="/easy">Easy Difficulty</Link>
+            </div>
+            <div className="column mode-link">
+              <Link to="/normal">Normal Difficulty</Link>
+            </div>
+            <div className="column mode-link">
+              <Link to="/hard">Hard Difficulty</Link>
+            </div>        
+          </div>
           <hr className="solid mb-6"></hr>
         </div>
         <Routes>

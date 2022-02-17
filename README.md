@@ -2,69 +2,49 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Quickstart
 
-In the project directory, you can run:
+First, clone this repository. Then:
+
+### `npm install`
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload when you make changes.
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Meet the team
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project was made by wordle-peeps comprising of:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Bryn Williams
+Ezekiel Kassim
+Jess Gordon
+Titus Chang
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From Makers Cohort November 2021
 
-### `npm run eject`
+## About
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This is a wordle style application made by team Wordle-peeps for our final Group Project. This application has two settings, easy and hard, in which the user has to make five letter words. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Easy mode:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The user is presented with a 5 by 5 grid with a starting diagonal word. The user then has to find the 5 correct horizontal 5 letter words each of which will intercept with a character from the diaganol word.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Hard mode:
 
-## Learn More
+The user is presented with a 5 by 5 grid with a letter in each corner and the center cell. The user then has to find the 5 letter words for rows 1, 3 and 5 as well as the vertical 5 letter words for columns 1, 3 and 5. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For both game modes the check solution button can be clicked to check the users attempt. Colours of the letters in the letter bucket will adjust accordingly, green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Installation
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To use, please download the files and run npm install. Run npm start to run on your local machine at localhost:3000. Alternatively, visit https://crosswordle.herokuapp.com/ - to view the full site!

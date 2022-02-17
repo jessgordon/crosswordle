@@ -56,14 +56,14 @@ export default function EasyMode() {
       for (let j = 0; j < WORDLENGTH; j++) {
         const cell = newGrid.rows[i].cols[j];
         if (cell.value === cell.answer) {
-          newGrid.rows[i].cols[j].state = "correct";
-          newGrid.rows[i].cols[j].readonly = true;
+          cell.state = "correct";
+          cell.readonly = true;
         } else if (
           eachCellsNeighbours.rows[i].cols[j].neighbours.includes(cell.value)
         ) {
-          newGrid.rows[i].cols[j].state = "wrong-location";
+          cell.state = "wrong-location";
         } else {
-          newGrid.rows[i].cols[j].state = "wrong";
+          cell.state = "wrong";
         }
         updateCorrectCellCount(cell);
         eachCellsNeighbours = generateRowNeighbours(newGrid);

@@ -32,8 +32,8 @@ export default function HowToPlay( { mode }) {
                 ></button>
               </header>
               <section className="modal-card-body">
-                <p>Guess the CROSSWORDLE in ten tries</p>
-                <p>The lower the guesses the better</p>
+                <p>Guess the CROSSWORDLE</p>
+                <p>The lower the guesses the better!</p>
                 { mode === "easy" &&
                   <>
                     <hr className="solid"></hr>

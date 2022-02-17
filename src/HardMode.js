@@ -99,7 +99,7 @@ export default function HardMode() {
               id="score-label"
               className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-1"
             >
-              Score:
+              Guesses:
             </p>
             <Score score={score} key={"refreshedScore"} />
             <p

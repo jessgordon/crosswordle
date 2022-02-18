@@ -26,15 +26,16 @@ export default function YouWin({ score, mode }) {
           <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title" id="how-to-play-card-title">
+              <p className="modal-card-title is-size-2 has-text-weight-bold" id="how-to-play-card-title">
                 YOU WIN!
               </p>
             </header>
             <section className="modal-card-body">
               <p>🥳 🥳 🥳 🥳 🥳</p>
               <p>🥳 🥳 🥳 🥳 🥳</p>
-              <p className="has-text-weight-bold"> Your final score is:</p>
-              <p className="has-text-weight-bold">🥳 🥳 {score} 🥳 🥳</p>
+              <p className="has-text-weight-bold"> You got the correct answer in</p>
+              <p className="has-text-weight-bold"> {score} {score === 1 ? "guess, WOW!" : "guesses!"} </p>
+              <p>🥳 🥳 🥳 🥳 🥳</p>
               <p>🥳 🥳 🥳 🥳 🥳</p>
             </section>
             <footer className="modal-card-foot">

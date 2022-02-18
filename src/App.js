@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import EasyMode from "./EasyMode";
 import NormalMode from "./NormalMode";
 import HardMode from "./HardMode";
+import icon from "./Images/icon.png";
 
 function App() {
   return (
@@ -11,7 +12,10 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <header className="title is-1 mt-1 is-spaced">
-            <h1>Crosswordle</h1>
+            <h1>
+              <img id="icon" src={icon} alt="Icon" width="70" height="70" />{" "}
+              Crosswordle
+            </h1>
           </header>
         </div>
         <div className="columns mode-links">

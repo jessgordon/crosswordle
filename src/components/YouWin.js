@@ -15,9 +15,10 @@ import {
 } from "react-share";
 
 export default function YouWin({ score, mode }) {
-  
   const shareUrl = "https://crosswordle-production.herokuapp.com/";
-  const title = `I've just solved today's (${(new Date()).toLocaleDateString('en-GB')}) ${mode.toUpperCase()} CROSSWORDLE challenge in ${score} guesses - can you beat me!?`;
+  const title = `I've just solved today's (${new Date().toLocaleDateString(
+    "en-GB"
+  )}) ${mode.toUpperCase()} CROSSWORDLE challenge in ${score} guesses - can you beat me!?`;
 
   return (
     <>
@@ -26,15 +27,24 @@ export default function YouWin({ score, mode }) {
           <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title is-size-2 has-text-weight-bold" id="how-to-play-card-title">
+              <p
+                className="modal-card-title is-size-2 has-text-weight-bold"
+                id="how-to-play-card-title"
+              >
                 YOU WIN!
               </p>
             </header>
             <section className="modal-card-body">
               <p>🥳 🥳 🥳 🥳 🥳</p>
               <p>🥳 🥳 🥳 🥳 🥳</p>
-              <p className="has-text-weight-bold"> You got the correct answer in</p>
-              <p className="has-text-weight-bold"> {score} {score === 1 ? "guess, WOW!" : "guesses!"} </p>
+              <p className="has-text-weight-bold">
+                {" "}
+                You got the correct answer in
+              </p>
+              <p className="has-text-weight-bold">
+                {" "}
+                {score} {score === 1 ? "guess, WOW!" : "guesses!"}{" "}
+              </p>
               <p>🥳 🥳 🥳 🥳 🥳</p>
               <p>🥳 🥳 🥳 🥳 🥳</p>
             </section>

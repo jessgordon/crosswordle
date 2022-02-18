@@ -11,6 +11,8 @@ import {
   generateHardGrid,
 } from "./helpers/hardModeMethods";
 
+// console.log(HARDMODE_WORDS[getDayNumber() - 1])
+
 export default function HardMode() {
   const MAXSCORE = 21;
   const WORDLENGTH = 5;
@@ -27,15 +29,13 @@ export default function HardMode() {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
+    const checkWin = () => {
+      if (correctCount === MAXSCORE) {
+        setShowModal(true);
+      }
+    };
     checkWin();
   }, [correctCount]);
-
-  const checkWin = () => {
-    if (correctCount === MAXSCORE) {
-      console.log("You win");
-      setShowModal(true);
-    }
-  };
 
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
@@ -91,7 +91,11 @@ export default function HardMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
+          <LetterBucket
+            answer={possibleLetters}
+            grid={grid}
+            key={"letterbucket"}
+          />
         </div>
 
         <div className="column">
@@ -127,7 +131,7 @@ export default function HardMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score}  mode={"hard"}/>}
+        {showModal && <YouWin score={score} mode={"hard"} />}
       </div>
     </>
   );

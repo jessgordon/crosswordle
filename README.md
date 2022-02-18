@@ -1,6 +1,8 @@
 # Crosswordle
 
-This project was created using React frontend and python backend.
+This project was created using entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
+
+You can visit the hosted website itself [here](https://crosswordle-production.herokuapp.com)!
 
 ## Quickstart
 
@@ -22,36 +24,49 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Meet the team
 
-This project was made by wordle-peeps comprising of:
+---
 
-Bryn Williams\
-Ezekiel Kassim\
-Jess Gordon\
-Titus Chang
+This project was made by Team Crosswordle. We are:
+
+- Bryn Williams
+- Ezekiel Kassim
+- Jess Gordon
+- Titus Chang
 
 From Makers Cohort November 2021
 
-<img src="./public/makers academy.png" height="30">
+<img src="./public/makers academy.png" height="80">
 
 ## About
 
-This is a wordle style application made by team Wordle-peeps for our final Group Project. This application has two settings, easy and hard, in which the user has to make five letter words. 
+---
 
-## Easy mode:
+This is a Wordle-inspired webapp created by Team Crosswordle for our Final Engineering Group Project. This application has three game modes: Easy, Normal and Hard, in which the user has to guess the correct 5-letter words according to the ruleset.
 
-The user is presented with a 5 by 5 grid with a starting diagonal word. The user then has to find the 5 correct horizontal 5 letter words each of which will intercept with a character from the diaganol word.
+For all game modes, the check solution button can be clicked to check the users attempt. Each guess increments the user's guess count, hence a lower guess count indicates a better score.
 
-<img src="./public/crosswordle_grid.png" height="150" width="80">
+The letters shown below the grid indicate the characters that are usable for the given daily solution. Note that not all characters are present, giving the user an easier time guessing words.
 
-## Hard mode:
+Colours of the letters in the letter bucket will adjust accordingly i.e. green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
 
-The user is presented with a 5 by 5 grid with a letter in each corner and the center cell. The user then has to find the 5 letter words for rows 1, 3 and 5 as well as the vertical 5 letter words for columns 1, 3 and 5. 
+## Game modes
 
-For both game modes the check solution button can be clicked to check the users attempt. Colours of the letters in the letter bucket will adjust accordingly, green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
+---
 
-<img src="./public/crosswordle_grid2.46.36.png" height="150" width="80">
+### Easy mode:
 
-## Installation
+The user is presented with a 5x5 grid with the diagonal characters shown. The user then has to find 5 horizontal words, each of which intercepts with one character in the diagonal.
 
-To use, please download the files and run npm install. Run npm start to run on your local machine at localhost:3000. Alternatively, visit https://crosswordle-production.herokuapp.com - to view the full site!\
-You can find the python code used to generate the solutions here https://github.com/tc1316/crosswordle-solutions
+<img src="./public/easy_mode_grid.png" height="250" width="220">
+
+### Normal mode:
+
+The user is presented with a 5x5 grid with the characters revealed in the 4 corner boxes and the centermost box. The user then has to find 6 words in total: 3 across and 3 down.
+
+<img src="./public/normal_mode_grid.png" height="250" width="220">
+
+### Hard mode:
+
+The user is presented with a 5x5 grid with no revealed characters. Similarly, the user then has to find 6 words in total: 3 across and 3 down.
+
+<img src="./public/hard_mode_grid.png" height="250" width="220">

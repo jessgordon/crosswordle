@@ -11,7 +11,7 @@ import {
   generateNormalGrid,
 } from "./helpers/normalModeMethods";
 
-console.log(NORMALMODE_WORDS[getDayNumber() - 1])
+// console.log(NORMALMODE_WORDS[getDayNumber() - 1])
 
 export default function NormalMode() {
   const MAXSCORE = 21;
@@ -29,20 +29,18 @@ export default function NormalMode() {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
+    const checkWin = () => {
+      if (correctCount === MAXSCORE) {
+        setShowModal(true);
+      }
+    };
     checkWin();
   }, [correctCount]);
-
-  const checkWin = () => {
-    if (correctCount === MAXSCORE) {
-      console.log("You win");
-      setShowModal(true);
-    }
-  };
 
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-      e.target.preventDefault();
+      return false;
     }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;
@@ -93,7 +91,11 @@ export default function NormalMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
+          <LetterBucket
+            answer={possibleLetters}
+            grid={grid}
+            key={"letterbucket"}
+          />
         </div>
 
         <div className="column">
@@ -129,7 +131,7 @@ export default function NormalMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score}  mode={"normal"} />}
+        {showModal && <YouWin score={score} mode={"normal"} />}
       </div>
     </>
   );

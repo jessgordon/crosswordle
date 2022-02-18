@@ -3,6 +3,7 @@
 .wrong,
 .blank,
 .wrong-location {
+  caret-color: transparent;
   width: 4rem;
   height: 4rem;
   font-size: 2rem;

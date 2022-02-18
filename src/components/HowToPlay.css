@@ -42,6 +42,8 @@
   transform: translateY(4px);
 }
 
-#hard-mode-img, #normal-mode-img, #easy-mode-img {
+#hard-mode-img,
+#normal-mode-img,
+#easy-mode-img {
   max-width: 20rem;
 }

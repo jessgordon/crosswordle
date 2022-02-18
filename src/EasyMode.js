@@ -11,6 +11,7 @@ import {
   generateEasyGrid,
 } from "./helpers/easyModeMethods";
 
+// console.log(EASYMODE_WORDS[getDayNumber() - 1]);
 export default function EasyMode() {
   const MAXSCORE = 25;
   const WORDLENGTH = 5;
@@ -27,15 +28,13 @@ export default function EasyMode() {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
+    const checkWin = () => {
+      if (correctCount === MAXSCORE) {
+        setShowModal(true);
+      }
+    };
     checkWin();
   }, [correctCount]);
-
-  const checkWin = () => {
-    if (correctCount === MAXSCORE) {
-      console.log("You win");
-      setShowModal(true);
-    }
-  };
 
   const changeCell = (e) => {
     const input = e.target.value.toUpperCase();
@@ -90,7 +89,11 @@ export default function EasyMode() {
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket answer={possibleLetters} grid={grid} key={"letterbucket"} />
+          <LetterBucket
+            answer={possibleLetters}
+            grid={grid}
+            key={"letterbucket"}
+          />
         </div>
 
         <div className="column">
@@ -126,7 +129,7 @@ export default function EasyMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score}  mode={"easy"} /> }
+        {showModal && <YouWin score={score} mode={"easy"} />}
       </div>
     </>
   );

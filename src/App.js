@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-import DiagonalMode from "./EasyMode";
-import ThreeByThreeMode from "./NormalMode";
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import EasyMode from "./EasyMode";
 import NormalMode from "./NormalMode";
@@ -12,22 +10,37 @@ function App() {
     <>
       <BrowserRouter>
         <div className="App">
-            <header className="title is-1 mt-1 is-spaced">
-              <h1>Crosswordle</h1>
-            </header>
-          </div>
-          <div className="columns mode-links">
+          <header className="title is-1 mt-1 is-spaced">
+            <h1>Crosswordle</h1>
+          </header>
+        </div>
+        <div className="columns mode-links">
           <div className="column">
-              <Link className="mode-link button is-success is-light is-size-5 is-outlined" to="/easy">Easy Difficulty</Link>
-            </div>
-            <div className="column">
-              <Link className="mode-link button is-warning is-light is-size-5 is-outlined" to="/normal">Normal Difficulty</Link>
-            </div>
-            <div className="column">
-              <Link className="mode-link button is-danger is-light is-size-5 is-outlined" to="/hard">Hard Difficulty</Link>
-            </div>        
+            <Link
+              className="mode-link button is-success is-light is-size-5 is-outlined"
+              to="/easy"
+            >
+              Easy Difficulty
+            </Link>
           </div>
-          <hr className="solid mb-6"></hr>
+          <div className="column">
+            <Link
+              className="mode-link button is-warning is-light is-size-5 is-outlined"
+              to="/normal"
+            >
+              Normal Difficulty
+            </Link>
+          </div>
+          <div className="column">
+            <Link
+              className="mode-link button is-danger is-light is-size-5 is-outlined"
+              to="/hard"
+            >
+              Hard Difficulty
+            </Link>
+          </div>
+        </div>
+        <hr className="solid mb-6"></hr>
         <Routes>
           <Route path="/easy" element={<EasyMode />}></Route>
           <Route path="/normal" element={<NormalMode />}></Route>

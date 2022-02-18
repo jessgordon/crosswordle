@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Letter from "./Letter.js";
 import "./LetterBucket.css";
 
-export default function LetterBucket( { answer, grid } ) {
+export default function LetterBucket({ answer, grid }) {
   function getRandomInt(n) {
     return Math.floor(Math.random() * n);
   }
@@ -24,16 +24,18 @@ export default function LetterBucket( { answer, grid } ) {
 
   function dictionary(answer) {
     var counts = {};
-    answer.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-    Object.keys(counts).map(function(key, index) {
-    let count = counts[key];
-    counts[key] = { count: count, green: 0, yellow: 0 };
-  });
-    return counts
+    answer.forEach(function (x) {
+      counts[x] = (counts[x] || 0) + 1;
+    });
+    Object.keys(counts).map(function (key, index) {
+      let count = counts[key];
+      counts[key] = { count: count, green: 0, yellow: 0 };
+    });
+    return counts;
   }
 
   function formatLetters(grid) {
-    let lettersArr = []
+    let lettersArr = [];
     grid.rows.forEach((row) => {
       row.cols.forEach((cell) => {
         lettersArr.push(cell);
@@ -44,20 +46,19 @@ export default function LetterBucket( { answer, grid } ) {
 
   function backgroundColour(grid, letterDictionary) {
     for (let i = 0; i < 25; ++i) {
-      let letter = grid[i].value 
+      let letter = grid[i].value;
       if (letter !== "") {
         let state = grid[i].state;
         if (state === "correct") letterDictionary[letter].green += 1;
         if (state === "wrong-location") letterDictionary[letter].yellow += 1;
       }
     }
-    
   }
 
   function lettersArr(answer) {
     let arr = [...new Set(answer)];
-    arr = arr.filter(char => char !== "*")
-    return arr
+    arr = arr.filter((char) => char !== "*");
+    return arr;
   }
 
   function keyRowLength(uniqueLetters) {
@@ -69,22 +70,27 @@ export default function LetterBucket( { answer, grid } ) {
   }
 
   const letterDictionary = dictionary(answer);
-  const uniqueLetters = lettersArr(answer); 
+  const uniqueLetters = lettersArr(answer);
   const arr = useRef(randomiseAnswer(uniqueLetters));
   const gridarr = formatLetters(grid);
-  backgroundColour(gridarr, letterDictionary); 
-  
+  backgroundColour(gridarr, letterDictionary);
+
   function setKeyboardLength(keyLength) {
-    document.documentElement.style.setProperty('--row-length', keyLength);
+    document.documentElement.style.setProperty("--row-length", keyLength);
   }
-  const rowLength = keyRowLength(uniqueLetters)
-  setKeyboardLength(rowLength)
+  const rowLength = keyRowLength(uniqueLetters);
+  setKeyboardLength(rowLength);
 
   return (
     <>
       <div className="letterBucket" key={"letter-bucket"}>
         {arr.current.map((letter, index) => (
-            <Letter key={`letter-${index}`} countColours={letterDictionary[letter]} letter={letter} index={index} />
+          <Letter
+            key={`letter-${index}`}
+            countColours={letterDictionary[letter]}
+            letter={letter}
+            index={index}
+          />
         ))}
       </div>
     </>

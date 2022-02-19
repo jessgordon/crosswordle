@@ -34,6 +34,12 @@ function dictionaryGenerator(answer) {
   return counts;
 }
 
+function lettersArr(answer) {
+  let arr = [...new Set(answer)];
+  arr = arr.filter((char) => char !== "*");
+  return arr;
+}
+
 function formatLetters(postCheckGrid) {
   let lettersArr = [];
   postCheckGrid.rows.forEach((row) => {
@@ -44,22 +50,18 @@ function formatLetters(postCheckGrid) {
   return lettersArr;
 }
 
-function backgroundColour(arrayOfCells, letterDictionary) {
-  console.log(arrayOfCells);
+function backgroundColour(lettersArr, letterDictionary) {
+  let newLetterDictionary = { ...letterDictionary };
+  console.log("Bucketstate %o", lettersArr);
+
   for (let i = 0; i < 25; ++i) {
-    let letter = arrayOfCells[i].value;
-    if (letter !== "" && letter in letterDictionary) {
-      let state = arrayOfCells[i].state;
-      if (state === "correct") letterDictionary[letter].green++;
-      if (state === "wrong-location") letterDictionary[letter].yellow++;
+    let letter = lettersArr[i].value;
+    if (letter !== "" && letter in newLetterDictionary) {
+      let state = lettersArr[i].state;
+      if (state === "correct") newLetterDictionary[letter].green += 1;
+      if (state === "wrong-location") newLetterDictionary[letter].yellow += 1;
     }
   }
-}
-
-function lettersArr(answer) {
-  let arr = [...new Set(answer)];
-  arr = arr.filter((char) => char !== "*");
-  return arr;
 }
 
 function keyRowLength(uniqueLetters) {
@@ -75,27 +77,21 @@ function setKeyboardLength(keyLength) {
 }
 
 export default function LetterBucket({ answer, postCheckGrid }) {
-  console.log(postCheckGrid.rows[0].cols[1])
-  console.log("State %o", postCheckGrid.rows[0].cols[1].state);
-  console.log("Value %o", postCheckGrid.rows[0].cols[1].value);
-
-  const [postCheckGridState, setPostCheckGridState] = useState(postCheckGrid);
-
-  const letterDictionary = dictionaryGenerator(answer);
+  const [letterDictionary, setLetterDictionary] = useState(
+    dictionaryGenerator(answer)
+  );
   const uniqueLetters = lettersArr(answer);
-  const gridArr = formatLetters(postCheckGrid);
   const arr = useRef(randomiseAnswer(uniqueLetters));
-  // backgroundColour(gridArr, letterDictionary);
-
-
-
-  useEffect(() => {
-      console.log("Change occurred")
-      backgroundColour(gridArr, letterDictionary);
-    },[postCheckGridState])
- 
   const rowLength = keyRowLength(uniqueLetters);
   setKeyboardLength(rowLength);
+
+  useEffect(() => {
+    console.log("somethings changing");
+    const lettersArr = formatLetters(postCheckGrid);
+    const newLetterDictionary = dictionaryGenerator(answer);
+    setLetterDictionary(newLetterDictionary);
+    backgroundColour(lettersArr, newLetterDictionary);
+  }, [postCheckGrid]);
 
   return (
     <>

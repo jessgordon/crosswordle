@@ -38,8 +38,6 @@ export default function NormalMode() {
     checkWin();
   }, [correctCount]);
 
-  // useEffect(()=>{console.log("bucketState changed")},[bucketState])
-
   const changeCell = (e) => {
     const { value, maxLength } = e.target;
     const input = value.slice(0, maxLength).toUpperCase();
@@ -74,6 +72,8 @@ export default function NormalMode() {
       }
     }
     setGrid(newGrid);
+    console.log("Grid %o", grid.rows[0].cols[1]);
+
     setBucketState(newGrid);
     setScore((prevScore) => prevScore + 1);
   };

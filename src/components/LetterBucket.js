@@ -2,27 +2,19 @@ import React, { useRef, useEffect, useState } from "react";
 import Letter from "./Letter.js";
 import "./LetterBucket.css";
 
-function getRandomInt(n) {
-  return Math.floor(Math.random() * n);
-}
-
 function randomiseAnswer(answer) {
   let arr = answer.slice();
-  const n = arr.length;
-
-  for (let i = 0; i < n - 1; ++i) {
-    let j = getRandomInt(n);
-
+  for (let i = 0; i < arr.length - 1; ++i) {
+    let j = Math.floor(Math.random() * arr.length);
     let current_element = arr[i];
     arr[i] = arr[j];
     arr[j] = current_element;
   }
-
   return arr;
 }
 
 function dictionaryGenerator(answer) {
-  var counts = {};
+  let counts = {};
   answer.forEach(function (x) {
     counts[x] = (counts[x] || 0) + 1;
   });
@@ -52,8 +44,6 @@ function formatLetters(postCheckGrid) {
 
 function backgroundColour(lettersArr, letterDictionary) {
   let newLetterDictionary = { ...letterDictionary };
-  console.log("Bucketstate %o", lettersArr);
-
   for (let i = 0; i < 25; ++i) {
     let letter = lettersArr[i].value;
     if (letter !== "" && letter in newLetterDictionary) {
@@ -86,7 +76,6 @@ export default function LetterBucket({ answer, postCheckGrid }) {
   setKeyboardLength(rowLength);
 
   useEffect(() => {
-    console.log("somethings changing");
     const lettersArr = formatLetters(postCheckGrid);
     const newLetterDictionary = dictionaryGenerator(answer);
     setLetterDictionary(newLetterDictionary);

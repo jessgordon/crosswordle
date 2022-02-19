@@ -20,7 +20,7 @@
 .wrong-location:focus {
   outline: none !important;
   border: 2.5px solid black;
-  box-shadow: 0px 0px 2.5px inset grey;
+  box-shadow: 0px 0px 7px inset grey;
 }
 
 .correct {

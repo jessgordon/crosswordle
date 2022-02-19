@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { NORMALMODE_WORDS } from "./data/normalModeData";
+import { generateNormalGrid } from "./helpers/normalModeGrid";
+import {
+  parseWords,
+  getDayNumber,
+  generateRowColNeighbours,
+} from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
-import { parseWords, getDayNumber } from "./helpers/Helpers";
-import {
-  generateRowColNeighbours,
-  generateNormalGrid,
-} from "./helpers/normalModeMethods";
 
 console.log(NORMALMODE_WORDS[getDayNumber() - 1]);
 
@@ -72,8 +73,6 @@ export default function NormalMode() {
       }
     }
     setGrid(newGrid);
-    console.log("Grid %o", grid.rows[0].cols[1]);
-
     setBucketState(newGrid);
     setScore((prevScore) => prevScore + 1);
   };

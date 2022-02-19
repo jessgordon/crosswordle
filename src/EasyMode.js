@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { EASYMODE_WORDS } from "./data/easyModeData";
+import { generateEasyGrid } from "./helpers/easyModeGrid";
+import {
+  parseWords,
+  getDayNumber,
+  generateRowNeighbours,
+} from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
-import { parseWords, getDayNumber } from "./helpers/Helpers";
-import {
-  generateRowNeighbours,
-  generateEasyGrid,
-} from "./helpers/easyModeMethods";
 
 // console.log(EASYMODE_WORDS[getDayNumber() - 1]);
 export default function EasyMode() {
@@ -23,6 +24,7 @@ export default function EasyMode() {
   let eachCellsNeighbours = generateRowNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
+  const [bucketState, setBucketState] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
@@ -69,6 +71,7 @@ export default function EasyMode() {
       }
     }
     setGrid(newGrid);
+    setBucketState(newGrid);
     setScore((prevScore) => prevScore + 1);
   };
 
@@ -93,6 +96,7 @@ export default function EasyMode() {
           <LetterBucket
             answer={possibleLetters}
             grid={grid}
+            postCheckGrid={bucketState}
             key={"letterbucket"}
           />
         </div>

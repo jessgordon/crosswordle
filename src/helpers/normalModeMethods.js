@@ -9,7 +9,7 @@ function generateNormalGrid(parsedChars) {
       let state_tmp = "default";
       // Above state types should probably be declared as a constant elsewhere
       if (answer === "*") {
-        value = " ";
+        value = "";
         state_tmp = "blank";
       }
       if ((i % 4 === 0 && j % 4 === 0) || (i === 2 && j === 2)) {

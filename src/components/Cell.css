@@ -3,6 +3,7 @@
 .wrong,
 .blank,
 .wrong-location {
+  caret-color: transparent; 
   width: 4rem;
   height: 4rem;
   font-size: 2rem;
@@ -10,6 +11,16 @@
   padding: 0.1rem;
   border-radius: 5px;
   border-color: #e5e5e5;
+}
+
+.default:focus  ,
+.correct:focus,
+.wrong:focus,
+.blank:focus,
+.wrong-location:focus {
+  outline: none !important;
+  border:2.5px solid black;
+  box-shadow: 0px 0px 2.5px inset grey;
 }
 
 .correct {

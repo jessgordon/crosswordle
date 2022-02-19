@@ -11,7 +11,7 @@ import {
   generateNormalGrid,
 } from "./helpers/normalModeMethods";
 
-// console.log(NORMALMODE_WORDS[getDayNumber() - 1])
+console.log(NORMALMODE_WORDS[getDayNumber() - 1])
 
 export default function NormalMode() {
   const MAXSCORE = 21;
@@ -38,7 +38,8 @@ export default function NormalMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const input = e.target.value.toUpperCase();
+    const { value, maxLength } = e.target
+    const input = value.slice(0, maxLength).toUpperCase()
     if (!/^[a-zA-Z]*$/.test(input)) {
       return false;
     }

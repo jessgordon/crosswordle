@@ -11,7 +11,7 @@ import {
   generateNormalGrid,
 } from "./helpers/normalModeMethods";
 
-console.log(NORMALMODE_WORDS[getDayNumber() - 1])
+console.log(NORMALMODE_WORDS[getDayNumber() - 1]);
 
 export default function NormalMode() {
   const MAXSCORE = 21;
@@ -24,6 +24,7 @@ export default function NormalMode() {
   let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
+  const [bucketState, setBucketState] = useState(initialGrid);
   const [showModal, setShowModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
@@ -37,9 +38,11 @@ export default function NormalMode() {
     checkWin();
   }, [correctCount]);
 
+  // useEffect(()=>{console.log("bucketState changed")},[bucketState])
+
   const changeCell = (e) => {
-    const { value, maxLength } = e.target
-    const input = value.slice(0, maxLength).toUpperCase()
+    const { value, maxLength } = e.target;
+    const input = value.slice(0, maxLength).toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
       return false;
     }
@@ -71,6 +74,7 @@ export default function NormalMode() {
       }
     }
     setGrid(newGrid);
+    setBucketState(newGrid);
     setScore((prevScore) => prevScore + 1);
   };
 
@@ -94,7 +98,7 @@ export default function NormalMode() {
           <Grid grid={grid} changeCell={changeCell} />
           <LetterBucket
             answer={possibleLetters}
-            grid={grid}
+            postCheckGrid={bucketState}
             key={"letterbucket"}
           />
         </div>

@@ -38,10 +38,10 @@ export default function HardMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const { value, maxLength } = e.target
-    const input = value.slice(0, maxLength).toUpperCase()
+    const { value, maxLength } = e.target;
+    const input = value.slice(0, maxLength).toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
-      return false
+      return false;
     }
     const r = e.target.attributes.row.value;
     const c = e.target.attributes.col.value;

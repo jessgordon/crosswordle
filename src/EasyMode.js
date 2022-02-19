@@ -37,8 +37,8 @@ export default function EasyMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const { value, maxLength } = e.target
-    const input = value.slice(0, maxLength).toUpperCase()
+    const { value, maxLength } = e.target;
+    const input = value.slice(0, maxLength).toUpperCase();
     if (!/^[a-zA-Z]*$/.test(input)) {
       return false;
     }

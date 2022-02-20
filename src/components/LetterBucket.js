@@ -68,7 +68,8 @@ function initKeyboardLength(keyLength) {
 
 export default function LetterBucket({ answer, postCheckGrid }) {
   const [letterDictionary, setLetterDictionary] = useState(
-    dictionaryGenerator(answer));
+    dictionaryGenerator(answer)
+  );
   const uniqueLetters = lettersArr(answer);
   const arr = useRef(randomiseAnswer(uniqueLetters));
   const rowLength = keyRowLength(uniqueLetters);
@@ -76,12 +77,12 @@ export default function LetterBucket({ answer, postCheckGrid }) {
 
   useEffect(() => {
     function updateBackgroundColours() {
-        const newLettersArr = formatLetters(postCheckGrid);
-        const newLetterDictionary = dictionaryGenerator(answer);
-        setLetterDictionary(newLetterDictionary);
-        backgroundColour(newLettersArr, newLetterDictionary);
+      const newLettersArr = formatLetters(postCheckGrid);
+      const newLetterDictionary = dictionaryGenerator(answer);
+      setLetterDictionary(newLetterDictionary);
+      backgroundColour(newLettersArr, newLetterDictionary);
     }
-    updateBackgroundColours()    
+    updateBackgroundColours();
   }, [postCheckGrid]);
 
   return (

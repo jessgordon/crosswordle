@@ -90,12 +90,12 @@ function generateRowColNeighbours(gridObject) {
 function sanitizeInput(e) {
   const { value, maxLength } = e.target;
   const input = value.slice(0, maxLength).toUpperCase();
-  const r = e.target.attributes.row.value
-  const c = e.target.attributes.col.value
+  const r = e.target.attributes.row.value;
+  const c = e.target.attributes.col.value;
   if (!/^[a-zA-Z]*$/.test(input)) {
-    return ["", r, c]
+    return ["", r, c];
   }
-  return [input, r, c]
+  return [input, r, c];
 }
 
 export {
@@ -103,5 +103,5 @@ export {
   getDayNumber,
   generateRowNeighbours,
   generateRowColNeighbours,
-  sanitizeInput
+  sanitizeInput,
 };

@@ -5,7 +5,7 @@ import {
   parseWords,
   getDayNumber,
   generateRowNeighbours,
-  sanitizeInput
+  sanitizeInput,
 } from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
@@ -40,10 +40,10 @@ export default function EasyMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    let [input, r, c] = [...sanitizeInput(e)]
+    let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
     newGrid.rows[r].cols[c].value = input;
-    setGrid(newGrid)
+    setGrid(newGrid);
   };
 
   const checkGrid = () => {

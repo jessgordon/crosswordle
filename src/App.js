@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <header className="title is-1 mt-1 is-spaced">
-            <h1 className="is-size-1-mobile"	>
+            <h1 className="is-size-1-mobile">
               <img id="icon" src={icon} alt="Icon" width="70" height="70" />{" "}
               Crosswordle
             </h1>

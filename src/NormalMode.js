@@ -5,7 +5,7 @@ import {
   parseWords,
   getDayNumber,
   generateRowColNeighbours,
-  sanitizeInput
+  sanitizeInput,
 } from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
@@ -41,10 +41,10 @@ export default function NormalMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    let [input, r, c] = [...sanitizeInput(e)]
+    let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
     newGrid.rows[r].cols[c].value = input;
-    setGrid(newGrid)
+    setGrid(newGrid);
   };
 
   const checkGrid = () => {
@@ -86,15 +86,17 @@ export default function NormalMode() {
   return (
     <>
       <div className="columns is-vcentered">
-        <div className="column"></div>
+        <div className="column is-mobile"></div>
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket
-            answer={possibleLetters}
-            postCheckGrid={bucketState}
-            key={"letterbucket"}
-          />
+          <div className="column mobile">
+            <LetterBucket
+              answer={possibleLetters}
+              postCheckGrid={bucketState}
+              key={"letterbucket"}
+            />
+          </div>
         </div>
 
         <div className="column">

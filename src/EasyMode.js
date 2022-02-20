@@ -129,7 +129,14 @@ export default function EasyMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score} mode={"easy"} />}
+        {
+          <YouWin
+            showModal={showModal}
+            closeModal={() => setShowModal(false)}
+            score={score}
+            mode={"normal"}
+          />
+        }
       </div>
     </>
   );

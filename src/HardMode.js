@@ -131,7 +131,14 @@ export default function HardMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score} mode={"hard"} />}
+        {
+          <YouWin
+            showModal={showModal}
+            closeModal={() => setShowModal(false)}
+            score={score}
+            mode={"normal"}
+          />
+        }
       </div>
     </>
   );

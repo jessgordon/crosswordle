@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -14,17 +14,39 @@ import {
   RedditIcon,
 } from "react-share";
 
-export default function YouWin({ score, mode }) {
+export default function YouWin({ showModal, closeModal, score, mode }) {
+  const [copiedState, setCopiedState] = useState(false);
   const shareUrl = "https://crosswordle-production.herokuapp.com/";
   const title = `I've just solved today's (${new Date().toLocaleDateString(
     "en-GB"
-  )}) ${mode.toUpperCase()} CROSSWORDLE challenge in ${score} guesses - can you beat me!?`;
+  )}) ${mode} difficulty Crosswordle puzzle in ${score} guesses - can you beat me!?`;
+
+  useEffect(() => {
+    const hideCopiedState = setTimeout(() => {
+      setCopiedState(false);
+    }, 5000);
+    return () => {
+      clearTimeout(hideCopiedState);
+    };
+  }, [copiedState]);
+
+  function copyToClipboard() {
+    navigator.clipboard.writeText(title);
+    setCopiedState(true);
+  }
+
+  if (!showModal) return null;
 
   return (
     <>
       <div className="container">
         <div className="modal is-active">
           <div className="modal-background"></div>
+          {copiedState && (
+            <div className="notification is-size-6 has-text-weight-semibold	">
+              Copied result to clipboard
+            </div>
+          )}
           <div className="modal-card">
             <header className="modal-card-head">
               <p
@@ -33,6 +55,11 @@ export default function YouWin({ score, mode }) {
               >
                 YOU WIN!
               </p>
+              <button
+                onClick={closeModal}
+                className="delete is-large"
+                aria-label="close"
+              ></button>
             </header>
             <section className="modal-card-body">
               <p>🥳 🥳 🥳 🥳 🥳</p>
@@ -50,9 +77,16 @@ export default function YouWin({ score, mode }) {
             </section>
             <footer className="modal-card-foot">
               <div className="networks columns">
-                <div className="column is-one-third">
-                  <p>Share your score:</p>
+                <div className="column is-three-fifths ">
+                  <button
+                    className="button is-outlined has-text-weight-semibold"
+                    id="copy-to-clipboard"
+                    onClick={copyToClipboard}
+                  >
+                    Click here to copy your score
+                  </button>
                 </div>
+
                 <div className="network column">
                   <FacebookShareButton
                     url={shareUrl}
@@ -73,7 +107,7 @@ export default function YouWin({ score, mode }) {
                   </TwitterShareButton>
                 </div>
 
-                <div className="network column">
+                {/* <div className="network column">
                   <TelegramShareButton
                     url={shareUrl}
                     title={title}
@@ -81,7 +115,7 @@ export default function YouWin({ score, mode }) {
                   >
                     <TelegramIcon size={32} round />
                   </TelegramShareButton>
-                </div>
+                </div> */}
 
                 <div className="network column">
                   <WhatsappShareButton
@@ -94,14 +128,14 @@ export default function YouWin({ score, mode }) {
                   </WhatsappShareButton>
                 </div>
 
-                <div className="network column">
+                {/* <div className="network column">
                   <LinkedinShareButton
                     url={shareUrl}
                     className="network__share-button"
                   >
                     <LinkedinIcon size={32} round />
                   </LinkedinShareButton>
-                </div>
+                </div> */}
 
                 <div className="network column">
                   <RedditShareButton

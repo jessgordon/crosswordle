@@ -132,7 +132,14 @@ export default function NormalMode() {
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score} mode={"normal"} />}
+        {
+          <YouWin
+            showModal={showModal}
+            closeModal={() => setShowModal(false)}
+            score={score}
+            mode={"normal"}
+          />
+        }
       </div>
     </>
   );

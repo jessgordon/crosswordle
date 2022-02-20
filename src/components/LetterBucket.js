@@ -62,24 +62,26 @@ function keyRowLength(uniqueLetters) {
   return numberOfLetters / 2;
 }
 
-function setKeyboardLength(keyLength) {
+function initKeyboardLength(keyLength) {
   document.documentElement.style.setProperty("--row-length", keyLength);
 }
 
 export default function LetterBucket({ answer, postCheckGrid }) {
   const [letterDictionary, setLetterDictionary] = useState(
-    dictionaryGenerator(answer)
-  );
+    dictionaryGenerator(answer));
   const uniqueLetters = lettersArr(answer);
   const arr = useRef(randomiseAnswer(uniqueLetters));
   const rowLength = keyRowLength(uniqueLetters);
-  setKeyboardLength(rowLength);
+  initKeyboardLength(rowLength);
 
   useEffect(() => {
-    const lettersArr = formatLetters(postCheckGrid);
-    const newLetterDictionary = dictionaryGenerator(answer);
-    setLetterDictionary(newLetterDictionary);
-    backgroundColour(lettersArr, newLetterDictionary);
+    function updateBackgroundColours() {
+        const newLettersArr = formatLetters(postCheckGrid);
+        const newLetterDictionary = dictionaryGenerator(answer);
+        setLetterDictionary(newLetterDictionary);
+        backgroundColour(newLettersArr, newLetterDictionary);
+    }
+    updateBackgroundColours()    
   }, [postCheckGrid]);
 
   return (

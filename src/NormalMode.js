@@ -5,6 +5,7 @@ import {
   parseWords,
   getDayNumber,
   generateRowColNeighbours,
+  sanitizeInput
 } from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
@@ -12,7 +13,7 @@ import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 
-console.log(NORMALMODE_WORDS[getDayNumber() - 1]);
+// console.log(NORMALMODE_WORDS[getDayNumber() - 1]);
 
 export default function NormalMode() {
   const MAXSCORE = 21;
@@ -40,16 +41,10 @@ export default function NormalMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const { value, maxLength } = e.target;
-    const input = value.slice(0, maxLength).toUpperCase();
-    if (!/^[a-zA-Z]*$/.test(input)) {
-      return false;
-    }
-    const r = e.target.attributes.row.value;
-    const c = e.target.attributes.col.value;
+    let [input, r, c] = [...sanitizeInput(e)]
     const newGrid = { ...grid };
     newGrid.rows[r].cols[c].value = input;
-    setGrid(newGrid);
+    setGrid(newGrid)
   };
 
   const checkGrid = () => {

@@ -89,13 +89,15 @@ function generateRowColNeighbours(gridObject) {
 
 function sanitizeInput(e) {
   const { value, maxLength } = e.target;
-  const input = value.slice(0, maxLength).toUpperCase();
+  const input = value.slice(-1, maxLength).toUpperCase();
   const r = e.target.attributes.row.value;
   const c = e.target.attributes.col.value;
-  if (!/^[a-zA-Z]*$/.test(input)) {
-    return ["", r, c];
+  if (/^[a-zA-Z]*$/.test(input)) {
+    return [input, r, c];
+  } else {
+    return [null,null,null]
   }
-  return [input, r, c];
+  
 }
 
 export {

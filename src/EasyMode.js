@@ -42,7 +42,9 @@ export default function EasyMode() {
   const changeCell = (e) => {
     let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
-    newGrid.rows[r].cols[c].value = input;
+    if (input !== null) {
+    newGrid.rows[r].cols[c].value = input
+    }
     setGrid(newGrid);
   };
 

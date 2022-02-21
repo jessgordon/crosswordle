@@ -27,9 +27,10 @@ export default function LetterBucket({ answer, grid }) {
     answer.forEach(function (x) {
       counts[x] = (counts[x] || 0) + 1;
     });
-    Object.keys(counts).map(function (key, index) {
+    Object.keys(counts).map((key, _) => {
       let count = counts[key];
       counts[key] = { count: count, green: 0, yellow: 0 };
+      return counts
     });
     return counts;
   }
@@ -47,7 +48,7 @@ export default function LetterBucket({ answer, grid }) {
   function backgroundColour(grid, letterDictionary) {
     for (let i = 0; i < 25; ++i) {
       let letter = grid[i].value;
-      if (letter !== "") {
+      if (letter !== "" && letter in letterDictionary) {
         let state = grid[i].state;
         if (state === "correct") letterDictionary[letter].green += 1;
         if (state === "wrong-location") letterDictionary[letter].yellow += 1;

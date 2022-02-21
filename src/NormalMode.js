@@ -38,7 +38,8 @@ export default function NormalMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const input = e.target.value.toUpperCase();
+    const { value, maxLength } = e.target
+    const input = value.slice(0, maxLength).toUpperCase()
     if (!/^[a-zA-Z]*$/.test(input)) {
       return false;
     }

@@ -95,9 +95,8 @@ function sanitizeInput(e) {
   if (/^[a-zA-Z]*$/.test(input)) {
     return [input, r, c];
   } else {
-    return [null,null,null]
+    return [null, null, null];
   }
-  
 }
 
 export {

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { HARDMODE_WORDS } from "./data/hardModeData";
 import { generateHardGrid } from "./helpers/hardModeGrid";
 import {
@@ -14,7 +14,6 @@ import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 
 // console.log(HARDMODE_WORDS[getDayNumber() - 1])
-
 export default function HardMode() {
   const MAXSCORE = 21;
   const WORDLENGTH = 5;
@@ -27,14 +26,23 @@ export default function HardMode() {
 
   const [grid, setGrid] = useState(initialGrid);
   const [bucketState, setBucketState] = useState(initialGrid);
-  const [showModal, setShowModal] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [showWinModal, setShowWinModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("hasVisitedHard")) {
+      setShowHowToPlay(false);
+    } else {
+      localStorage.setItem("hasVisitedHard", "true");
+    }
+  }, []);
 
   useEffect(() => {
     const checkWin = () => {
       if (correctCount === MAXSCORE) {
-        setShowModal(true);
+        setShowWinModal(true);
       }
     };
     checkWin();
@@ -44,7 +52,7 @@ export default function HardMode() {
     let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
     if (input !== null) {
-    newGrid.rows[r].cols[c].value = input
+      newGrid.rows[r].cols[c].value = input;
     }
     setGrid(newGrid);
   };
@@ -88,16 +96,17 @@ export default function HardMode() {
   return (
     <>
       <div className="columns is-vcentered">
-        <div className="column"></div>
+        <div className="column is-mobile"></div>
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket
-            answer={possibleLetters}
-            grid={grid}
-            postCheckGrid={bucketState}
-            key={"letterbucket"}
-          />
+          <div className="column mobile">
+            <LetterBucket
+              answer={possibleLetters}
+              postCheckGrid={bucketState}
+              key={"letterbucket"}
+            />
+          </div>
         </div>
 
         <div className="column">
@@ -127,7 +136,20 @@ export default function HardMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} mode={"hard"} />
+
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              id="how-to-play-btn"
+              className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+            >
+              How to Play
+            </button>
+            <HowToPlay
+              key={"howToPlay"}
+              mode={"hard"}
+              showModal={showHowToPlay}
+              closeModal={() => setShowHowToPlay(false)}
+            />
           </div>
         </div>
       </div>
@@ -135,8 +157,8 @@ export default function HardMode() {
       <div className="container">
         {
           <YouWin
-            showModal={showModal}
-            closeModal={() => setShowModal(false)}
+            showModal={showWinModal}
+            closeModal={() => setShowWinModal(false)}
             score={score}
             mode={"normal"}
           />

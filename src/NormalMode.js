@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { NORMALMODE_WORDS } from "./data/normalModeData";
 import { generateNormalGrid } from "./helpers/normalModeGrid";
 import {
@@ -14,7 +14,6 @@ import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
 
 // console.log(NORMALMODE_WORDS[getDayNumber() - 1]);
-
 export default function NormalMode() {
   const MAXSCORE = 21;
   const WORDLENGTH = 5;
@@ -27,14 +26,23 @@ export default function NormalMode() {
 
   const [grid, setGrid] = useState(initialGrid);
   const [bucketState, setBucketState] = useState(initialGrid);
-  const [showModal, setShowModal] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [showWinModal, setShowWinModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("hasVisitedNormal")) {
+      setShowHowToPlay(false);
+    } else {
+      localStorage.setItem("hasVisitedNormal", "true");
+    }
+  }, []);
 
   useEffect(() => {
     const checkWin = () => {
       if (correctCount === MAXSCORE) {
-        setShowModal(true);
+        setShowWinModal(true);
       }
     };
     checkWin();
@@ -44,7 +52,7 @@ export default function NormalMode() {
     let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
     if (input !== null) {
-    newGrid.rows[r].cols[c].value = input
+      newGrid.rows[r].cols[c].value = input;
     }
     setGrid(newGrid);
   };
@@ -128,7 +136,20 @@ export default function NormalMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} mode={"normal"} />
+
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              id="how-to-play-btn"
+              className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+            >
+              How to Play
+            </button>
+            <HowToPlay
+              key={"howToPlay"}
+              mode={"normal"}
+              showModal={showHowToPlay}
+              closeModal={() => setShowHowToPlay(false)}
+            />
           </div>
         </div>
       </div>
@@ -136,8 +157,8 @@ export default function NormalMode() {
       <div className="container">
         {
           <YouWin
-            showModal={showModal}
-            closeModal={() => setShowModal(false)}
+            showModal={showWinModal}
+            closeModal={() => setShowWinModal(false)}
             score={score}
             mode={"normal"}
           />

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { EASYMODE_WORDS } from "./data/easyModeData";
 import { generateEasyGrid } from "./helpers/easyModeGrid";
 import {
@@ -26,14 +26,23 @@ export default function EasyMode() {
 
   const [grid, setGrid] = useState(initialGrid);
   const [bucketState, setBucketState] = useState(initialGrid);
-  const [showModal, setShowModal] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [showWinModal, setShowWinModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("hasVisitedEasy")) {
+      setShowHowToPlay(false);
+    } else {
+      localStorage.setItem("hasVisitedEasy", "true");
+    }
+  }, []);
 
   useEffect(() => {
     const checkWin = () => {
       if (correctCount === MAXSCORE) {
-        setShowModal(true);
+        setShowWinModal(true);
       }
     };
     checkWin();
@@ -43,7 +52,7 @@ export default function EasyMode() {
     let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
     if (input !== null) {
-    newGrid.rows[r].cols[c].value = input
+      newGrid.rows[r].cols[c].value = input;
     }
     setGrid(newGrid);
   };
@@ -86,16 +95,17 @@ export default function EasyMode() {
   return (
     <>
       <div className="columns is-vcentered">
-        <div className="column"></div>
+        <div className="column is-mobile"></div>
 
         <div className="column is-two-thirds">
           <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket
-            answer={possibleLetters}
-            grid={grid}
-            postCheckGrid={bucketState}
-            key={"letterbucket"}
-          />
+          <div className="column mobile">
+            <LetterBucket
+              answer={possibleLetters}
+              postCheckGrid={bucketState}
+              key={"letterbucket"}
+            />
+          </div>
         </div>
 
         <div className="column">
@@ -125,7 +135,20 @@ export default function EasyMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} mode={"easy"} />
+
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              id="how-to-play-btn"
+              className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+            >
+              How to Play
+            </button>
+            <HowToPlay
+              key={"howToPlay"}
+              mode={"easy"}
+              showModal={showHowToPlay}
+              closeModal={() => setShowHowToPlay(false)}
+            />
           </div>
         </div>
       </div>
@@ -133,8 +156,8 @@ export default function EasyMode() {
       <div className="container">
         {
           <YouWin
-            showModal={showModal}
-            closeModal={() => setShowModal(false)}
+            showModal={showWinModal}
+            closeModal={() => setShowWinModal(false)}
             score={score}
             mode={"normal"}
           />

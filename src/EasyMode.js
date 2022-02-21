@@ -95,20 +95,7 @@ export default function EasyMode() {
   return (
     <>
       <div className="columns is-vcentered">
-        <div className="column is-mobile"></div>
-
-        <div className="column is-two-thirds">
-          <Grid grid={grid} changeCell={changeCell} />
-          <div className="column mobile">
-            <LetterBucket
-              answer={possibleLetters}
-              postCheckGrid={bucketState}
-              key={"letterbucket"}
-            />
-          </div>
-        </div>
-
-        <div className="column">
+        <div className="column is-2 is-offset-1">
           <div className="container scoreboard m-2">
             <p
               id="score-label"
@@ -148,6 +135,17 @@ export default function EasyMode() {
               mode={"easy"}
               showModal={showHowToPlay}
               closeModal={() => setShowHowToPlay(false)}
+            />
+          </div>
+        </div>
+
+        <div className="column is-half">
+          <Grid grid={grid} changeCell={changeCell} />
+          <div className="column mobile">
+            <LetterBucket
+              answer={possibleLetters}
+              postCheckGrid={bucketState}
+              key={"letterbucket"}
             />
           </div>
         </div>

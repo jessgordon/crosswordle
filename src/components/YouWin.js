@@ -16,10 +16,10 @@ import {
 
 export default function YouWin({ showModal, closeModal, score, mode }) {
   const [copiedState, setCopiedState] = useState(false);
-  const shareUrl = "https://crosswordle-production.herokuapp.com/";
+  const shareUrl = "https://crosswordle-new.vercel.app/";
   const title = `I've just solved today's (${new Date().toLocaleDateString(
     "en-GB"
-  )}) ${mode} difficulty Crosswordle puzzle in ${score} guesses - can you beat me!?`;
+  )}) ${mode} Crosswordle puzzle in ${score} ${score === 0 ? "guess" : "guesses" } - can you beat me? Play here: ${shareUrl}${mode}` ;
 
   useEffect(() => {
     const hideCopiedState = setTimeout(() => {

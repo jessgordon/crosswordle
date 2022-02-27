@@ -49,17 +49,7 @@ export default function EasyMode() {
   }, [correctCount]);
 
   const changeCell = (e) => {
-<<<<<<< HEAD
-    const { value, maxLength } = e.target
-    const input = value.slice(0, maxLength).toUpperCase()
-    if (!/^[a-zA-Z]*$/.test(input)) {
-      return false;
-    }
-    const r = e.target.attributes.row.value;
-    const c = e.target.attributes.col.value;
-=======
     let [input, r, c] = [...sanitizeInput(e)];
->>>>>>> 1b3d536ce4e27584fcecab1b6b7fe637714c27e1
     const newGrid = { ...grid };
     if (input !== null) {
       newGrid.rows[r].cols[c].value = input;

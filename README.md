@@ -27,8 +27,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Meet the team
 
----
-
 This project was made by Team Crosswordle. We are:
 
 - Bryn Williams
@@ -42,8 +40,6 @@ From Makers Cohort November 2021
 
 ## About
 
----
-
 This is a Wordle-inspired webapp created by Team Crosswordle for our Final Engineering Group Project. This application has three game modes: Easy, Normal and Hard, in which the user has to guess the correct 5-letter words according to the ruleset.
 
 For all game modes, the check solution button can be clicked to check the users attempt. Each guess increments the user's guess count, hence a lower guess count indicates a better score.
@@ -55,8 +51,6 @@ Colours of the letters in the letter bucket will adjust accordingly i.e. green i
 A new Crosswordle challenge is provided daily for all three game modes.
 
 ## Game modes
-
----
 
 <div align="center">
 
@@ -76,6 +70,8 @@ The user is presented with a 5x5 grid with the characters revealed in the 4 corn
 
 The user is presented with a 5x5 grid with no revealed characters. Similarly, the user then has to find 6 words in total: 3 across and 3 down.
 
-<img src="./public/hard_mode_grid.png" height="250" width="220"><br>
-<img src="./public/favicon.ico" height="50">
+<img src="./public/hard_mode_grid.png" height="250" width="220">
+---
+<img src="./public/favicon.ico" height="100">
+---
 </div>

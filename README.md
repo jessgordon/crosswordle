@@ -79,4 +79,3 @@ ___
 <div align="center">
 <img src="./public/favicon.ico" height="100">
 </div>
-___

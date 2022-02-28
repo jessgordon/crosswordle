@@ -52,8 +52,6 @@ A new Crosswordle challenge is provided daily for all three game modes.
 
 ## Game modes
 
-<div align="center">
-
 ### Easy mode:
 
 The user is presented with a 5x5 grid with the diagonal characters shown. The user then has to find 5 horizontal words, each of which intercepts with one character in the diagonal.
@@ -72,6 +70,7 @@ The user is presented with a 5x5 grid with no revealed characters. Similarly, th
 
 <img src="./public/hard_mode_grid.png" height="250" width="220">
 ---
-<img src="./public/favicon.ico" height="100">
----
+<div align="center">
+  <img src="./public/favicon.ico" height="100">
 </div>
+---

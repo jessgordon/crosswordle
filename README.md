@@ -1,8 +1,5 @@
 # Crosswordle
 
-<img src="./public/favicon.ico" height="50"><br>
-
-
 This project was created entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
 
 You can visit the hosted website itself [here](https://crosswordle-production.herokuapp.com)!
@@ -61,6 +58,8 @@ A new Crosswordle challenge is provided daily for all three game modes.
 
 ---
 
+<div align="center">
+
 ### Easy mode:
 
 The user is presented with a 5x5 grid with the diagonal characters shown. The user then has to find 5 horizontal words, each of which intercepts with one character in the diagonal.
@@ -77,4 +76,6 @@ The user is presented with a 5x5 grid with the characters revealed in the 4 corn
 
 The user is presented with a 5x5 grid with no revealed characters. Similarly, the user then has to find 6 words in total: 3 across and 3 down.
 
-<img src="./public/hard_mode_grid.png" height="250" width="220">
+<img src="./public/hard_mode_grid.png" height="250" width="220"><br>
+<img src="./public/favicon.ico" height="50">
+</div>

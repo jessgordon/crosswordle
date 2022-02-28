@@ -1,6 +1,6 @@
 # Crosswordle
 
-This project was created using entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
+This project was created entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
 
 You can visit the hosted website itself [here](https://crosswordle-production.herokuapp.com)!
 
@@ -48,6 +48,8 @@ For all game modes, the check solution button can be clicked to check the users 
 The letters shown below the grid indicate the characters that are usable for the given daily solution. Note that not all characters are present, giving the user an easier time guessing words.
 
 Colours of the letters in the letter bucket will adjust accordingly i.e. green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
+
+A new Crosswordle challenge is provided daily for all three game modes.
 
 ## Game modes
 

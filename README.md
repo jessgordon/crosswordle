@@ -1,6 +1,6 @@
 # Crosswordle
 
-This project was created using entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
+This project was created entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
 
 You can visit the hosted website itself [here](https://crosswordle-production.herokuapp.com)!
 
@@ -8,18 +8,21 @@ You can visit the hosted website itself [here](https://crosswordle-production.he
 
 First, clone this repository. Then:
 
-### `npm install`
+```bash
+> npm install
+> npm start # Runs the app in the development mode
+```
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
 The page will reload when you make changes.
 
-### `npm test`
+Then, run the tests to ensure it works:
 
-Launches the test runner in the interactive watch mode.\
+```bash
+> npm test # Launches the test runner in the interactive watch mode
+```
+
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ## Meet the team
@@ -49,6 +52,8 @@ The letters shown below the grid indicate the characters that are usable for the
 
 Colours of the letters in the letter bucket will adjust accordingly i.e. green if the letter is in the correct space, yellow if the letter is in the correct row or column, grey if the letter is in neither the row or column.
 
+A new Crosswordle challenge is provided daily for all three game modes.
+
 ## Game modes
 
 ---
@@ -69,4 +74,8 @@ The user is presented with a 5x5 grid with the characters revealed in the 4 corn
 
 The user is presented with a 5x5 grid with no revealed characters. Similarly, the user then has to find 6 words in total: 3 across and 3 down.
 
-<img src="./public/hard_mode_grid.png" height="250" width="220">
+<img src="./public/hard_mode_grid.png" height="250" width="220"><br>
+___
+<div align="center">
+<img src="./public/favicon.ico" height="100">
+</div>

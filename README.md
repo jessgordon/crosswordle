@@ -1,5 +1,8 @@
 # Crosswordle
 
+<img src="./public/favicon.ico" height="150"><br>
+
+
 This project was created entirely in React. Solutions under src/data were generated using Python and can be found within this [Github repository](https://github.com/tc1316/crosswordle-solutions)
 
 You can visit the hosted website itself [here](https://crosswordle-production.herokuapp.com)!

@@ -24,7 +24,7 @@ function App() {
               className="mode-link button is-success is-light is-size-5 is-outlined"
               to="/easy"
             >
-              Easy Difficulty
+              Easy
             </Link>
           </div>
           <div className="column">
@@ -32,7 +32,7 @@ function App() {
               className="mode-link button is-warning is-light is-size-5 is-outlined"
               to="/normal"
             >
-              Normal Difficulty
+              Normal
             </Link>
           </div>
           <div className="column">
@@ -40,7 +40,7 @@ function App() {
               className="mode-link button is-danger is-light is-size-5 is-outlined"
               to="/hard"
             >
-              Hard Difficulty
+              Hard
             </Link>
           </div>
         </div>

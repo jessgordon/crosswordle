@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { EASYMODE_WORDS } from "./data/easyModeData";
+import { generateEasyGrid } from "./helpers/easyModeGrid";
+import {
+  parseWords,
+  getDayNumber,
+  generateRowNeighbours,
+  sanitizeInput,
+} from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
-import { parseWords, getDayNumber } from "./helpers/Helpers";
-import {
-  generateRowNeighbours,
-  generateEasyGrid,
-} from "./helpers/easyModeMethods";
 
 // console.log(EASYMODE_WORDS[getDayNumber() - 1]);
 export default function EasyMode() {
@@ -23,29 +25,35 @@ export default function EasyMode() {
   let eachCellsNeighbours = generateRowNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
-  const [showModal, setShowModal] = useState(false);
+  const [bucketState, setBucketState] = useState(initialGrid);
+  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [showWinModal, setShowWinModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("hasVisitedEasy")) {
+      setShowHowToPlay(false);
+    } else {
+      localStorage.setItem("hasVisitedEasy", "true");
+    }
+  }, []);
 
   useEffect(() => {
     const checkWin = () => {
       if (correctCount === MAXSCORE) {
-        setShowModal(true);
+        setShowWinModal(true);
       }
     };
     checkWin();
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const { value, maxLength } = e.target
-    const input = value.slice(0, maxLength).toUpperCase()
-    if (!/^[a-zA-Z]*$/.test(input)) {
-      return false;
-    }
-    const r = e.target.attributes.row.value;
-    const c = e.target.attributes.col.value;
+    let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
-    newGrid.rows[r].cols[c].value = input;
+    if (input !== null) {
+      newGrid.rows[r].cols[c].value = input;
+    }
     setGrid(newGrid);
   };
 
@@ -69,6 +77,7 @@ export default function EasyMode() {
       }
     }
     setGrid(newGrid);
+    setBucketState(newGrid);
     setScore((prevScore) => prevScore + 1);
   };
 
@@ -86,18 +95,7 @@ export default function EasyMode() {
   return (
     <>
       <div className="columns is-vcentered">
-        <div className="column"></div>
-
-        <div className="column is-two-thirds">
-          <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket
-            answer={possibleLetters}
-            grid={grid}
-            key={"letterbucket"}
-          />
-        </div>
-
-        <div className="column">
+        <div className="column is-2 is-offset-1">
           <div className="container scoreboard m-2">
             <p
               id="score-label"
@@ -124,13 +122,44 @@ export default function EasyMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} mode={"easy"} />
+
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              id="how-to-play-btn"
+              className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+            >
+              How to Play
+            </button>
+            <HowToPlay
+              key={"howToPlay"}
+              mode={"easy"}
+              showModal={showHowToPlay}
+              closeModal={() => setShowHowToPlay(false)}
+            />
+          </div>
+        </div>
+
+        <div className="column is-half">
+          <Grid grid={grid} changeCell={changeCell} />
+          <div className="column mobile">
+            <LetterBucket
+              answer={possibleLetters}
+              postCheckGrid={bucketState}
+              key={"letterbucket"}
+            />
           </div>
         </div>
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score} mode={"easy"} />}
+        {
+          <YouWin
+            showModal={showWinModal}
+            closeModal={() => setShowWinModal(false)}
+            score={score}
+            mode={"normal"}
+          />
+        }
       </div>
     </>
   );

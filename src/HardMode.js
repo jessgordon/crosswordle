@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { React, useState, useEffect, useLayoutEffect } from "react";
 import { HARDMODE_WORDS } from "./data/hardModeData";
+import { generateHardGrid } from "./helpers/hardModeGrid";
+import {
+  parseWords,
+  getDayNumber,
+  generateRowColNeighbours,
+  sanitizeInput,
+} from "./helpers/Helpers";
 import HowToPlay from "./components/HowToPlay";
 import YouWin from "./components/YouWin";
 import Grid from "./components/Grid";
 import Score from "./components/Score";
 import LetterBucket from "./components/LetterBucket";
-import { parseWords, getDayNumber } from "./helpers/Helpers";
-import {
-  generateRowColNeighbours,
-  generateHardGrid,
-} from "./helpers/hardModeMethods";
 
 // console.log(HARDMODE_WORDS[getDayNumber() - 1])
-
 export default function HardMode() {
   const MAXSCORE = 21;
   const WORDLENGTH = 5;
@@ -24,29 +25,35 @@ export default function HardMode() {
   let eachCellsNeighbours = generateRowColNeighbours(initialGrid);
 
   const [grid, setGrid] = useState(initialGrid);
-  const [showModal, setShowModal] = useState(false);
+  const [bucketState, setBucketState] = useState(initialGrid);
+  const [showHowToPlay, setShowHowToPlay] = useState(true);
+  const [showWinModal, setShowWinModal] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [score, setScore] = useState(0);
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("hasVisitedHard")) {
+      setShowHowToPlay(false);
+    } else {
+      localStorage.setItem("hasVisitedHard", "true");
+    }
+  }, []);
 
   useEffect(() => {
     const checkWin = () => {
       if (correctCount === MAXSCORE) {
-        setShowModal(true);
+        setShowWinModal(true);
       }
     };
     checkWin();
   }, [correctCount]);
 
   const changeCell = (e) => {
-    const { value, maxLength } = e.target
-    const input = value.slice(0, maxLength).toUpperCase()
-    if (!/^[a-zA-Z]*$/.test(input)) {
-      return false;
-    }
-    const r = e.target.attributes.row.value;
-    const c = e.target.attributes.col.value;
+    let [input, r, c] = [...sanitizeInput(e)];
     const newGrid = { ...grid };
-    newGrid.rows[r].cols[c].value = input;
+    if (input !== null) {
+      newGrid.rows[r].cols[c].value = input;
+    }
     setGrid(newGrid);
   };
 
@@ -71,6 +78,7 @@ export default function HardMode() {
       }
     }
     setGrid(newGrid);
+    setBucketState(newGrid);
     setScore((prevScore) => prevScore + 1);
   };
 
@@ -88,18 +96,7 @@ export default function HardMode() {
   return (
     <>
       <div className="columns is-vcentered">
-        <div className="column"></div>
-
-        <div className="column is-two-thirds">
-          <Grid grid={grid} changeCell={changeCell} />
-          <LetterBucket
-            answer={possibleLetters}
-            grid={grid}
-            key={"letterbucket"}
-          />
-        </div>
-
-        <div className="column">
+        <div className="column is-2 is-offset-1">
           <div className="container scoreboard m-2">
             <p
               id="score-label"
@@ -126,13 +123,44 @@ export default function HardMode() {
               <br />
               Answer
             </button>
-            <HowToPlay key={"howToPlay"} mode={"hard"} />
+
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              id="how-to-play-btn"
+              className="is-size-6-touch is-size-5-tablet is-size-4-desktop m-3 p-2"
+            >
+              How to Play
+            </button>
+            <HowToPlay
+              key={"howToPlay"}
+              mode={"hard"}
+              showModal={showHowToPlay}
+              closeModal={() => setShowHowToPlay(false)}
+            />
+          </div>
+        </div>
+
+        <div className="column is-half">
+          <Grid grid={grid} changeCell={changeCell} />
+          <div className="column mobile">
+            <LetterBucket
+              answer={possibleLetters}
+              postCheckGrid={bucketState}
+              key={"letterbucket"}
+            />
           </div>
         </div>
       </div>
 
       <div className="container">
-        {showModal && <YouWin score={score} mode={"hard"} />}
+        {
+          <YouWin
+            showModal={showWinModal}
+            closeModal={() => setShowWinModal(false)}
+            score={score}
+            mode={"normal"}
+          />
+        }
       </div>
     </>
   );

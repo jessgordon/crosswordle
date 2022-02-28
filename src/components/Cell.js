@@ -16,7 +16,7 @@ export default function Cell({ field, changeCell }) {
       readOnly={field.readonly}
       answer={field.answer}
       onChange={changeCell}
-      maxLength="1"
+      maxLength="2"
     ></input>
   );
 }

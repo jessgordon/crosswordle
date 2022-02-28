@@ -13,6 +13,16 @@
   border-color: #e5e5e5;
 }
 
+.default:focus,
+.correct:focus,
+.wrong:focus,
+.blank:focus,
+.wrong-location:focus {
+  outline: none !important;
+  border: 2.5px solid black;
+  box-shadow: 0px 0px 7px inset grey;
+}
+
 .correct {
   color: white;
   background-color: rgb(99, 199, 99);
